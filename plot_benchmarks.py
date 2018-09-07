@@ -210,47 +210,51 @@ def plot_detailed_times_stacked(benchmark, ax, legend=False):
 
 
 if __name__ == '__main__':
-    # COBA with linear scaling
-    COBA = mean_and_std_fixed_time(load_benchmark(directory, 'benchmarks_COBAHH.txt'))
-    # Mushroom body
-    Mbody = mean_and_std_fixed_time(load_benchmark(directory, 'benchmarks_Mbody_example.txt'))
+    for with_monitor in [True, False]:
+        monitor_suffix = '' if with_monitor else '_no_monitor'
+        # COBA with linear scaling
+        COBA = mean_and_std_fixed_time(load_benchmark(directory, 'benchmarks_COBAHH.txt'), monitor=with_monitor)
+        # Mushroom body
+        Mbody = mean_and_std_fixed_time(load_benchmark(directory, 'benchmarks_Mbody_example.txt'), monitor=with_monitor)
 
-    # Total time (including compilation)
-    fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
-                                            figsize=(6.3, 6.3 * .666))
-    plot_total(COBA, ax_left, legend=True)
-    ax_left.set_title('COBAHH')
-    plot_total(Mbody, ax_right, legend=False)
-    ax_right.set_title('Mushroom body')
-    plt.tight_layout()
-    fig.savefig(os.path.join(directory, 'total_runtime.pdf'))
-
-    for benchmarks, name in [(COBA, 'COBAHH'),
-                             (Mbody, 'Mbody')]:
+        # Total time (including compilation)
         fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
                                                 figsize=(6.3, 6.3 * .666))
-        plot_detailed_times(benchmarks.loc[(benchmarks['device'] == 'genn') &
-                                           (benchmarks['n_threads'] == 0)],
-                            ax_left, legend=True)
-        inside_title(ax_left, '%s (Brian2GeNN GPU)' % name)
-        plot_detailed_times(benchmarks.loc[(benchmarks['device'] == 'cpp_standalone') &
-                                           (benchmarks['n_threads'] == 8)],
-                            ax_right)
-        inside_title(ax_right, '%s (C++ 8 threads)' % name)
+        plot_total(COBA, ax_left, legend=True)
+        ax_left.set_title('COBAHH')
+        plot_total(Mbody, ax_right, legend=False)
+        ax_right.set_title('Mushroom body')
         plt.tight_layout()
-        fig.savefig(os.path.join(directory, 'detailed_runtime_%s.pdf' % name))
+        fig.savefig(os.path.join(directory, 'total_runtime%s.pdf' % monitor_suffix))
 
-    for benchmarks, name in [(COBA, 'COBAHH'),
-                             (Mbody, 'Mbody')]:
-        fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
-                                                figsize=(6.3, 6.3 * .666))
-        plot_detailed_times_stacked(benchmarks.loc[(benchmarks['device'] == 'genn') &
-                                                   (benchmarks['n_threads'] == 0)],
-                                    ax_left, legend=True)
-        inside_title(ax_left, '%s (Brian2GeNN GPU)' % name)
-        plot_detailed_times_stacked(benchmarks.loc[(benchmarks['device'] == 'cpp_standalone') &
-                                                   (benchmarks['n_threads'] == 8)],
-                                    ax_right)
-        inside_title(ax_right, '%s (C++ 8 threads)' % name)
-        plt.tight_layout()
-        fig.savefig(os.path.join(directory, 'detailed_runtime_relative_%s.pdf' % name))
+        for benchmarks, name in [(COBA, 'COBAHH'),
+                                 (Mbody, 'Mbody')]:
+            fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
+                                                    figsize=(6.3, 6.3 * .666))
+            plot_detailed_times(benchmarks.loc[(benchmarks['device'] == 'genn') &
+                                               (benchmarks['n_threads'] == 0)],
+                                ax_left, legend=True)
+            inside_title(ax_left, '%s (Brian2GeNN GPU)' % name)
+            plot_detailed_times(benchmarks.loc[(benchmarks['device'] == 'cpp_standalone') &
+                                               (benchmarks['n_threads'] == 8)],
+                                ax_right)
+            inside_title(ax_right, '%s (C++ 8 threads)' % name)
+            plt.tight_layout()
+            fig.savefig(os.path.join(directory,
+                                     'detailed_runtime_%s%s.pdf' % (name, monitor_suffix)))
+
+        for benchmarks, name in [(COBA, 'COBAHH'),
+                                 (Mbody, 'Mbody')]:
+            fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
+                                                    figsize=(6.3, 6.3 * .666))
+            plot_detailed_times_stacked(benchmarks.loc[(benchmarks['device'] == 'genn') &
+                                                       (benchmarks['n_threads'] == 0)],
+                                        ax_left, legend=True)
+            inside_title(ax_left, '%s (Brian2GeNN GPU)' % name)
+            plot_detailed_times_stacked(benchmarks.loc[(benchmarks['device'] == 'cpp_standalone') &
+                                                       (benchmarks['n_threads'] == 8)],
+                                        ax_right)
+            inside_title(ax_right, '%s (C++ 8 threads)' % name)
+            plt.tight_layout()
+            fig.savefig(os.path.join(directory,
+                                     'detailed_runtime_relative_%s%s.pdf' % (name, monitor_suffix)))
