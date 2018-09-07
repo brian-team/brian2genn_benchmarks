@@ -1,11 +1,17 @@
 import os
-
+import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
 plt.style.use('figures.conf')
-directory = 'benchmark_results/2018-09-06_vuvuzela'
+
+directory = None  # replace this or pass the directory as a command line arg
+if directory is None:
+    if len(sys.argv) == 2:
+        directory = sys.argv[1]
+    else:
+        raise ValueError('Need the directory name as an argument')
 
 
 def load_benchmark(directory, fname):
@@ -76,24 +82,34 @@ def label_and_color(device, n_threads):
         # Quick&dirty colour selection
         color = {1: 'gold',
                  2: 'darkorange',
-                 4: 'lightred',
+                 4: 'tomato',
                  8: 'darkred',
                  16: 'violet'}[n_threads]
         return label, color
 
 
-def plot_total(benchmarks, ax, legend=False):
+def inside_title(ax, text, x=0.98, y=.04):
+    t = ax.text(x, y, text, weight='bold', horizontalalignment='right',
+                     transform=ax.transAxes)
+    t.set_bbox({'facecolor': 'white', 'edgecolor': 'none', 'alpha': 0.8})
+
+
+def plot_total(benchmarks, ax, legend=False, skip=('Brian2GeNN CPU',
+                                                   'C++ 2 threads',
+                                                   'C++ 16 threads')):
     ax.set_yscale('log')
     # We do the log scale for the x axis manually -- easier to get the ticks/labels right
     conditions = benchmarks.groupby(['device', 'n_threads'])
     for condition in conditions:
         (device, threads), results = condition
         label, color = label_and_color(device, threads)
+        if label in skip:
+            continue
         ax.plot(np.log(results['n_neurons'].values),
                 results['total']['amin'],
-                'o-', label=label, color=color)
+                'o-', label=label, color=color, mec='none')
     if legend:
-        ax.legend(loc='upper left')
+        ax.legend(loc='upper left', frameon=True, edgecolor='none')
     used_n_neuron_values = benchmarks['n_neurons'].unique()
     # Make sure we show the xtick label for the highest value
     if len(used_n_neuron_values) % 2 == 0:
@@ -109,7 +125,6 @@ def plot_total(benchmarks, ax, legend=False):
 def plot_detailed_times(benchmark, ax, legend=False):
     # Prepare data for stacked plot
     x = np.array(benchmark['n_neurons'])
-    Y = np.zeros((4, len(x)))
     # code generation and build
     build = benchmark['duration_compile']['amin']
     # Reading/writing arrays from/to disk / conversion between Brian2 and GeNN format
@@ -122,14 +137,18 @@ def plot_detailed_times(benchmark, ax, legend=False):
     simulate = benchmark['duration_run']['amin']
     # TODO: Check that the total matches
     total = benchmark['total']['amin']
-    for data, label in [(build, 'code generation & build'),
+    for data, label in [(build, 'code gen & compile'),
                         (read_write_convert, 'overhead'),
                         (create_initialize, 'synapse creation & initialization'),
                         (simulate, 'simulation')]:
-        ax.plot(np.log(x), data, label=label)
-    ax.plot(np.log(x), total, 'k:', label='Total')
+        ax.plot(np.log(x), data, 'o-', label=label, mec='white')
+    ax.plot(np.log(x), total, 'ko-', mec='white', label='Total')
+    ax.grid(b=True, which='minor', color='#b0b0b0', linestyle='-',
+            linewidth=0.33)
     if legend:
-        ax.legend(loc='upper left')
+        ax.legend(bbox_to_anchor=(0, 1.02, 1, 0.2), loc="lower left",
+                   mode="expand", borderaxespad=0, ncol=2)
+        # ax.legend(loc='upper left')
     # Make sure we show the xtick label for the highest value
     if len(x) % 2 == 0:
         start = 1
@@ -137,7 +156,56 @@ def plot_detailed_times(benchmark, ax, legend=False):
         start = 0
     ax.set(xticks=np.log(x)[start::2],
            xlabel='Model size (# neurons)',
-           ylabel='Wall clock time (s)')
+           ylabel='Wall clock time (s)',
+           yscale='log')
+    ax.set_xticklabels(sorted(x)[start::2], rotation=45)
+
+
+def plot_detailed_times_stacked(benchmark, ax, legend=False):
+    # Prepare data for stacked plot
+    x = np.array(benchmark['n_neurons'])
+    # code generation and build
+    build = benchmark['duration_compile']['amin']
+    # Reading/writing arrays from/to disk / conversion between Brian2 and GeNN format
+    read_write_convert = (benchmark['duration_before']['amin'] +
+                          benchmark['duration_after']['amin'])
+    # Creating synapses and initialization
+    create_initialize = (benchmark['duration_synapses']['amin'] +
+                         benchmark['duration_init']['amin'])
+    # Simulation time
+    simulate = benchmark['duration_run']['amin']
+    # TODO: Check that the total matches
+    total = benchmark['total']['amin']
+
+    # Normalize everything to total time and stack up
+    Y = np.row_stack([build/total,
+                      read_write_convert/total,
+                      create_initialize/total,
+                      simulate/total])
+
+    labels = ['code gen & compile',
+              'overhead',
+              'synapse creation & initialization',
+              'simulation']
+    handles = ax.stackplot(np.log(x), *(Y*100),
+                           labels=labels)
+
+    ax.grid(b=True, which='minor', color='#b0b0b0', linestyle='-',
+            linewidth=0.33)
+    if legend:
+        # Show legend in reverse order to avoid confusion
+        ax.legend(reversed(handles), reversed(labels),
+                  bbox_to_anchor=(0, 1.02, 1, 0.2), loc="lower left",
+                  mode="expand", borderaxespad=0)
+    # Make sure we show the xtick label for the highest value
+    if len(x) % 2 == 0:
+        start = 1
+    else:
+        start = 0
+    ax.set(xticks=np.log(x)[start::2],
+           xlabel='Model size (# neurons)',
+           ylabel='% of total time',
+           ylim=(0, 100))
     ax.set_xticklabels(sorted(x)[start::2], rotation=45)
 
 
@@ -154,23 +222,35 @@ if __name__ == '__main__':
     ax_left.set_title('COBAHH')
     plot_total(Mbody, ax_right, legend=False)
     ax_right.set_title('Mushroom body')
+    plt.tight_layout()
+    fig.savefig(os.path.join(directory, 'total_runtime.pdf'))
 
-    fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
-                                            figsize=(6.3, 6.3 * .666))
-    plot_detailed_times(COBA.loc[(COBA['device'] == 'genn') & (COBA['n_threads'] == 0)],
-                        ax_left, legend=True)
-    ax_left.set_title('COBAHH -- Brian2GeNN GPU')
-    plot_detailed_times(COBA.loc[(COBA['device'] == 'cpp_standalone') & (COBA['n_threads'] == 8)],
-                        ax_right)
-    ax_right.set_title('COBAHH -- C++ 8 threads')
+    for benchmarks, name in [(COBA, 'COBAHH'),
+                             (Mbody, 'Mbody')]:
+        fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
+                                                figsize=(6.3, 6.3 * .666))
+        plot_detailed_times(benchmarks.loc[(benchmarks['device'] == 'genn') &
+                                           (benchmarks['n_threads'] == 0)],
+                            ax_left, legend=True)
+        inside_title(ax_left, '%s (Brian2GeNN GPU)' % name)
+        plot_detailed_times(benchmarks.loc[(benchmarks['device'] == 'cpp_standalone') &
+                                           (benchmarks['n_threads'] == 8)],
+                            ax_right)
+        inside_title(ax_right, '%s (C++ 8 threads)' % name)
+        plt.tight_layout()
+        fig.savefig(os.path.join(directory, 'detailed_runtime_%s.pdf' % name))
 
-    fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
-                                            figsize=(6.3, 6.3 * .666))
-    plot_detailed_times(Mbody.loc[(Mbody['device'] == 'genn') & (Mbody['n_threads'] == 0)],
-                        ax_left, legend=True)
-    ax_left.set_title('Mbody -- Brian2GeNN GPU')
-    plot_detailed_times(Mbody.loc[(Mbody['device'] == 'cpp_standalone') & (Mbody['n_threads'] == 8)],
-                        ax_right)
-    ax_right.set_title('Mbody -- C++ 8 threads')
-
-    plt.show()
+    for benchmarks, name in [(COBA, 'COBAHH'),
+                             (Mbody, 'Mbody')]:
+        fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
+                                                figsize=(6.3, 6.3 * .666))
+        plot_detailed_times_stacked(benchmarks.loc[(benchmarks['device'] == 'genn') &
+                                                   (benchmarks['n_threads'] == 0)],
+                                    ax_left, legend=True)
+        inside_title(ax_left, '%s (Brian2GeNN GPU)' % name)
+        plot_detailed_times_stacked(benchmarks.loc[(benchmarks['device'] == 'cpp_standalone') &
+                                                   (benchmarks['n_threads'] == 8)],
+                                    ax_right)
+        inside_title(ax_right, '%s (C++ 8 threads)' % name)
+        plt.tight_layout()
+        fig.savefig(os.path.join(directory, 'detailed_runtime_relative_%s.pdf' % name))
