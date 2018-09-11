@@ -27,7 +27,7 @@ Currently, there are two benchmarks:
 Each of these examples can be run manually by running it with certain
 command-line arguments:
 ```console
-$ python [benchmark] [scale] [device] [n_threads] [runtime] [monitor] [label]
+$ python [benchmark] [scale] [device] [n_threads] [runtime] [monitor] [float_dtype] [label]
 ``` 
 where:
 <dl>
@@ -47,6 +47,9 @@ neurons, 2 twice this number, etc.)</dd>
 <dd>Whether to use monitors in the simulation (spike monitors for both
 benchmarks, additional a monitor recording the membrane potential of 1% of the
 neurons in the COBAHH benchmark)</dd>
+<dt>float_dtype</dt>
+<dd>The datatype for floating point variables, either <code>float32</code> for
+single precision or <code>float64</code> for double precision.</dd>
 <dt>label</dt>
 <dd>A label that will be used to decide in which directory to put the benchmark
 (i.e., use the same label for benchmarks run on the same machine)</dd>
