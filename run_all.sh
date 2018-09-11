@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # Define a basic label to keep the benchmark results organized
-LABEL="$(date -I)_$HOSTNAME"_test
+LABEL="$(date -I)_$HOSTNAME"
 echo Using label: $LABEL
 
 RESULT_DIR="benchmark_results/$LABEL"
