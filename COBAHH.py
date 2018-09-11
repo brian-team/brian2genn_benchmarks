@@ -24,8 +24,6 @@ import sys
 
 import benchmark_utils as bu
 
-BrianLogger.log_level_debug()
-
 config = bu.prepare_benchmark(sys.argv)
 bu.insert_general_benchmark_code(config)
 
