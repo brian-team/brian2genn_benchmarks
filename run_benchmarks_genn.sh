@@ -8,7 +8,11 @@ if [ "$3" == "test" ]; then
 else
     SCALING="0.05 0.1 0.25 0.5 1 2 4 8 16 32"
     SCALING_BIG="64 128 256 512"
-    MONITORS="true false"
+    if [ "$1" = "COBAHH.py" ]; then
+        MONITORS="true false"
+    else
+        MONITORS="false"
+    fi
     N_REPEATS=3
 fi
 
