@@ -18,13 +18,15 @@ def load_benchmark(directory, fname):
     full_fname = os.path.join(directory, fname)
     benchmarks = pd.read_csv(full_fname, sep=r'\s+', header=None, index_col=None,
                              names=['device', 'n_threads', 'n_neurons', 'n_synapses',
-                                    'runtime', 'with_monitor', 'total',
+                                    'runtime', 'with_monitor', 'float_dtype',
+                                    'total',
                                     't_after_load',
                                     't_before_synapses', 't_after_synapses',
                                     't_after_init', 't_before_run',
                                     't_after_run', 't_before_write', 't_after_write'],
                              dtype={'device': 'category',
                                     'with_monitor': 'bool',
+                                    'float_dtype': 'category',
                                     'runtime': 'float64',
                                     'total': 'float64'})
     # The times in the benchmark file are the full times (in milliseconds) that
@@ -60,9 +62,11 @@ def load_benchmark(directory, fname):
     return benchmarks
 
 
-def mean_and_std_fixed_time(benchmarks, monitor=True, runtime=1):
+def mean_and_std_fixed_time(benchmarks, monitor=True, float_dtype='float64',
+                            runtime=1):
     subset = benchmarks.loc[(benchmarks['with_monitor'] == monitor) &
-                            (benchmarks['runtime'] == runtime)]
+                            (benchmarks['runtime'] == runtime) &
+                            (benchmarks['float_dtype'] == float_dtype)]
 
     # Average over trials
     grouped = subset.groupby(['device', 'n_neurons', 'n_threads'])
@@ -96,7 +100,9 @@ def inside_title(ax, text, x=0.98, y=.04):
 
 def plot_total(benchmarks, ax, legend=False, skip=('Brian2GeNN CPU',
                                                    'C++ 2 threads',
-                                                   'C++ 16 threads')):
+                                                   'C++ 16 threads'),
+               plot_what='total',
+               axis_label='Total wall clock time (including compilation)'):
     ax.set_yscale('log')
     # We do the log scale for the x axis manually -- easier to get the ticks/labels right
     conditions = benchmarks.groupby(['device', 'n_threads'])
@@ -106,7 +112,7 @@ def plot_total(benchmarks, ax, legend=False, skip=('Brian2GeNN CPU',
         if label in skip:
             continue
         ax.plot(np.log(results['n_neurons'].values),
-                results['total']['amin'],
+                results[plot_what]['amin'],
                 'o-', label=label, color=color, mec='none')
     if legend:
         ax.legend(loc='upper left', frameon=True, edgecolor='none')
@@ -119,7 +125,7 @@ def plot_total(benchmarks, ax, legend=False, skip=('Brian2GeNN CPU',
     ax.set_xticks(np.log(sorted(used_n_neuron_values))[start::2])
     ax.set_xticklabels(sorted(used_n_neuron_values)[start::2], rotation=45)
     ax.set(xlabel='Model size (# neurons)',
-           ylabel='Total wall clock time (including compilation)')
+           ylabel=axis_label)
 
 
 def plot_detailed_times(benchmark, ax, legend=False):
@@ -214,21 +220,43 @@ if __name__ == '__main__':
         monitor_suffix = '' if with_monitor else '_no_monitor'
         # COBA with linear scaling
         COBA = mean_and_std_fixed_time(load_benchmark(directory, 'benchmarks_COBAHH.txt'), monitor=with_monitor)
+        COBA32 = mean_and_std_fixed_time(load_benchmark(directory, 'benchmarks_COBAHH.txt'), monitor=with_monitor,
+                                         float_dtype='float32')
         # Mushroom body
         Mbody = mean_and_std_fixed_time(load_benchmark(directory, 'benchmarks_Mbody_example.txt'), monitor=with_monitor)
+        Mbody32 = mean_and_std_fixed_time(load_benchmark(directory, 'benchmarks_Mbody_example.txt'), monitor=with_monitor,
+                                          float_dtype='float32')
 
-        # Total time (including compilation)
-        fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
-                                                figsize=(6.3, 6.3 * .666))
-        plot_total(COBA, ax_left, legend=True)
-        ax_left.set_title('COBAHH')
-        plot_total(Mbody, ax_right, legend=False)
-        ax_right.set_title('Mushroom body')
-        plt.tight_layout()
-        fig.savefig(os.path.join(directory, 'total_runtime%s.pdf' % monitor_suffix))
+        for COBA_benchmark, Mbody_benchmark, suffix in [(COBA, Mbody, ''),
+                                                        (COBA32, Mbody, ' single precision')]:
+            # Total time (including compilation)
+            fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
+                                                    figsize=(6.3, 6.3 * .666))
+            plot_total(COBA_benchmark, ax_left, legend=True)
+            ax_left.set_title('COBAHH%s' % suffix)
+            plot_total(Mbody_benchmark, ax_right, legend=False)
+            ax_right.set_title('Mushroom body%s' % suffix)
+            plt.tight_layout()
+            fig.savefig(os.path.join(directory, 'total_runtime%s%s.pdf' % (monitor_suffix,
+                                                                           suffix)))
+
+            # Runtime relative to realtime
+            fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
+                                                    figsize=(6.3, 6.3 * .666))
+            plot_total(COBA_benchmark, ax_left, legend=True, plot_what='duration_run_rel',
+                       axis_label='Simulation time (relative to real-time)')
+            ax_left.set_title('COBAHH')
+            plot_total(Mbody_benchmark, ax_right, legend=False, plot_what='duration_run_rel',
+                       axis_label='Simulation time (relative to real-time)')
+            ax_right.set_title('Mushroom body')
+            plt.tight_layout()
+            fig.savefig(os.path.join(directory, 'simulation_time_only%s%s.pdf' % (monitor_suffix,
+                                                                                  suffix)))
 
         for benchmarks, name in [(COBA, 'COBAHH'),
-                                 (Mbody, 'Mbody')]:
+                                 (Mbody, 'Mbody'),
+                                 (COBA32, 'COBAHH single precision'),
+                                 (Mbody32, 'Mbody single precision')]:
             fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
                                                     figsize=(6.3, 6.3 * .666))
             plot_detailed_times(benchmarks.loc[(benchmarks['device'] == 'genn') &
@@ -243,8 +271,6 @@ if __name__ == '__main__':
             fig.savefig(os.path.join(directory,
                                      'detailed_runtime_%s%s.pdf' % (name, monitor_suffix)))
 
-        for benchmarks, name in [(COBA, 'COBAHH'),
-                                 (Mbody, 'Mbody')]:
             fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
                                                     figsize=(6.3, 6.3 * .666))
             plot_detailed_times_stacked(benchmarks.loc[(benchmarks['device'] == 'genn') &

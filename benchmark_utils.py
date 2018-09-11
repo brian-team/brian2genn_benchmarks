@@ -20,6 +20,7 @@ def prepare_benchmark(argv):
         config['threads'] = 1
         config['runtime'] = 1.0*second
         config['monitor'] = True
+        config['float_dtype'] = 'float64'
         config['debug'] = True
     else:
         config['scale'] = float(sys.argv[1])
@@ -27,7 +28,8 @@ def prepare_benchmark(argv):
         config['threads'] = int(sys.argv[3])
         config['runtime'] = float(sys.argv[4])*second
         config['monitor'] = sys.argv[5].lower() == 'true' or sys.argv[5] == '1'
-        config['label'] = sys.argv[6]
+        config['float_dtype'] = sys.argv[6]
+        config['label'] = sys.argv[7]
         config['debug'] = False
 
     if config['device'] == 'genn':
@@ -49,6 +51,10 @@ def prepare_benchmark(argv):
     prefs.codegen.cpp.extra_compile_args_gcc += ['-std=c++11']
     prefs.codegen.cpp.extra_compile_args_msvc += ['/std:c++14']
     prefs.codegen.cpp.headers += ['<chrono>']
+    if config['float_dtype'] == 'float32':
+        prefs.core.default_float_dtype = np.float32
+    else:
+        prefs.core.default_float_dtype = np.float64
     set_device(config['device'], **extra_args)
     return config
 
@@ -99,7 +105,8 @@ def write_benchmark_results(name, config, neurons, synapses, took):
         os.mkdir(folder)
     with open('%s/benchmarks_%s.txt' % (folder, name), 'a') as f:
         data = [config['device'], config['threads'], neurons, synapses,
-                config['runtime'] / second, with_monitor, took]
+                config['runtime'] / second, with_monitor,
+                prefs.core.default_float_dtype.__name__, took]
         f.write('\t'.join('%s' % d for d in data) + '\t')
         with open('%s/results/benchmark.time' % directory, 'r') as bf:
             for line in bf:
