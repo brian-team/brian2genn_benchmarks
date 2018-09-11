@@ -4,6 +4,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
+FIGURE_EXTENSION = '.png'
+
 plt.style.use('figures.conf')
 
 directory = None  # replace this or pass the directory as a command line arg
@@ -98,9 +100,7 @@ def inside_title(ax, text, x=0.98, y=.04):
     t.set_bbox({'facecolor': 'white', 'edgecolor': 'none', 'alpha': 0.8})
 
 
-def plot_total(benchmarks, ax, legend=False, skip=('Brian2GeNN CPU',
-                                                   'C++ 2 threads',
-                                                   'C++ 16 threads'),
+def plot_total(benchmarks, ax, legend=False, skip=('Brian2GeNN CPU',),
                plot_what='total',
                axis_label='Total wall clock time (including compilation)'):
     ax.set_yscale('log')
@@ -237,8 +237,9 @@ if __name__ == '__main__':
             plot_total(Mbody_benchmark, ax_right, legend=False)
             ax_right.set_title('Mushroom body%s' % suffix)
             plt.tight_layout()
-            fig.savefig(os.path.join(directory, 'total_runtime%s%s.pdf' % (monitor_suffix,
-                                                                           suffix)))
+            fig.savefig(os.path.join(directory, 'total_runtime%s%s%s' % (monitor_suffix,
+                                                                         suffix,
+                                                                         FIGURE_EXTENSION)))
 
             # Runtime relative to realtime
             fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
@@ -250,8 +251,9 @@ if __name__ == '__main__':
                        axis_label='Simulation time (relative to real-time)')
             ax_right.set_title('Mushroom body')
             plt.tight_layout()
-            fig.savefig(os.path.join(directory, 'simulation_time_only%s%s.pdf' % (monitor_suffix,
-                                                                                  suffix)))
+            fig.savefig(os.path.join(directory, 'simulation_time_only%s%s%s' % (monitor_suffix,
+                                                                                suffix,
+                                                                                FIGURE_EXTENSION)))
 
         for benchmarks, name in [(COBA, 'COBAHH'),
                                  (Mbody, 'Mbody'),
@@ -269,7 +271,9 @@ if __name__ == '__main__':
             inside_title(ax_right, '%s (C++ 8 threads)' % name)
             plt.tight_layout()
             fig.savefig(os.path.join(directory,
-                                     'detailed_runtime_%s%s.pdf' % (name, monitor_suffix)))
+                                     'detailed_runtime_%s%s%s' % (name,
+                                                                  monitor_suffix,
+                                                                  FIGURE_EXTENSION)))
 
             fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
                                                     figsize=(6.3, 6.3 * .666))
@@ -283,4 +287,6 @@ if __name__ == '__main__':
             inside_title(ax_right, '%s (C++ 8 threads)' % name)
             plt.tight_layout()
             fig.savefig(os.path.join(directory,
-                                     'detailed_runtime_relative_%s%s.pdf' % (name, monitor_suffix)))
+                                     'detailed_runtime_relative_%s%s%s' % (name,
+                                                                           monitor_suffix,
+                                                                           FIGURE_EXTENSION)))
