@@ -260,7 +260,8 @@ def plot_detail_comparison(benchmarks):
                 start = 0
             ax.set(xticks=np.log(x)[start::2],
                    xlabel='Model size (# neurons)',
-                   ylabel='%s time (s)' % label)
+                   ylabel='%s time (s)' % label,
+                   yscale='symlog')
             ax.set_xticklabels(sorted(x)[start::2], rotation=45)
     for ax in axes.flat:
         ax.set_ylim(ymin=0)
