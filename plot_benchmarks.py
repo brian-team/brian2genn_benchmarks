@@ -1,5 +1,7 @@
 import os
 import sys
+import itertools
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
@@ -215,16 +217,71 @@ def plot_detailed_times_stacked(benchmark, ax, legend=False):
     ax.set_xticklabels(sorted(x)[start::2], rotation=45)
 
 
+def plot_detail_comparison(benchmarks):
+    fig, axes = plt.subplots(2, 2, sharex='all', figsize=(6.3, 6.3))
+    for float_dtype, with_monitor in itertools.product(['float32', 'float64'],
+                                                       [False, True]):
+        setup_type = '{} precision ({} monitor)'.format('single' if float_dtype == 'float32' else 'double',
+                                                        'with' if with_monitor else 'no')
+        benchmark = benchmarks.loc[(benchmarks['float_dtype'] == float_dtype) &
+                                   (benchmarks['with_monitor'] == with_monitor)]
+        if not len(benchmark):
+            continue
+        # Prepare data for stacked plot
+        x = np.array(benchmark['n_neurons'])
+        # code generation and build
+        build = benchmark['duration_compile']['amin']
+        # Reading/writing arrays from/to disk / conversion between Brian2 and GeNN format
+        read_write_convert = (benchmark['duration_before']['amin'] +
+                              benchmark['duration_after']['amin'])
+        # Creating synapses and initialization
+        create_initialize = (benchmark['duration_synapses']['amin'] +
+                             benchmark['duration_init']['amin'])
+        # Simulation time
+        simulate = benchmark['duration_run']['amin']
+        # TODO: Check that the total matches
+        total = benchmark['total']['amin']
+
+        labels = ['code gen & compile',
+                  'overhead',
+                  'synapse creation & initialization',
+                  'simulation']
+
+        for ax, label, data in zip(axes.flat, labels,
+                                   [build, read_write_convert,
+                                    create_initialize, simulate]):
+            ax.plot(np.log(x), data, 'o-', label=setup_type, mec='white')
+            ax.grid(b=True, which='minor', color='#b0b0b0', linestyle='-',
+                    linewidth=0.33)
+            # Make sure we show the xtick label for the highest value
+            if len(x) % 2 == 0:
+                start = 1
+            else:
+                start = 0
+            ax.set(xticks=np.log(x)[start::2],
+                   xlabel='Model size (# neurons)',
+                   ylabel='%s time (s)' % label)
+            ax.set_xticklabels(sorted(x)[start::2], rotation=45)
+    for ax in axes.flat:
+        ax.set_ylim(ymin=0)
+    axes[0, 0].legend(bbox_to_anchor=(0, 1.02, 1, 0.2), loc="lower left",
+                      mode="expand", borderaxespad=0)
+    plt.tight_layout()
+    return fig
+
 if __name__ == '__main__':
+    COBA_full = load_benchmark(directory, 'benchmarks_COBAHH.txt')
+    Mbody_full = load_benchmark(directory, 'benchmarks_Mbody_example.txt')
+
     for with_monitor in [True, False]:
         monitor_suffix = '' if with_monitor else '_no_monitor'
         # COBA with linear scaling
-        COBA = mean_and_std_fixed_time(load_benchmark(directory, 'benchmarks_COBAHH.txt'), monitor=with_monitor)
-        COBA32 = mean_and_std_fixed_time(load_benchmark(directory, 'benchmarks_COBAHH.txt'), monitor=with_monitor,
+        COBA = mean_and_std_fixed_time(COBA_full, monitor=with_monitor)
+        COBA32 = mean_and_std_fixed_time(COBA_full, monitor=with_monitor,
                                          float_dtype='float32')
         # Mushroom body
-        Mbody = mean_and_std_fixed_time(load_benchmark(directory, 'benchmarks_Mbody_example.txt'), monitor=with_monitor)
-        Mbody32 = mean_and_std_fixed_time(load_benchmark(directory, 'benchmarks_Mbody_example.txt'), monitor=with_monitor,
+        Mbody = mean_and_std_fixed_time(Mbody_full, monitor=with_monitor)
+        Mbody32 = mean_and_std_fixed_time(Mbody_full, monitor=with_monitor,
                                           float_dtype='float32')
 
         for COBA_benchmark, Mbody_benchmark, suffix in [(COBA, Mbody, ''),
@@ -254,6 +311,27 @@ if __name__ == '__main__':
             fig.savefig(os.path.join(directory, 'simulation_time_only%s%s%s' % (monitor_suffix,
                                                                                 suffix,
                                                                                 FIGURE_EXTENSION)))
+
+    # TODO: This is a bit redundant...
+    max_threads = COBA_full.loc[COBA_full['device'] == 'cpp_standalone']['n_threads'].max()
+    for name, dev, threads in [('cpp', 'cpp_standalone', max_threads),
+                               ('GeNN GPU', 'genn', 0 )]:
+        subset = COBA_full.loc[(COBA_full['device'] == dev) &
+                               (COBA_full['n_threads'] == threads)]
+        grouped = subset.groupby(['n_neurons', 'float_dtype', 'with_monitor'])
+        COBA_all = grouped.agg([np.min, np.mean, np.std]).reset_index()
+
+        subset = Mbody_full.loc[(Mbody_full['device'] == dev) &
+                                (Mbody_full['n_threads'] == threads)]
+        grouped = subset.groupby(['n_neurons', 'float_dtype', 'with_monitor'])
+        Mbody_all = grouped.agg([np.min, np.mean, np.std]).reset_index()
+
+        fig = plot_detail_comparison(COBA_all)
+        fig.savefig(os.path.join(directory, 'COBA_detail_comparison%s' % FIGURE_EXTENSION))
+
+        fig = plot_detail_comparison(Mbody_all)
+        fig.savefig(
+            os.path.join(directory, 'Mbody_detail_comparison%s' % FIGURE_EXTENSION))
 
         for benchmarks, name in [(COBA, 'COBAHH'),
                                  (Mbody, 'Mbody'),
