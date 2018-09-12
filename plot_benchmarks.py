@@ -259,34 +259,47 @@ if __name__ == '__main__':
                                  (Mbody, 'Mbody'),
                                  (COBA32, 'COBAHH single precision'),
                                  (Mbody32, 'Mbody single precision')]:
-            fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
-                                                    figsize=(6.3, 6.3 * .666))
-            plot_detailed_times(benchmarks.loc[(benchmarks['device'] == 'genn') &
-                                               (benchmarks['n_threads'] == 0)],
-                                ax_left, legend=True)
-            inside_title(ax_left, '%s (Brian2GeNN GPU)' % name)
-            plot_detailed_times(benchmarks.loc[(benchmarks['device'] == 'cpp_standalone') &
-                                               (benchmarks['n_threads'] == 8)],
-                                ax_right)
-            inside_title(ax_right, '%s (C++ 8 threads)' % name)
-            plt.tight_layout()
-            fig.savefig(os.path.join(directory,
-                                     'detailed_runtime_%s%s%s' % (name,
-                                                                  monitor_suffix,
-                                                                  FIGURE_EXTENSION)))
+            # We use the maximum number of threads for which we have data
+            max_threads = benchmarks.loc[benchmarks['device'] == 'cpp_standalone']['n_threads'].max()
 
             fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
                                                     figsize=(6.3, 6.3 * .666))
-            plot_detailed_times_stacked(benchmarks.loc[(benchmarks['device'] == 'genn') &
-                                                       (benchmarks['n_threads'] == 0)],
-                                        ax_left, legend=True)
-            inside_title(ax_left, '%s (Brian2GeNN GPU)' % name)
-            plot_detailed_times_stacked(benchmarks.loc[(benchmarks['device'] == 'cpp_standalone') &
-                                                       (benchmarks['n_threads'] == 8)],
-                                        ax_right)
-            inside_title(ax_right, '%s (C++ 8 threads)' % name)
+            GeNN_GPU = benchmarks.loc[(benchmarks['device'] == 'genn') &
+                                      (benchmarks['n_threads'] == 0)]
+            if len(GeNN_GPU):
+                plot_detailed_times(GeNN_GPU, ax_left, legend=True)
+                inside_title(ax_left, '%s (Brian2GeNN GPU)' % name)
+            else:
+                ax_left.axis('off')
+            cpp_threads = benchmarks.loc[(benchmarks['device'] == 'cpp_standalone') &
+                                         (benchmarks['n_threads'] == max_threads)]
+            if len(cpp_threads):
+                plot_detailed_times(cpp_threads, ax_right)
+                inside_title(ax_right, '%s (C++ %d threads)' % (name, max_threads))
+            else:
+                ax_right.axis('off')
             plt.tight_layout()
-            fig.savefig(os.path.join(directory,
-                                     'detailed_runtime_relative_%s%s%s' % (name,
-                                                                           monitor_suffix,
-                                                                           FIGURE_EXTENSION)))
+            if len(GeNN_GPU) or len(cpp_threads):
+                fig.savefig(os.path.join(directory,
+                                         'detailed_runtime_%s%s%s' % (name,
+                                                                      monitor_suffix,
+                                                                      FIGURE_EXTENSION)))
+
+            fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
+                                                    figsize=(6.3, 6.3 * .666))
+            if len(GeNN_GPU):
+                plot_detailed_times_stacked(GeNN_GPU, ax_left, legend=True)
+                inside_title(ax_left, '%s (Brian2GeNN GPU)' % name)
+            else:
+                ax_left.axis('off')
+            if len(cpp_threads):
+                plot_detailed_times_stacked(cpp_threads, ax_right)
+                inside_title(ax_right, '%s (C++ %d threads)' % (name, max_threads))
+            else:
+                ax_right.axis('off')
+            plt.tight_layout()
+            if len(GeNN_GPU) or len(cpp_threads):
+                fig.savefig(os.path.join(directory,
+                                         'detailed_runtime_relative_%s%s%s' % (name,
+                                                                               monitor_suffix,
+                                                                               FIGURE_EXTENSION)))
