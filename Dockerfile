@@ -35,3 +35,5 @@ RUN pip install https://github.com/brian-team/brian2genn/archive/support_float32
 RUN git clone https://github.com/genn-team/genn
 
 ENV GENN_PATH=/root/genn
+
+WORKDIR /root/brian2genn_benchmarks
