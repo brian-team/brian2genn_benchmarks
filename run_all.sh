@@ -6,6 +6,8 @@ echo Using label: $LABEL
 
 RESULT_DIR="benchmark_results/$LABEL"
 mkdir -p $RESULT_DIR
+nvidia-smi -L > $RESULT_DIR/gpu.txt
+
 EXAMPLES="Mbody_example COBAHH"
 
 for EXAMPLE in $EXAMPLES; do
