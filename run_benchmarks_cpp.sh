@@ -28,7 +28,7 @@ else
         SCALING_BIG="64 128"
     else
         MONITORS="false"
-        SCALING_BIG="64 128 256 512"
+        SCALING_BIG="64 128 256 512 1024 2048 4096"
     fi
     N_REPEATS=3
 fi
