@@ -1,5 +1,7 @@
 #!/bin/bash -e
-N_CPUS=$(grep ^cpu\\scores /proc/cpuinfo | uniq |  awk '{print $4}')
+
+#N_CPUS=$(grep ^cpu\\scores /proc/cpuinfo | uniq |  awk '{print $4}')
+N_CPUS=$(grep ^processor /proc/cpuinfo | wc | uniq | awk '{print $1}')
 echo "Physical number of processors: $N_CPUS"
 
 if [ "$3" == "test" ]; then
