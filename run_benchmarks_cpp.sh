@@ -2,7 +2,10 @@
 
 N_CPUS=$([ $(uname) = 'Darwin' ] && sysctl -n hw.physicalcpu_max ||
          lscpu -p | egrep -v '^#' | sort -u -t, -k 2,4 | wc -l)
+N_CPUS_LOGICAL=$([ $(uname) = 'Darwin' ] && sysctl -n hw.logicalcpu_max ||
+                 lscpu -p | egrep -v '^#' | wc -l)
 echo "Physical number of processors: $N_CPUS"
+echo "Logical number of processors: $N_CPUS_LOGICAL"
 
 if [ "$3" == "test" ]; then
     THREADS="1 $N_CPUS"
@@ -12,8 +15,13 @@ if [ "$3" == "test" ]; then
     MONITORS="false"
     N_REPEATS=1
 else
-    THREADS="1 $N_CPUS"
-    THREADS_BIG="$N_CPUS"
+    if [ $N_CPUS -ne $N_CPUS_LOGICAL ]; then
+        THREADS="1 $N_CPUS $N_CPUS_LOGICAL"
+        THREADS_BIG="$N_CPUS $N_CPUS_LOGICAL"
+    else
+        THREADS="1 $N_CPUS"
+        THREADS_BIG="$N_CPUS"
+    fi
     SCALING="0.05 0.1 0.25 0.5 1 2 4 8 16 32"
     SCALING_BIG="64 128 256 512"
     if [ "$1" = "COBAHH.py" ]; then
