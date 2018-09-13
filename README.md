@@ -6,6 +6,13 @@ mode and on Brian2GeNN. It is meant to run with the most recent versions of
 Brian2/Brian2GeNN/GeNN, i.e. currently the master branch (all projects will soon
 have corresponding releases: 2.2 (Brian), 1.2 (Brian2GeNN), and 3.2 (GeNN)).
 
+A simple way to run it if you have nvidia-docker installed is to just run via
+Docker:
+```console
+$ bash prepare-docker.sh
+$ bash run-benchmarks-with-docker.sh
+```
+
 ## Benchmarks
 Currently, there are two benchmarks:
 * `COBAHH.py`, a recurrent network of Hodgkin-Huxley type neurons with 
