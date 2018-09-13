@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
-#N_CPUS=$(grep ^cpu\\scores /proc/cpuinfo | uniq |  awk '{print $4}')
-N_CPUS=$(grep ^processor /proc/cpuinfo | wc | uniq | awk '{print $1}')
+N_CPUS=$([ $(uname) = 'Darwin' ] && sysctl -n hw.physicalcpu_max ||
+         lscpu -p | egrep -v '^#' | sort -u -t, -k 2,4 | wc -l)
 echo "Physical number of processors: $N_CPUS"
 
 if [ "$3" == "test" ]; then
@@ -39,7 +39,7 @@ for monitor in $MONITORS; do
 done
 
 # The really long runs (don't run with low # of threads, etc.)
-if [ "$1" = "Mbody_example.py" ]; then
+for monitor in $MONITORS; do
     for threads in $THREADS_BIG; do
         for scaling in $SCALING_BIG; do
             for float_dtype in float32 float64; do
@@ -51,4 +51,4 @@ if [ "$1" = "Mbody_example.py" ]; then
             done
         done
     done
-fi
+done
