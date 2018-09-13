@@ -10,8 +10,10 @@ else
     SCALING_BIG="64 128 256 512"
     if [ "$1" = "COBAHH.py" ]; then
         MONITORS="true false"
+        SCALING_BIG="64 128"
     else
         MONITORS="false"
+        SCALING_BIG="64 128 256 512"
     fi
     N_REPEATS=3
 fi
@@ -31,7 +33,7 @@ for monitor in $MONITORS; do
 done
 
 # The really long runs (don't run with GeNN CPU-only, etc.)
-if [ "$1" = "Mbody_example.py" ]; then
+for monitor in $MONITORS; do
     for scaling in $SCALING_BIG; do
         for float_dtype in float32 float64; do
             for repeat in $(seq $N_REPEATS); do
@@ -41,4 +43,4 @@ if [ "$1" = "Mbody_example.py" ]; then
             done
         done
     done
-fi
+done

@@ -23,11 +23,12 @@ else
         THREADS_BIG="$N_CPUS"
     fi
     SCALING="0.05 0.1 0.25 0.5 1 2 4 8 16 32"
-    SCALING_BIG="64 128 256 512"
     if [ "$1" = "COBAHH.py" ]; then
         MONITORS="true false"
+        SCALING_BIG="64 128"
     else
         MONITORS="false"
+        SCALING_BIG="64 128 256 512"
     fi
     N_REPEATS=3
 fi
