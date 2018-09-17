@@ -1,0 +1,2839 @@
+Physical number of processors: 12
+Logical number of processors: 24
+Repeat 1: python COBAHH.py 0.05 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.844541 s
+Took 3.1s in total (runtime: 0.8s)
+Repeat 2: python COBAHH.py 0.05 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.89096 s
+Took 3.1s in total (runtime: 0.9s)
+Repeat 3: python COBAHH.py 0.05 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.849317 s
+Took 3.0s in total (runtime: 0.8s)
+Repeat 1: python COBAHH.py 0.05 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.579484 s
+Took 2.7s in total (runtime: 0.6s)
+Repeat 2: python COBAHH.py 0.05 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.579899 s
+Took 2.7s in total (runtime: 0.6s)
+Repeat 3: python COBAHH.py 0.05 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.581892 s
+Took 2.8s in total (runtime: 0.6s)
+Repeat 1: python COBAHH.py 0.1 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.50161 s
+Took 3.6s in total (runtime: 1.5s)
+Repeat 2: python COBAHH.py 0.1 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.47914 s
+Took 3.6s in total (runtime: 1.5s)
+Repeat 3: python COBAHH.py 0.1 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.47398 s
+Took 3.7s in total (runtime: 1.5s)
+Repeat 1: python COBAHH.py 0.1 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.941665 s
+Took 3.1s in total (runtime: 0.9s)
+Repeat 2: python COBAHH.py 0.1 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.946735 s
+Took 3.1s in total (runtime: 0.9s)
+Repeat 3: python COBAHH.py 0.1 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.944019 s
+Took 3.1s in total (runtime: 0.9s)
+Repeat 1: python COBAHH.py 0.25 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.38745 s
+Took 5.6s in total (runtime: 3.4s)
+Repeat 2: python COBAHH.py 0.25 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.37968 s
+Took 5.6s in total (runtime: 3.4s)
+Repeat 3: python COBAHH.py 0.25 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.39586 s
+Took 5.5s in total (runtime: 3.4s)
+Repeat 1: python COBAHH.py 0.25 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.03694 s
+Took 4.2s in total (runtime: 2.0s)
+Repeat 2: python COBAHH.py 0.25 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.04066 s
+Took 4.3s in total (runtime: 2.0s)
+Repeat 3: python COBAHH.py 0.25 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.03099 s
+Took 4.2s in total (runtime: 2.0s)
+Repeat 1: python COBAHH.py 0.5 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 6.59398 s
+Took 8.9s in total (runtime: 6.6s)
+Repeat 2: python COBAHH.py 0.5 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 6.57552 s
+Took 9.1s in total (runtime: 6.6s)
+Repeat 3: python COBAHH.py 0.5 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 6.62258 s
+Took 8.9s in total (runtime: 6.6s)
+Repeat 1: python COBAHH.py 0.5 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.90863 s
+Took 6.1s in total (runtime: 3.9s)
+Repeat 2: python COBAHH.py 0.5 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.8682 s
+Took 6.2s in total (runtime: 3.9s)
+Repeat 3: python COBAHH.py 0.5 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.87174 s
+Took 6.1s in total (runtime: 3.9s)
+Repeat 1: python COBAHH.py 1 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.833 s (83%) simulated in 10.0005 s, estimated 2 s remaining.
+1 s (100%) simulated in 12.9741 s
+Took 15.5s in total (runtime: 13.0s)
+Repeat 2: python COBAHH.py 1 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.8344 s (83%) simulated in 10.0009 s, estimated 2 s remaining.
+1 s (100%) simulated in 12.9332 s
+Took 15.5s in total (runtime: 12.9s)
+Repeat 3: python COBAHH.py 1 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.8355 s (83%) simulated in 10.0003 s, estimated 2 s remaining.
+1 s (100%) simulated in 12.9156 s
+Took 15.4s in total (runtime: 12.9s)
+Repeat 1: python COBAHH.py 1 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 7.82053 s
+Took 10.4s in total (runtime: 7.8s)
+Repeat 2: python COBAHH.py 1 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 7.59302 s
+Took 10.1s in total (runtime: 7.6s)
+Repeat 3: python COBAHH.py 1 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 7.63759 s
+Took 10.2s in total (runtime: 7.6s)
+Repeat 1: python COBAHH.py 2 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.492 s (49%) simulated in 10.0011 s, estimated 10 s remaining.
+0.8363 s (83%) simulated in 20.0027 s, estimated 4 s remaining.
+1 s (100%) simulated in 25.7625 s
+Took 28.6s in total (runtime: 25.8s)
+Repeat 2: python COBAHH.py 2 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.4947 s (49%) simulated in 10.0006 s, estimated 10 s remaining.
+0.8391 s (83%) simulated in 20.0013 s, estimated 4 s remaining.
+1 s (100%) simulated in 25.7973 s
+Took 28.7s in total (runtime: 25.8s)
+Repeat 3: python COBAHH.py 2 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.4907 s (49%) simulated in 10.0011 s, estimated 10 s remaining.
+0.8355 s (83%) simulated in 20.0028 s, estimated 4 s remaining.
+1 s (100%) simulated in 25.7945 s
+Took 28.8s in total (runtime: 25.8s)
+Repeat 1: python COBAHH.py 2 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.6696 s (66%) simulated in 10 s, estimated 5 s remaining.
+1 s (100%) simulated in 14.9319 s
+Took 17.8s in total (runtime: 14.9s)
+Repeat 2: python COBAHH.py 2 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.6742 s (67%) simulated in 10.0013 s, estimated 5 s remaining.
+1 s (100%) simulated in 14.8519 s
+Took 17.7s in total (runtime: 14.9s)
+Repeat 3: python COBAHH.py 2 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.6723 s (67%) simulated in 10 s, estimated 5 s remaining.
+1 s (100%) simulated in 14.8864 s
+Took 17.7s in total (runtime: 14.9s)
+Repeat 1: python COBAHH.py 4 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2805 s (28%) simulated in 10.0032 s, estimated 26 s remaining.
+0.4948 s (49%) simulated in 20.0041 s, estimated 20 s remaining.
+0.6838 s (68%) simulated in 30.0034 s, estimated 14 s remaining.
+0.832 s (83%) simulated in 40.0043 s, estimated 8 s remaining.
+0.9746 s (97%) simulated in 50.0017 s, estimated 1 s remaining.
+1 s (100%) simulated in 51.7811 s
+Took 55.2s in total (runtime: 51.8s)
+Repeat 2: python COBAHH.py 4 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.281 s (28%) simulated in 10.001 s, estimated 26 s remaining.
+0.4974 s (49%) simulated in 20.0013 s, estimated 20 s remaining.
+0.6929 s (69%) simulated in 30.0018 s, estimated 13 s remaining.
+0.8416 s (84%) simulated in 40.0009 s, estimated 8 s remaining.
+0.984 s (98%) simulated in 50.0063 s, estimated 1 s remaining.
+1 s (100%) simulated in 51.1265 s
+Took 54.7s in total (runtime: 51.1s)
+Repeat 3: python COBAHH.py 4 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2808 s (28%) simulated in 10.0013 s, estimated 26 s remaining.
+0.4976 s (49%) simulated in 20.004 s, estimated 20 s remaining.
+0.6927 s (69%) simulated in 30.0033 s, estimated 13 s remaining.
+0.8414 s (84%) simulated in 40.003 s, estimated 8 s remaining.
+0.9842 s (98%) simulated in 50.0023 s, estimated 1 s remaining.
+1 s (100%) simulated in 51.1103 s
+Took 54.5s in total (runtime: 51.1s)
+Repeat 1: python COBAHH.py 4 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.3353 s (33%) simulated in 10.0014 s, estimated 20 s remaining.
+0.6711 s (67%) simulated in 20.0027 s, estimated 10 s remaining.
+1 s (100%) simulated in 29.8436 s
+Took 33.3s in total (runtime: 29.8s)
+Repeat 2: python COBAHH.py 4 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.3377 s (33%) simulated in 10.0004 s, estimated 20 s remaining.
+0.6753 s (67%) simulated in 20.0003 s, estimated 10 s remaining.
+1 s (100%) simulated in 29.7038 s
+Took 33.1s in total (runtime: 29.7s)
+Repeat 3: python COBAHH.py 4 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.3284 s (32%) simulated in 10.0013 s, estimated 20 s remaining.
+0.657 s (65%) simulated in 20.0021 s, estimated 10 s remaining.
+0.9841 s (98%) simulated in 30.0014 s, estimated 0 s remaining.
+1 s (100%) simulated in 30.4898 s
+Took 34.0s in total (runtime: 30.5s)
+Repeat 1: python COBAHH.py 8 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1403 s (14%) simulated in 10.0007 s, estimated 61 s remaining.
+0.2806 s (28%) simulated in 20.0003 s, estimated 51 s remaining.
+0.3999 s (39%) simulated in 30.0053 s, estimated 45 s remaining.
+0.4978 s (49%) simulated in 40.0097 s, estimated 40 s remaining.
+0.5954 s (59%) simulated in 50.0038 s, estimated 34 s remaining.
+0.6933 s (69%) simulated in 60.0001 s, estimated 27 s remaining.
+0.771 s (77%) simulated in 70.0127 s, estimated 21 s remaining.
+0.842 s (84%) simulated in 80.007 s, estimated 15 s remaining.
+0.9133 s (91%) simulated in 90.0056 s, estimated 9 s remaining.
+0.9845 s (98%) simulated in 100.006 s, estimated 2 s remaining.
+1 s (100%) simulated in 102.174 s
+Took 107.2s in total (runtime: 102.2s)
+Repeat 2: python COBAHH.py 8 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1402 s (14%) simulated in 10.0068 s, estimated 61 s remaining.
+0.2795 s (27%) simulated in 20.0066 s, estimated 52 s remaining.
+0.3988 s (39%) simulated in 30.0075 s, estimated 45 s remaining.
+0.4965 s (49%) simulated in 40.01 s, estimated 41 s remaining.
+0.594 s (59%) simulated in 50.0032 s, estimated 34 s remaining.
+0.6909 s (69%) simulated in 60.0039 s, estimated 27 s remaining.
+0.7693 s (76%) simulated in 70.0062 s, estimated 21 s remaining.
+0.84 s (84%) simulated in 80.0023 s, estimated 15 s remaining.
+0.9114 s (91%) simulated in 90.0055 s, estimated 9 s remaining.
+0.9827 s (98%) simulated in 100.011 s, estimated 2 s remaining.
+1 s (100%) simulated in 102.433 s
+Took 107.1s in total (runtime: 102.4s)
+Repeat 3: python COBAHH.py 8 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1408 s (14%) simulated in 10.002 s, estimated 61 s remaining.
+0.2806 s (28%) simulated in 20.002 s, estimated 51 s remaining.
+0.4 s (40%) simulated in 30.0052 s, estimated 45 s remaining.
+0.4978 s (49%) simulated in 40.0054 s, estimated 40 s remaining.
+0.5959 s (59%) simulated in 50.002 s, estimated 34 s remaining.
+0.6938 s (69%) simulated in 60.0084 s, estimated 26 s remaining.
+0.7714 s (77%) simulated in 70.0018 s, estimated 21 s remaining.
+0.8426 s (84%) simulated in 80.0001 s, estimated 15 s remaining.
+0.9141 s (91%) simulated in 90.0079 s, estimated 8 s remaining.
+0.9849 s (98%) simulated in 100.002 s, estimated 2 s remaining.
+1 s (100%) simulated in 102.111 s
+Took 106.9s in total (runtime: 102.1s)
+Repeat 1: python COBAHH.py 8 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.17 s (17%) simulated in 10.0025 s, estimated 49 s remaining.
+0.338 s (33%) simulated in 20.0035 s, estimated 39 s remaining.
+0.5075 s (50%) simulated in 30.0041 s, estimated 29 s remaining.
+0.6773 s (67%) simulated in 40.0051 s, estimated 19 s remaining.
+0.8466 s (84%) simulated in 50 s, estimated 9 s remaining.
+1 s (100%) simulated in 59.0561 s
+Took 64.0s in total (runtime: 59.1s)
+Repeat 2: python COBAHH.py 8 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1693 s (16%) simulated in 10.0014 s, estimated 49 s remaining.
+0.3373 s (33%) simulated in 20.003 s, estimated 39 s remaining.
+0.5055 s (50%) simulated in 30.0012 s, estimated 29 s remaining.
+0.6725 s (67%) simulated in 40.0003 s, estimated 19 s remaining.
+0.8401 s (84%) simulated in 50.0003 s, estimated 10 s remaining.
+1 s (100%) simulated in 59.5151 s
+Took 64.3s in total (runtime: 59.5s)
+Repeat 3: python COBAHH.py 8 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1671 s (16%) simulated in 10.0002 s, estimated 50 s remaining.
+0.334 s (33%) simulated in 20.0056 s, estimated 40 s remaining.
+0.5006 s (50%) simulated in 30.0046 s, estimated 30 s remaining.
+0.6678 s (66%) simulated in 40.0011 s, estimated 20 s remaining.
+0.831 s (83%) simulated in 50.0035 s, estimated 10 s remaining.
+0.9975 s (99%) simulated in 60.001 s, estimated 0 s remaining.
+1 s (100%) simulated in 60.1503 s
+Took 64.9s in total (runtime: 60.2s)
+Repeat 1: python COBAHH.py 16 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0702 s (7%) simulated in 10.002 s, estimated 132 s remaining.
+0.1399 s (13%) simulated in 20.0006 s, estimated 123 s remaining.
+0.21 s (21%) simulated in 30.0084 s, estimated 113 s remaining.
+0.2797 s (27%) simulated in 40.0072 s, estimated 103 s remaining.
+0.3497 s (34%) simulated in 50.0115 s, estimated 93 s remaining.
+0.3992 s (39%) simulated in 60.0046 s, estimated 90 s remaining.
+0.4483 s (44%) simulated in 70.0099 s, estimated 86 s remaining.
+0.4972 s (49%) simulated in 80.0128 s, estimated 81 s remaining.
+0.5462 s (54%) simulated in 90.0151 s, estimated 75 s remaining.
+0.5948 s (59%) simulated in 100.017 s, estimated 68 s remaining.
+0.6435 s (64%) simulated in 110.002 s, estimated 61 s remaining.
+0.692 s (69%) simulated in 120.006 s, estimated 53 s remaining.
+0.7343 s (73%) simulated in 130.004 s, estimated 47 s remaining.
+0.7699 s (76%) simulated in 140.01 s, estimated 42 s remaining.
+0.8054 s (80%) simulated in 150.02 s, estimated 36 s remaining.
+0.8409 s (84%) simulated in 160.027 s, estimated 30 s remaining.
+0.8763 s (87%) simulated in 170.013 s, estimated 24 s remaining.
+0.9111 s (91%) simulated in 180.024 s, estimated 18 s remaining.
+0.9466 s (94%) simulated in 190.019 s, estimated 11 s remaining.
+0.9824 s (98%) simulated in 200.012 s, estimated 4 s remaining.
+1 s (100%) simulated in 204.938 s
+Took 212.3s in total (runtime: 204.9s)
+Repeat 2: python COBAHH.py 16 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0704 s (7%) simulated in 10.0058 s, estimated 132 s remaining.
+0.1402 s (14%) simulated in 20.0121 s, estimated 123 s remaining.
+0.2072 s (20%) simulated in 30.0046 s, estimated 115 s remaining.
+0.2773 s (27%) simulated in 40.0041 s, estimated 104 s remaining.
+0.3475 s (34%) simulated in 50.0137 s, estimated 94 s remaining.
+0.3972 s (39%) simulated in 60.0086 s, estimated 91 s remaining.
+0.4462 s (44%) simulated in 70.0039 s, estimated 87 s remaining.
+0.495 s (49%) simulated in 80.0115 s, estimated 82 s remaining.
+0.5425 s (54%) simulated in 90.015 s, estimated 76 s remaining.
+0.5913 s (59%) simulated in 100.019 s, estimated 69 s remaining.
+0.6401 s (64%) simulated in 110.003 s, estimated 62 s remaining.
+0.6892 s (68%) simulated in 120.004 s, estimated 54 s remaining.
+0.7324 s (73%) simulated in 130.024 s, estimated 48 s remaining.
+0.7681 s (76%) simulated in 140.009 s, estimated 42 s remaining.
+0.8037 s (80%) simulated in 150.026 s, estimated 37 s remaining.
+0.8395 s (83%) simulated in 160.021 s, estimated 31 s remaining.
+0.8752 s (87%) simulated in 170.013 s, estimated 24 s remaining.
+0.9109 s (91%) simulated in 180.012 s, estimated 18 s remaining.
+0.9465 s (94%) simulated in 190.007 s, estimated 11 s remaining.
+0.9821 s (98%) simulated in 200.023 s, estimated 4 s remaining.
+1 s (100%) simulated in 205.084 s
+Took 212.5s in total (runtime: 205.1s)
+Repeat 3: python COBAHH.py 16 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0706 s (7%) simulated in 10.0099 s, estimated 132 s remaining.
+0.1406 s (14%) simulated in 20.0019 s, estimated 122 s remaining.
+0.2108 s (21%) simulated in 30.0121 s, estimated 112 s remaining.
+0.2809 s (28%) simulated in 40.0063 s, estimated 102 s remaining.
+0.3476 s (34%) simulated in 50.001 s, estimated 94 s remaining.
+0.3978 s (39%) simulated in 60.0162 s, estimated 91 s remaining.
+0.4466 s (44%) simulated in 70.0022 s, estimated 87 s remaining.
+0.4954 s (49%) simulated in 80.0095 s, estimated 81 s remaining.
+0.5444 s (54%) simulated in 90.0052 s, estimated 75 s remaining.
+0.5933 s (59%) simulated in 100.008 s, estimated 69 s remaining.
+0.6405 s (64%) simulated in 110.018 s, estimated 62 s remaining.
+0.6896 s (68%) simulated in 120.011 s, estimated 54 s remaining.
+0.7325 s (73%) simulated in 130.004 s, estimated 47 s remaining.
+0.7683 s (76%) simulated in 140.024 s, estimated 42 s remaining.
+0.8037 s (80%) simulated in 150.003 s, estimated 37 s remaining.
+0.8394 s (83%) simulated in 160.025 s, estimated 31 s remaining.
+0.874 s (87%) simulated in 170.005 s, estimated 25 s remaining.
+0.9099 s (90%) simulated in 180.004 s, estimated 18 s remaining.
+0.9457 s (94%) simulated in 190.022 s, estimated 11 s remaining.
+0.9814 s (98%) simulated in 200.013 s, estimated 4 s remaining.
+1 s (100%) simulated in 205.231 s
+Took 212.6s in total (runtime: 205.2s)
+Repeat 1: python COBAHH.py 16 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.085 s (8%) simulated in 10.001 s, estimated 108 s remaining.
+0.1587 s (15%) simulated in 20.0029 s, estimated 106 s remaining.
+0.2431 s (24%) simulated in 30.005 s, estimated 93 s remaining.
+0.3271 s (32%) simulated in 40.0072 s, estimated 82 s remaining.
+0.4117 s (41%) simulated in 50.0087 s, estimated 71 s remaining.
+0.4962 s (49%) simulated in 60.0057 s, estimated 61 s remaining.
+0.5807 s (58%) simulated in 70.0076 s, estimated 51 s remaining.
+0.6548 s (65%) simulated in 80.0048 s, estimated 42 s remaining.
+0.7394 s (73%) simulated in 90.0017 s, estimated 32 s remaining.
+0.8241 s (82%) simulated in 100.001 s, estimated 21 s remaining.
+0.9087 s (90%) simulated in 110.008 s, estimated 11 s remaining.
+0.9928 s (99%) simulated in 120.002 s, estimated 1 s remaining.
+1 s (100%) simulated in 120.865 s
+Took 128.4s in total (runtime: 120.9s)
+Repeat 2: python COBAHH.py 16 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0849 s (8%) simulated in 10.007 s, estimated 108 s remaining.
+0.1692 s (16%) simulated in 20.0113 s, estimated 98 s remaining.
+0.2531 s (25%) simulated in 30.002 s, estimated 89 s remaining.
+0.3376 s (33%) simulated in 40.0035 s, estimated 78 s remaining.
+0.422 s (42%) simulated in 50.0088 s, estimated 68 s remaining.
+0.5069 s (50%) simulated in 60.0115 s, estimated 58 s remaining.
+0.5915 s (59%) simulated in 70.0103 s, estimated 48 s remaining.
+0.6761 s (67%) simulated in 80.005 s, estimated 38 s remaining.
+0.7608 s (76%) simulated in 90.0048 s, estimated 28 s remaining.
+0.8454 s (84%) simulated in 100.01 s, estimated 18 s remaining.
+0.9291 s (92%) simulated in 110 s, estimated 8 s remaining.
+1 s (100%) simulated in 118.37 s
+Took 126.3s in total (runtime: 118.4s)
+Repeat 3: python COBAHH.py 16 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0849 s (8%) simulated in 10.0004 s, estimated 108 s remaining.
+0.1695 s (16%) simulated in 20.0066 s, estimated 98 s remaining.
+0.2534 s (25%) simulated in 30.0033 s, estimated 88 s remaining.
+0.3371 s (33%) simulated in 40.0033 s, estimated 79 s remaining.
+0.4218 s (42%) simulated in 50.0034 s, estimated 69 s remaining.
+0.5063 s (50%) simulated in 60.0097 s, estimated 59 s remaining.
+0.591 s (59%) simulated in 70.004 s, estimated 48 s remaining.
+0.6758 s (67%) simulated in 80.0079 s, estimated 38 s remaining.
+0.7601 s (76%) simulated in 90.008 s, estimated 28 s remaining.
+0.8441 s (84%) simulated in 100.002 s, estimated 18 s remaining.
+0.9283 s (92%) simulated in 110.009 s, estimated 8 s remaining.
+1 s (100%) simulated in 118.44 s
+Took 125.8s in total (runtime: 118.4s)
+Repeat 1: python COBAHH.py 32 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.034 s (3%) simulated in 10.0004 s, estimated 284 s remaining.
+0.0693 s (6%) simulated in 20.0228 s, estimated 269 s remaining.
+0.104 s (10%) simulated in 30 s, estimated 258 s remaining.
+0.1394 s (13%) simulated in 40.0186 s, estimated 247 s remaining.
+0.1745 s (17%) simulated in 50.0172 s, estimated 237 s remaining.
+0.2096 s (20%) simulated in 60.0134 s, estimated 226 s remaining.
+0.2448 s (24%) simulated in 70.0007 s, estimated 216 s remaining.
+0.2797 s (27%) simulated in 80.0116 s, estimated 206 s remaining.
+0.3147 s (31%) simulated in 90.0006 s, estimated 196 s remaining.
+0.3493 s (34%) simulated in 100.015 s, estimated 186 s remaining.
+0.3746 s (37%) simulated in 110.037 s, estimated 184 s remaining.
+0.3989 s (39%) simulated in 120.034 s, estimated 181 s remaining.
+0.4231 s (42%) simulated in 130.024 s, estimated 177 s remaining.
+0.4477 s (44%) simulated in 140.039 s, estimated 173 s remaining.
+0.472 s (47%) simulated in 150.01 s, estimated 168 s remaining.
+0.4964 s (49%) simulated in 160.033 s, estimated 162 s remaining.
+0.5209 s (52%) simulated in 170.026 s, estimated 156 s remaining.
+0.5453 s (54%) simulated in 180.02 s, estimated 150 s remaining.
+0.5695 s (56%) simulated in 190.004 s, estimated 144 s remaining.
+0.5938 s (59%) simulated in 200.036 s, estimated 137 s remaining.
+0.6178 s (61%) simulated in 210.007 s, estimated 130 s remaining.
+0.6422 s (64%) simulated in 220.038 s, estimated 123 s remaining.
+0.6668 s (66%) simulated in 230.028 s, estimated 115 s remaining.
+0.6912 s (69%) simulated in 240 s, estimated 107 s remaining.
+0.7148 s (71%) simulated in 250.043 s, estimated 100 s remaining.
+0.7339 s (73%) simulated in 260.026 s, estimated 94 s remaining.
+0.7517 s (75%) simulated in 270.036 s, estimated 89 s remaining.
+0.7695 s (76%) simulated in 280.011 s, estimated 84 s remaining.
+0.7872 s (78%) simulated in 290.011 s, estimated 78 s remaining.
+0.8052 s (80%) simulated in 300.048 s, estimated 73 s remaining.
+0.823 s (82%) simulated in 310.05 s, estimated 67 s remaining.
+0.8407 s (84%) simulated in 320.005 s, estimated 61 s remaining.
+0.8585 s (85%) simulated in 330.039 s, estimated 54 s remaining.
+0.8764 s (87%) simulated in 340.022 s, estimated 48 s remaining.
+0.8943 s (89%) simulated in 350.04 s, estimated 41 s remaining.
+0.9121 s (91%) simulated in 360.001 s, estimated 35 s remaining.
+0.9299 s (92%) simulated in 370.027 s, estimated 28 s remaining.
+0.9479 s (94%) simulated in 380.055 s, estimated 21 s remaining.
+0.9657 s (96%) simulated in 390.049 s, estimated 14 s remaining.
+0.9835 s (98%) simulated in 400.022 s, estimated 7 s remaining.
+1 s (100%) simulated in 409.283 s
+Took 422.2s in total (runtime: 409.3s)
+Repeat 2: python COBAHH.py 32 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0353 s (3%) simulated in 10.0001 s, estimated 273 s remaining.
+0.0708 s (7%) simulated in 20.0228 s, estimated 263 s remaining.
+0.1056 s (10%) simulated in 30.0078 s, estimated 254 s remaining.
+0.1408 s (14%) simulated in 40.0099 s, estimated 244 s remaining.
+0.1758 s (17%) simulated in 50.0002 s, estimated 234 s remaining.
+0.211 s (21%) simulated in 60.0121 s, estimated 224 s remaining.
+0.2461 s (24%) simulated in 70.0074 s, estimated 214 s remaining.
+0.281 s (28%) simulated in 80.0019 s, estimated 205 s remaining.
+0.3163 s (31%) simulated in 90.008 s, estimated 195 s remaining.
+0.3508 s (35%) simulated in 100 s, estimated 185 s remaining.
+0.3757 s (37%) simulated in 110.032 s, estimated 183 s remaining.
+0.4 s (40%) simulated in 120.026 s, estimated 180 s remaining.
+0.4245 s (42%) simulated in 130.034 s, estimated 176 s remaining.
+0.4491 s (44%) simulated in 140.027 s, estimated 172 s remaining.
+0.4735 s (47%) simulated in 150.031 s, estimated 167 s remaining.
+0.4978 s (49%) simulated in 160.028 s, estimated 161 s remaining.
+0.5224 s (52%) simulated in 170.039 s, estimated 155 s remaining.
+0.5467 s (54%) simulated in 180.023 s, estimated 149 s remaining.
+0.571 s (57%) simulated in 190.036 s, estimated 143 s remaining.
+0.5955 s (59%) simulated in 200.012 s, estimated 136 s remaining.
+0.6199 s (61%) simulated in 210.009 s, estimated 129 s remaining.
+0.6443 s (64%) simulated in 220.031 s, estimated 121 s remaining.
+0.6688 s (66%) simulated in 230.001 s, estimated 114 s remaining.
+0.6933 s (69%) simulated in 240.025 s, estimated 106 s remaining.
+0.7167 s (71%) simulated in 250.042 s, estimated 99 s remaining.
+0.7353 s (73%) simulated in 260.009 s, estimated 94 s remaining.
+0.7533 s (75%) simulated in 270.05 s, estimated 88 s remaining.
+0.7711 s (77%) simulated in 280.035 s, estimated 83 s remaining.
+0.7888 s (78%) simulated in 290.007 s, estimated 78 s remaining.
+0.8067 s (80%) simulated in 300.016 s, estimated 72 s remaining.
+0.8247 s (82%) simulated in 310.044 s, estimated 66 s remaining.
+0.8423 s (84%) simulated in 320.03 s, estimated 60 s remaining.
+0.8601 s (86%) simulated in 330.052 s, estimated 54 s remaining.
+0.8779 s (87%) simulated in 340.006 s, estimated 47 s remaining.
+0.8959 s (89%) simulated in 350.045 s, estimated 41 s remaining.
+0.9138 s (91%) simulated in 360.027 s, estimated 34 s remaining.
+0.9316 s (93%) simulated in 370.05 s, estimated 27 s remaining.
+0.9491 s (94%) simulated in 380.023 s, estimated 20 s remaining.
+0.9671 s (96%) simulated in 390.051 s, estimated 13 s remaining.
+0.9849 s (98%) simulated in 400.04 s, estimated 6 s remaining.
+1 s (100%) simulated in 408.55 s
+Took 421.1s in total (runtime: 408.6s)
+Repeat 3: python COBAHH.py 32 cpp_standalone 1 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0352 s (3%) simulated in 10.01 s, estimated 274 s remaining.
+0.0701 s (7%) simulated in 20.0198 s, estimated 266 s remaining.
+0.1048 s (10%) simulated in 30.0008 s, estimated 256 s remaining.
+0.1402 s (14%) simulated in 40.0101 s, estimated 245 s remaining.
+0.1751 s (17%) simulated in 50.0126 s, estimated 236 s remaining.
+0.2102 s (21%) simulated in 60.002 s, estimated 225 s remaining.
+0.2456 s (24%) simulated in 70.0184 s, estimated 215 s remaining.
+0.2805 s (28%) simulated in 80.0256 s, estimated 205 s remaining.
+0.3155 s (31%) simulated in 90 s, estimated 195 s remaining.
+0.3501 s (35%) simulated in 100.004 s, estimated 186 s remaining.
+0.3751 s (37%) simulated in 110.012 s, estimated 183 s remaining.
+0.3994 s (39%) simulated in 120.021 s, estimated 180 s remaining.
+0.4238 s (42%) simulated in 130.004 s, estimated 177 s remaining.
+0.4485 s (44%) simulated in 140.034 s, estimated 172 s remaining.
+0.4729 s (47%) simulated in 150.011 s, estimated 167 s remaining.
+0.4973 s (49%) simulated in 160.031 s, estimated 162 s remaining.
+0.5219 s (52%) simulated in 170.038 s, estimated 156 s remaining.
+0.5462 s (54%) simulated in 180.025 s, estimated 150 s remaining.
+0.5706 s (57%) simulated in 190.035 s, estimated 143 s remaining.
+0.5949 s (59%) simulated in 200.03 s, estimated 136 s remaining.
+0.6193 s (61%) simulated in 210.012 s, estimated 129 s remaining.
+0.6436 s (64%) simulated in 220.027 s, estimated 122 s remaining.
+0.6681 s (66%) simulated in 230.011 s, estimated 114 s remaining.
+0.6925 s (69%) simulated in 240.015 s, estimated 107 s remaining.
+0.7158 s (71%) simulated in 250.03 s, estimated 99 s remaining.
+0.7347 s (73%) simulated in 260.018 s, estimated 94 s remaining.
+0.7526 s (75%) simulated in 270.016 s, estimated 89 s remaining.
+0.7704 s (77%) simulated in 280.03 s, estimated 83 s remaining.
+0.7881 s (78%) simulated in 290.014 s, estimated 78 s remaining.
+0.8061 s (80%) simulated in 300.056 s, estimated 72 s remaining.
+0.824 s (82%) simulated in 310.054 s, estimated 66 s remaining.
+0.8417 s (84%) simulated in 320.008 s, estimated 60 s remaining.
+0.8594 s (85%) simulated in 330.002 s, estimated 54 s remaining.
+0.8774 s (87%) simulated in 340.018 s, estimated 48 s remaining.
+0.8954 s (89%) simulated in 350.051 s, estimated 41 s remaining.
+0.9133 s (91%) simulated in 360.055 s, estimated 34 s remaining.
+0.931 s (93%) simulated in 370.043 s, estimated 27 s remaining.
+0.9488 s (94%) simulated in 380.008 s, estimated 21 s remaining.
+0.9668 s (96%) simulated in 390.037 s, estimated 13 s remaining.
+0.9847 s (98%) simulated in 400.022 s, estimated 6 s remaining.
+1 s (100%) simulated in 408.597 s
+Took 421.0s in total (runtime: 408.6s)
+Repeat 1: python COBAHH.py 32 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0424 s (4%) simulated in 10.0172 s, estimated 226 s remaining.
+0.0849 s (8%) simulated in 20.0156 s, estimated 216 s remaining.
+0.1267 s (12%) simulated in 30.0022 s, estimated 207 s remaining.
+0.1689 s (16%) simulated in 40.0002 s, estimated 197 s remaining.
+0.211 s (21%) simulated in 50.0027 s, estimated 187 s remaining.
+0.253 s (25%) simulated in 60.0134 s, estimated 177 s remaining.
+0.2954 s (29%) simulated in 70.0145 s, estimated 167 s remaining.
+0.3372 s (33%) simulated in 80.004 s, estimated 157 s remaining.
+0.3798 s (37%) simulated in 90.0224 s, estimated 147 s remaining.
+0.4216 s (42%) simulated in 100.004 s, estimated 137 s remaining.
+0.464 s (46%) simulated in 110.007 s, estimated 127 s remaining.
+0.506 s (50%) simulated in 120.005 s, estimated 117 s remaining.
+0.5481 s (54%) simulated in 130 s, estimated 107 s remaining.
+0.5896 s (58%) simulated in 140.021 s, estimated 97 s remaining.
+0.6314 s (63%) simulated in 150.018 s, estimated 88 s remaining.
+0.6739 s (67%) simulated in 160.006 s, estimated 77 s remaining.
+0.7158 s (71%) simulated in 170.003 s, estimated 67 s remaining.
+0.7581 s (75%) simulated in 180.007 s, estimated 57 s remaining.
+0.8002 s (80%) simulated in 190.013 s, estimated 47 s remaining.
+0.8425 s (84%) simulated in 200.014 s, estimated 37 s remaining.
+0.8843 s (88%) simulated in 210.003 s, estimated 27 s remaining.
+0.9263 s (92%) simulated in 220.009 s, estimated 18 s remaining.
+0.9688 s (96%) simulated in 230.018 s, estimated 7 s remaining.
+1 s (100%) simulated in 237.445 s
+Took 250.2s in total (runtime: 237.4s)
+Repeat 2: python COBAHH.py 32 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0424 s (4%) simulated in 10.0214 s, estimated 226 s remaining.
+0.085 s (8%) simulated in 20.0172 s, estimated 215 s remaining.
+0.127 s (12%) simulated in 30.0031 s, estimated 206 s remaining.
+0.1695 s (16%) simulated in 40.0045 s, estimated 196 s remaining.
+0.2117 s (21%) simulated in 50.0051 s, estimated 186 s remaining.
+0.2537 s (25%) simulated in 60.003 s, estimated 177 s remaining.
+0.2964 s (29%) simulated in 70.0197 s, estimated 166 s remaining.
+0.3381 s (33%) simulated in 80.0205 s, estimated 157 s remaining.
+0.3807 s (38%) simulated in 90.0023 s, estimated 146 s remaining.
+0.4225 s (42%) simulated in 100.004 s, estimated 137 s remaining.
+0.4651 s (46%) simulated in 110.017 s, estimated 127 s remaining.
+0.5067 s (50%) simulated in 120.006 s, estimated 117 s remaining.
+0.549 s (54%) simulated in 130.003 s, estimated 107 s remaining.
+0.5913 s (59%) simulated in 140.013 s, estimated 97 s remaining.
+0.6334 s (63%) simulated in 150.015 s, estimated 87 s remaining.
+0.676 s (67%) simulated in 160.003 s, estimated 77 s remaining.
+0.7182 s (71%) simulated in 170.002 s, estimated 67 s remaining.
+0.7609 s (76%) simulated in 180.006 s, estimated 57 s remaining.
+0.803 s (80%) simulated in 190.002 s, estimated 47 s remaining.
+0.8453 s (84%) simulated in 200.017 s, estimated 37 s remaining.
+0.8876 s (88%) simulated in 210.017 s, estimated 27 s remaining.
+0.9296 s (92%) simulated in 220.017 s, estimated 17 s remaining.
+0.9723 s (97%) simulated in 230.015 s, estimated 7 s remaining.
+1 s (100%) simulated in 236.579 s
+Took 249.4s in total (runtime: 236.6s)
+Repeat 3: python COBAHH.py 32 cpp_standalone 1 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0423 s (4%) simulated in 10.0092 s, estimated 227 s remaining.
+0.0849 s (8%) simulated in 20.0114 s, estimated 216 s remaining.
+0.1255 s (12%) simulated in 30.017 s, estimated 209 s remaining.
+0.1664 s (16%) simulated in 40.0024 s, estimated 200 s remaining.
+0.2074 s (20%) simulated in 50.0108 s, estimated 191 s remaining.
+0.2497 s (24%) simulated in 60.0007 s, estimated 180 s remaining.
+0.292 s (29%) simulated in 70.0152 s, estimated 170 s remaining.
+0.3303 s (33%) simulated in 80.0182 s, estimated 162 s remaining.
+0.3729 s (37%) simulated in 90.0221 s, estimated 151 s remaining.
+0.4148 s (41%) simulated in 100.001 s, estimated 141 s remaining.
+0.457 s (45%) simulated in 110.006 s, estimated 131 s remaining.
+0.4991 s (49%) simulated in 120.008 s, estimated 120 s remaining.
+0.5417 s (54%) simulated in 130.021 s, estimated 110 s remaining.
+0.584 s (58%) simulated in 140.017 s, estimated 100 s remaining.
+0.626 s (62%) simulated in 150.004 s, estimated 90 s remaining.
+0.6685 s (66%) simulated in 160.009 s, estimated 79 s remaining.
+0.7104 s (71%) simulated in 170.003 s, estimated 69 s remaining.
+0.7531 s (75%) simulated in 180.021 s, estimated 59 s remaining.
+0.7951 s (79%) simulated in 190.019 s, estimated 49 s remaining.
+0.8376 s (83%) simulated in 200.017 s, estimated 39 s remaining.
+0.8796 s (87%) simulated in 210.008 s, estimated 29 s remaining.
+0.9218 s (92%) simulated in 220.018 s, estimated 19 s remaining.
+0.9641 s (96%) simulated in 230.001 s, estimated 9 s remaining.
+1 s (100%) simulated in 238.5 s
+Took 251.3s in total (runtime: 238.5s)
+Repeat 1: python COBAHH.py 0.05 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.558178 s
+Took 2.8s in total (runtime: 0.6s)
+Repeat 2: python COBAHH.py 0.05 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.532932 s
+Took 2.7s in total (runtime: 0.5s)
+Repeat 3: python COBAHH.py 0.05 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.537908 s
+Took 2.7s in total (runtime: 0.5s)
+Repeat 1: python COBAHH.py 0.05 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.510258 s
+Took 2.7s in total (runtime: 0.5s)
+Repeat 2: python COBAHH.py 0.05 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.507037 s
+Took 2.7s in total (runtime: 0.5s)
+Repeat 3: python COBAHH.py 0.05 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.515274 s
+Took 2.7s in total (runtime: 0.5s)
+Repeat 1: python COBAHH.py 0.1 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.587534 s
+Took 2.9s in total (runtime: 0.6s)
+Repeat 2: python COBAHH.py 0.1 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.57545 s
+Took 2.8s in total (runtime: 0.6s)
+Repeat 3: python COBAHH.py 0.1 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.573203 s
+Took 2.8s in total (runtime: 0.6s)
+Repeat 1: python COBAHH.py 0.1 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.55328 s
+Took 2.7s in total (runtime: 0.6s)
+Repeat 2: python COBAHH.py 0.1 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.581657 s
+Took 2.9s in total (runtime: 0.6s)
+Repeat 3: python COBAHH.py 0.1 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.552128 s
+Took 2.7s in total (runtime: 0.6s)
+Repeat 1: python COBAHH.py 0.25 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.772477 s
+Took 2.9s in total (runtime: 0.8s)
+Repeat 2: python COBAHH.py 0.25 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.796256 s
+Took 3.0s in total (runtime: 0.8s)
+Repeat 3: python COBAHH.py 0.25 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.807104 s
+Took 2.9s in total (runtime: 0.8s)
+Repeat 1: python COBAHH.py 0.25 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.766283 s
+Took 2.9s in total (runtime: 0.8s)
+Repeat 2: python COBAHH.py 0.25 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.722488 s
+Took 3.0s in total (runtime: 0.7s)
+Repeat 3: python COBAHH.py 0.25 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.743368 s
+Took 2.7s in total (runtime: 0.7s)
+Repeat 1: python COBAHH.py 0.5 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.05733 s
+Took 3.4s in total (runtime: 1.1s)
+Repeat 2: python COBAHH.py 0.5 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.05748 s
+Took 3.3s in total (runtime: 1.1s)
+Repeat 3: python COBAHH.py 0.5 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.15718 s
+Took 3.5s in total (runtime: 1.2s)
+Repeat 1: python COBAHH.py 0.5 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.959106 s
+Took 3.3s in total (runtime: 1.0s)
+Repeat 2: python COBAHH.py 0.5 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.955191 s
+Took 3.3s in total (runtime: 1.0s)
+Repeat 3: python COBAHH.py 0.5 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.820718 s
+Took 3.2s in total (runtime: 0.8s)
+Repeat 1: python COBAHH.py 1 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.876 s
+Took 4.4s in total (runtime: 1.9s)
+Repeat 2: python COBAHH.py 1 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.84284 s
+Took 4.3s in total (runtime: 1.8s)
+Repeat 3: python COBAHH.py 1 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.87968 s
+Took 4.3s in total (runtime: 1.9s)
+Repeat 1: python COBAHH.py 1 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.28 s
+Took 3.7s in total (runtime: 1.3s)
+Repeat 2: python COBAHH.py 1 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.46495 s
+Took 4.0s in total (runtime: 1.5s)
+Repeat 3: python COBAHH.py 1 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.50259 s
+Took 4.0s in total (runtime: 1.5s)
+Repeat 1: python COBAHH.py 2 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.21921 s
+Took 6.0s in total (runtime: 3.2s)
+Repeat 2: python COBAHH.py 2 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.22163 s
+Took 5.9s in total (runtime: 3.2s)
+Repeat 3: python COBAHH.py 2 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.21742 s
+Took 6.0s in total (runtime: 3.2s)
+Repeat 1: python COBAHH.py 2 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.90805 s
+Took 4.6s in total (runtime: 1.9s)
+Repeat 2: python COBAHH.py 2 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.9002 s
+Took 4.7s in total (runtime: 1.9s)
+Repeat 3: python COBAHH.py 2 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.48661 s
+Took 5.3s in total (runtime: 2.5s)
+Repeat 1: python COBAHH.py 4 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 5.34707 s
+Took 8.8s in total (runtime: 5.3s)
+Repeat 2: python COBAHH.py 4 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 5.31902 s
+Took 8.7s in total (runtime: 5.3s)
+Repeat 3: python COBAHH.py 4 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 5.32007 s
+Took 8.8s in total (runtime: 5.3s)
+Repeat 1: python COBAHH.py 4 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 4.57034 s
+Took 8.1s in total (runtime: 4.6s)
+Repeat 2: python COBAHH.py 4 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 4.54432 s
+Took 8.0s in total (runtime: 4.5s)
+Repeat 3: python COBAHH.py 4 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.35604 s
+Took 6.7s in total (runtime: 3.4s)
+Repeat 1: python COBAHH.py 8 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.89 s (89%) simulated in 10 s, estimated 1 s remaining.
+1 s (100%) simulated in 11.6962 s
+Took 16.4s in total (runtime: 11.7s)
+Repeat 2: python COBAHH.py 8 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.9171 s (91%) simulated in 10.0002 s, estimated 1 s remaining.
+1 s (100%) simulated in 11.1332 s
+Took 15.8s in total (runtime: 11.1s)
+Repeat 3: python COBAHH.py 8 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.889 s (88%) simulated in 10.0004 s, estimated 1 s remaining.
+1 s (100%) simulated in 11.7168 s
+Took 16.5s in total (runtime: 11.7s)
+Repeat 1: python COBAHH.py 8 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 8.76475 s
+Took 13.6s in total (runtime: 8.8s)
+Repeat 2: python COBAHH.py 8 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 8.81604 s
+Took 13.5s in total (runtime: 8.8s)
+Repeat 3: python COBAHH.py 8 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 8.72296 s
+Took 13.5s in total (runtime: 8.7s)
+Repeat 1: python COBAHH.py 16 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.5302 s (53%) simulated in 10 s, estimated 9 s remaining.
+0.9106 s (91%) simulated in 20.0014 s, estimated 2 s remaining.
+1 s (100%) simulated in 22.7077 s
+Took 30.1s in total (runtime: 22.7s)
+Repeat 2: python COBAHH.py 16 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.5307 s (53%) simulated in 10.001 s, estimated 9 s remaining.
+0.9114 s (91%) simulated in 20.0014 s, estimated 2 s remaining.
+1 s (100%) simulated in 22.6778 s
+Took 30.0s in total (runtime: 22.7s)
+Repeat 3: python COBAHH.py 16 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.5313 s (53%) simulated in 10.0008 s, estimated 9 s remaining.
+0.9117 s (91%) simulated in 20.0025 s, estimated 2 s remaining.
+1 s (100%) simulated in 22.6744 s
+Took 30.1s in total (runtime: 22.7s)
+Repeat 1: python COBAHH.py 16 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.5876 s (58%) simulated in 10.0005 s, estimated 7 s remaining.
+1 s (100%) simulated in 17.0228 s
+Took 24.5s in total (runtime: 17.0s)
+Repeat 2: python COBAHH.py 16 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.5825 s (58%) simulated in 10.0005 s, estimated 7 s remaining.
+1 s (100%) simulated in 17.1852 s
+Took 24.5s in total (runtime: 17.2s)
+Repeat 3: python COBAHH.py 16 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.5848 s (58%) simulated in 10.0004 s, estimated 7 s remaining.
+1 s (100%) simulated in 17.1159 s
+Took 24.7s in total (runtime: 17.1s)
+Repeat 1: python COBAHH.py 32 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2965 s (29%) simulated in 10.0015 s, estimated 24 s remaining.
+0.5348 s (53%) simulated in 20.0041 s, estimated 17 s remaining.
+0.749 s (74%) simulated in 30.0001 s, estimated 10 s remaining.
+0.9166 s (91%) simulated in 40.0027 s, estimated 4 s remaining.
+1 s (100%) simulated in 45.0033 s
+Took 57.7s in total (runtime: 45.0s)
+Repeat 2: python COBAHH.py 32 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2918 s (29%) simulated in 10.001 s, estimated 24 s remaining.
+0.5281 s (52%) simulated in 20.0037 s, estimated 18 s remaining.
+0.7443 s (74%) simulated in 30.0034 s, estimated 10 s remaining.
+0.9111 s (91%) simulated in 40.0035 s, estimated 4 s remaining.
+1 s (100%) simulated in 45.3655 s
+Took 57.9s in total (runtime: 45.4s)
+Repeat 3: python COBAHH.py 32 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2896 s (28%) simulated in 10.0012 s, estimated 25 s remaining.
+0.5252 s (52%) simulated in 20.0015 s, estimated 18 s remaining.
+0.739 s (73%) simulated in 30.0038 s, estimated 11 s remaining.
+0.9045 s (90%) simulated in 40.0021 s, estimated 4 s remaining.
+1 s (100%) simulated in 45.8034 s
+Took 58.2s in total (runtime: 45.8s)
+Repeat 1: python COBAHH.py 32 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.4115 s (41%) simulated in 10.001 s, estimated 14 s remaining.
+0.8322 s (83%) simulated in 20.0008 s, estimated 4 s remaining.
+1 s (100%) simulated in 24.0249 s
+Took 36.8s in total (runtime: 24.0s)
+Repeat 2: python COBAHH.py 32 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2972 s (29%) simulated in 10.0025 s, estimated 24 s remaining.
+0.5938 s (59%) simulated in 20.0029 s, estimated 14 s remaining.
+0.8896 s (88%) simulated in 30.0011 s, estimated 4 s remaining.
+1 s (100%) simulated in 33.7423 s
+Took 46.5s in total (runtime: 33.7s)
+Repeat 3: python COBAHH.py 32 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2933 s (29%) simulated in 10.0001 s, estimated 24 s remaining.
+0.5853 s (58%) simulated in 20.0006 s, estimated 14 s remaining.
+0.8785 s (87%) simulated in 30.0019 s, estimated 4 s remaining.
+1 s (100%) simulated in 34.1418 s
+Took 46.8s in total (runtime: 34.1s)
+Repeat 1: python COBAHH.py 0.05 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.698901 s
+Took 2.9s in total (runtime: 0.7s)
+Repeat 2: python COBAHH.py 0.05 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.705992 s
+Took 2.8s in total (runtime: 0.7s)
+Repeat 3: python COBAHH.py 0.05 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.69367 s
+Took 3.1s in total (runtime: 0.7s)
+Repeat 1: python COBAHH.py 0.05 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.66947 s
+Took 2.8s in total (runtime: 0.7s)
+Repeat 2: python COBAHH.py 0.05 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.696742 s
+Took 2.9s in total (runtime: 0.7s)
+Repeat 3: python COBAHH.py 0.05 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.693026 s
+Took 2.8s in total (runtime: 0.7s)
+Repeat 1: python COBAHH.py 0.1 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.734084 s
+Took 2.9s in total (runtime: 0.7s)
+Repeat 2: python COBAHH.py 0.1 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.732409 s
+Took 2.9s in total (runtime: 0.7s)
+Repeat 3: python COBAHH.py 0.1 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.73359 s
+Took 2.8s in total (runtime: 0.7s)
+Repeat 1: python COBAHH.py 0.1 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.703294 s
+Took 2.8s in total (runtime: 0.7s)
+Repeat 2: python COBAHH.py 0.1 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.706156 s
+Took 3.0s in total (runtime: 0.7s)
+Repeat 3: python COBAHH.py 0.1 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.705782 s
+Took 2.8s in total (runtime: 0.7s)
+Repeat 1: python COBAHH.py 0.25 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.844903 s
+Took 3.1s in total (runtime: 0.8s)
+Repeat 2: python COBAHH.py 0.25 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.836398 s
+Took 3.1s in total (runtime: 0.8s)
+Repeat 3: python COBAHH.py 0.25 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.83846 s
+Took 3.1s in total (runtime: 0.8s)
+Repeat 1: python COBAHH.py 0.25 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.794726 s
+Took 3.0s in total (runtime: 0.8s)
+Repeat 2: python COBAHH.py 0.25 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.797082 s
+Took 2.9s in total (runtime: 0.8s)
+Repeat 3: python COBAHH.py 0.25 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.803005 s
+Took 3.2s in total (runtime: 0.8s)
+Repeat 1: python COBAHH.py 0.5 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.03859 s
+Took 3.3s in total (runtime: 1.0s)
+Repeat 2: python COBAHH.py 0.5 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.03875 s
+Took 3.3s in total (runtime: 1.0s)
+Repeat 3: python COBAHH.py 0.5 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.03454 s
+Took 3.3s in total (runtime: 1.0s)
+Repeat 1: python COBAHH.py 0.5 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.957535 s
+Took 3.1s in total (runtime: 1.0s)
+Repeat 2: python COBAHH.py 0.5 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.920598 s
+Took 3.2s in total (runtime: 0.9s)
+Repeat 3: python COBAHH.py 0.5 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.951995 s
+Took 3.2s in total (runtime: 1.0s)
+Repeat 1: python COBAHH.py 1 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.40984 s
+Took 3.9s in total (runtime: 1.4s)
+Repeat 2: python COBAHH.py 1 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.41166 s
+Took 3.9s in total (runtime: 1.4s)
+Repeat 3: python COBAHH.py 1 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.41725 s
+Took 3.9s in total (runtime: 1.4s)
+Repeat 1: python COBAHH.py 1 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.23704 s
+Took 3.8s in total (runtime: 1.2s)
+Repeat 2: python COBAHH.py 1 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.25412 s
+Took 3.8s in total (runtime: 1.3s)
+Repeat 3: python COBAHH.py 1 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.24177 s
+Took 3.7s in total (runtime: 1.2s)
+Repeat 1: python COBAHH.py 2 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.16219 s
+Took 5.0s in total (runtime: 2.2s)
+Repeat 2: python COBAHH.py 2 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.15593 s
+Took 5.0s in total (runtime: 2.2s)
+Repeat 3: python COBAHH.py 2 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.1762 s
+Took 5.0s in total (runtime: 2.2s)
+Repeat 1: python COBAHH.py 2 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.82224 s
+Took 4.7s in total (runtime: 1.8s)
+Repeat 2: python COBAHH.py 2 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.81632 s
+Took 4.7s in total (runtime: 1.8s)
+Repeat 3: python COBAHH.py 2 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.8255 s
+Took 4.6s in total (runtime: 1.8s)
+Repeat 1: python COBAHH.py 4 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.66311 s
+Took 7.2s in total (runtime: 3.7s)
+Repeat 2: python COBAHH.py 4 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.67764 s
+Took 7.1s in total (runtime: 3.7s)
+Repeat 3: python COBAHH.py 4 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.65814 s
+Took 7.1s in total (runtime: 3.7s)
+Repeat 1: python COBAHH.py 4 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.94851 s
+Took 6.4s in total (runtime: 2.9s)
+Repeat 2: python COBAHH.py 4 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.95645 s
+Took 6.4s in total (runtime: 3.0s)
+Repeat 3: python COBAHH.py 4 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.94405 s
+Took 6.5s in total (runtime: 2.9s)
+Repeat 1: python COBAHH.py 8 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 6.67532 s
+Took 11.4s in total (runtime: 6.7s)
+Repeat 2: python COBAHH.py 8 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 6.67413 s
+Took 11.4s in total (runtime: 6.7s)
+Repeat 3: python COBAHH.py 8 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 6.66157 s
+Took 11.5s in total (runtime: 6.7s)
+Repeat 1: python COBAHH.py 8 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 5.29132 s
+Took 10.0s in total (runtime: 5.3s)
+Repeat 2: python COBAHH.py 8 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 5.26653 s
+Took 10.1s in total (runtime: 5.3s)
+Repeat 3: python COBAHH.py 8 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 5.29331 s
+Took 10.1s in total (runtime: 5.3s)
+Repeat 1: python COBAHH.py 16 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.8386 s (83%) simulated in 10.0009 s, estimated 2 s remaining.
+1 s (100%) simulated in 12.6597 s
+Took 20.2s in total (runtime: 12.7s)
+Repeat 2: python COBAHH.py 16 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.8383 s (83%) simulated in 10.0009 s, estimated 2 s remaining.
+1 s (100%) simulated in 12.6647 s
+Took 20.2s in total (runtime: 12.7s)
+Repeat 3: python COBAHH.py 16 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.8372 s (83%) simulated in 10.0012 s, estimated 2 s remaining.
+1 s (100%) simulated in 12.6875 s
+Took 20.2s in total (runtime: 12.7s)
+Repeat 1: python COBAHH.py 16 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 9.87645 s
+Took 17.5s in total (runtime: 9.9s)
+Repeat 2: python COBAHH.py 16 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 9.85225 s
+Took 17.5s in total (runtime: 9.9s)
+Repeat 3: python COBAHH.py 16 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 9.86224 s
+Took 17.5s in total (runtime: 9.9s)
+Repeat 1: python COBAHH.py 32 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.485 s (48%) simulated in 10.0002 s, estimated 11 s remaining.
+0.8516 s (85%) simulated in 20.0003 s, estimated 3 s remaining.
+1 s (100%) simulated in 24.7761 s
+Took 37.7s in total (runtime: 24.8s)
+Repeat 2: python COBAHH.py 32 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.4816 s (48%) simulated in 10.0015 s, estimated 11 s remaining.
+0.8486 s (84%) simulated in 20.002 s, estimated 4 s remaining.
+1 s (100%) simulated in 24.895 s
+Took 37.8s in total (runtime: 24.9s)
+Repeat 3: python COBAHH.py 32 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.4835 s (48%) simulated in 10.0017 s, estimated 11 s remaining.
+0.8499 s (84%) simulated in 20.0008 s, estimated 4 s remaining.
+1 s (100%) simulated in 24.8465 s
+Took 37.9s in total (runtime: 24.8s)
+Repeat 1: python COBAHH.py 32 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.5257 s (52%) simulated in 10.0006 s, estimated 9 s remaining.
+1 s (100%) simulated in 19.0774 s
+Took 32.4s in total (runtime: 19.1s)
+Repeat 2: python COBAHH.py 32 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.5254 s (52%) simulated in 10.0001 s, estimated 9 s remaining.
+1 s (100%) simulated in 19.0842 s
+Took 32.4s in total (runtime: 19.1s)
+Repeat 3: python COBAHH.py 32 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.5196 s (51%) simulated in 10.0011 s, estimated 9 s remaining.
+1 s (100%) simulated in 19.2435 s
+Took 32.4s in total (runtime: 19.2s)
+Repeat 1: python COBAHH.py 0.05 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.812606 s
+Took 2.8s in total (runtime: 0.8s)
+Repeat 2: python COBAHH.py 0.05 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.818042 s
+Took 2.8s in total (runtime: 0.8s)
+Repeat 3: python COBAHH.py 0.05 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.82841 s
+Took 2.9s in total (runtime: 0.8s)
+Repeat 1: python COBAHH.py 0.05 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.544739 s
+Took 2.5s in total (runtime: 0.5s)
+Repeat 2: python COBAHH.py 0.05 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.546436 s
+Took 2.6s in total (runtime: 0.5s)
+Repeat 3: python COBAHH.py 0.05 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.547191 s
+Took 2.5s in total (runtime: 0.5s)
+Repeat 1: python COBAHH.py 0.1 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.44719 s
+Took 3.3s in total (runtime: 1.4s)
+Repeat 2: python COBAHH.py 0.1 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.45278 s
+Took 3.3s in total (runtime: 1.5s)
+Repeat 3: python COBAHH.py 0.1 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.44837 s
+Took 3.4s in total (runtime: 1.4s)
+Repeat 1: python COBAHH.py 0.1 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.912708 s
+Took 2.8s in total (runtime: 0.9s)
+Repeat 2: python COBAHH.py 0.1 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.914242 s
+Took 2.9s in total (runtime: 0.9s)
+Repeat 3: python COBAHH.py 0.1 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.912419 s
+Took 2.9s in total (runtime: 0.9s)
+Repeat 1: python COBAHH.py 0.25 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.36146 s
+Took 5.4s in total (runtime: 3.4s)
+Repeat 2: python COBAHH.py 0.25 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.38465 s
+Took 5.4s in total (runtime: 3.4s)
+Repeat 3: python COBAHH.py 0.25 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.3763 s
+Took 5.4s in total (runtime: 3.4s)
+Repeat 1: python COBAHH.py 0.25 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.01329 s
+Took 3.9s in total (runtime: 2.0s)
+Repeat 2: python COBAHH.py 0.25 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.01047 s
+Took 3.9s in total (runtime: 2.0s)
+Repeat 3: python COBAHH.py 0.25 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.02085 s
+Took 4.0s in total (runtime: 2.0s)
+Repeat 1: python COBAHH.py 0.5 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 6.52933 s
+Took 8.5s in total (runtime: 6.5s)
+Repeat 2: python COBAHH.py 0.5 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 6.54788 s
+Took 8.7s in total (runtime: 6.5s)
+Repeat 3: python COBAHH.py 0.5 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 6.5144 s
+Took 8.7s in total (runtime: 6.5s)
+Repeat 1: python COBAHH.py 0.5 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.8577 s
+Took 5.9s in total (runtime: 3.9s)
+Repeat 2: python COBAHH.py 0.5 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.82717 s
+Took 6.0s in total (runtime: 3.8s)
+Repeat 3: python COBAHH.py 0.5 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.83649 s
+Took 6.0s in total (runtime: 3.8s)
+Repeat 1: python COBAHH.py 1 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.8351 s (83%) simulated in 10.0001 s, estimated 2 s remaining.
+1 s (100%) simulated in 12.904 s
+Took 15.5s in total (runtime: 12.9s)
+Repeat 2: python COBAHH.py 1 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.8363 s (83%) simulated in 10.0004 s, estimated 2 s remaining.
+1 s (100%) simulated in 12.8998 s
+Took 15.2s in total (runtime: 12.9s)
+Repeat 3: python COBAHH.py 1 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.8202 s (82%) simulated in 10.0015 s, estimated 2 s remaining.
+1 s (100%) simulated in 13.2814 s
+Took 15.7s in total (runtime: 13.3s)
+Repeat 1: python COBAHH.py 1 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 7.63454 s
+Took 9.9s in total (runtime: 7.6s)
+Repeat 2: python COBAHH.py 1 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 7.46919 s
+Took 9.7s in total (runtime: 7.5s)
+Repeat 3: python COBAHH.py 1 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 7.48258 s
+Took 9.8s in total (runtime: 7.5s)
+Repeat 1: python COBAHH.py 2 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.4794 s (47%) simulated in 10.0009 s, estimated 11 s remaining.
+0.8266 s (82%) simulated in 20.0019 s, estimated 4 s remaining.
+1 s (100%) simulated in 26.0963 s
+Took 28.7s in total (runtime: 26.1s)
+Repeat 2: python COBAHH.py 2 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.4952 s (49%) simulated in 10.001 s, estimated 10 s remaining.
+0.839 s (83%) simulated in 20.0027 s, estimated 4 s remaining.
+1 s (100%) simulated in 25.6612 s
+Took 28.1s in total (runtime: 25.7s)
+Repeat 3: python COBAHH.py 2 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.4934 s (49%) simulated in 10.0009 s, estimated 10 s remaining.
+0.8354 s (83%) simulated in 20.001 s, estimated 4 s remaining.
+1 s (100%) simulated in 25.8145 s
+Took 28.5s in total (runtime: 25.8s)
+Repeat 1: python COBAHH.py 2 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.6761 s (67%) simulated in 10.0009 s, estimated 5 s remaining.
+1 s (100%) simulated in 14.7867 s
+Took 17.4s in total (runtime: 14.8s)
+Repeat 2: python COBAHH.py 2 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.6758 s (67%) simulated in 10.0003 s, estimated 5 s remaining.
+1 s (100%) simulated in 14.8032 s
+Took 17.5s in total (runtime: 14.8s)
+Repeat 3: python COBAHH.py 2 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.6694 s (66%) simulated in 10.0008 s, estimated 5 s remaining.
+1 s (100%) simulated in 14.9711 s
+Took 17.7s in total (runtime: 15.0s)
+Repeat 1: python COBAHH.py 4 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2799 s (27%) simulated in 10.0015 s, estimated 26 s remaining.
+0.4949 s (49%) simulated in 20.0017 s, estimated 20 s remaining.
+0.6893 s (68%) simulated in 30.0008 s, estimated 14 s remaining.
+0.8395 s (83%) simulated in 40.0047 s, estimated 8 s remaining.
+0.9817 s (98%) simulated in 50.0038 s, estimated 1 s remaining.
+1 s (100%) simulated in 51.2846 s
+Took 54.5s in total (runtime: 51.3s)
+Repeat 2: python COBAHH.py 4 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2805 s (28%) simulated in 10.0028 s, estimated 26 s remaining.
+0.4967 s (49%) simulated in 20.0045 s, estimated 20 s remaining.
+0.6914 s (69%) simulated in 30.0027 s, estimated 13 s remaining.
+0.8412 s (84%) simulated in 40.0021 s, estimated 8 s remaining.
+0.9836 s (98%) simulated in 50.002 s, estimated 1 s remaining.
+1 s (100%) simulated in 51.1468 s
+Took 54.5s in total (runtime: 51.1s)
+Repeat 3: python COBAHH.py 4 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2787 s (27%) simulated in 10.0021 s, estimated 26 s remaining.
+0.4955 s (49%) simulated in 20.0045 s, estimated 20 s remaining.
+0.6909 s (69%) simulated in 30.0036 s, estimated 13 s remaining.
+0.8393 s (83%) simulated in 40.0042 s, estimated 8 s remaining.
+0.9821 s (98%) simulated in 50.0041 s, estimated 1 s remaining.
+1 s (100%) simulated in 51.2605 s
+Took 54.5s in total (runtime: 51.3s)
+Repeat 1: python COBAHH.py 4 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.3326 s (33%) simulated in 10.0025 s, estimated 20 s remaining.
+0.6732 s (67%) simulated in 20.0017 s, estimated 10 s remaining.
+1 s (100%) simulated in 29.6376 s
+Took 32.8s in total (runtime: 29.6s)
+Repeat 2: python COBAHH.py 4 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.34 s (34%) simulated in 10.001 s, estimated 19 s remaining.
+0.647 s (64%) simulated in 20.0026 s, estimated 11 s remaining.
+0.9849 s (98%) simulated in 30.0003 s, estimated 0 s remaining.
+1 s (100%) simulated in 30.4479 s
+Took 33.7s in total (runtime: 30.4s)
+Repeat 3: python COBAHH.py 4 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.34 s (34%) simulated in 10.0021 s, estimated 19 s remaining.
+0.6792 s (67%) simulated in 20.0028 s, estimated 9 s remaining.
+1 s (100%) simulated in 29.4778 s
+Took 32.9s in total (runtime: 29.5s)
+Repeat 1: python COBAHH.py 8 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1412 s (14%) simulated in 10.0025 s, estimated 61 s remaining.
+0.2817 s (28%) simulated in 20.0029 s, estimated 51 s remaining.
+0.4003 s (40%) simulated in 30.0084 s, estimated 45 s remaining.
+0.4981 s (49%) simulated in 40.0022 s, estimated 40 s remaining.
+0.5958 s (59%) simulated in 50.0048 s, estimated 34 s remaining.
+0.6933 s (69%) simulated in 60.0009 s, estimated 27 s remaining.
+0.7711 s (77%) simulated in 70.0004 s, estimated 21 s remaining.
+0.8425 s (84%) simulated in 80.0081 s, estimated 15 s remaining.
+0.9131 s (91%) simulated in 90.0003 s, estimated 9 s remaining.
+0.9845 s (98%) simulated in 100.003 s, estimated 2 s remaining.
+1 s (100%) simulated in 102.171 s
+Took 106.8s in total (runtime: 102.2s)
+Repeat 2: python COBAHH.py 8 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1407 s (14%) simulated in 10.0011 s, estimated 61 s remaining.
+0.2815 s (28%) simulated in 20.0049 s, estimated 51 s remaining.
+0.4004 s (40%) simulated in 30.0006 s, estimated 45 s remaining.
+0.4979 s (49%) simulated in 40.0051 s, estimated 40 s remaining.
+0.5958 s (59%) simulated in 50.0023 s, estimated 34 s remaining.
+0.6937 s (69%) simulated in 60.0006 s, estimated 26 s remaining.
+0.7711 s (77%) simulated in 70.0026 s, estimated 21 s remaining.
+0.8425 s (84%) simulated in 80.0134 s, estimated 15 s remaining.
+0.914 s (91%) simulated in 90.0135 s, estimated 8 s remaining.
+0.9854 s (98%) simulated in 100.013 s, estimated 1 s remaining.
+1 s (100%) simulated in 102.052 s
+Took 106.7s in total (runtime: 102.1s)
+Repeat 3: python COBAHH.py 8 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1407 s (14%) simulated in 10.0025 s, estimated 61 s remaining.
+0.2811 s (28%) simulated in 20.005 s, estimated 51 s remaining.
+0.3998 s (39%) simulated in 30.001 s, estimated 45 s remaining.
+0.4978 s (49%) simulated in 40.006 s, estimated 40 s remaining.
+0.5957 s (59%) simulated in 50.0096 s, estimated 34 s remaining.
+0.6935 s (69%) simulated in 60.0102 s, estimated 27 s remaining.
+0.7711 s (77%) simulated in 70.0082 s, estimated 21 s remaining.
+0.8423 s (84%) simulated in 80.0055 s, estimated 15 s remaining.
+0.9135 s (91%) simulated in 90.0014 s, estimated 9 s remaining.
+0.9848 s (98%) simulated in 100.007 s, estimated 2 s remaining.
+1 s (100%) simulated in 102.149 s
+Took 106.7s in total (runtime: 102.1s)
+Repeat 1: python COBAHH.py 8 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1699 s (16%) simulated in 10.0012 s, estimated 49 s remaining.
+0.3385 s (33%) simulated in 20.0041 s, estimated 39 s remaining.
+0.5076 s (50%) simulated in 30.001 s, estimated 29 s remaining.
+0.677 s (67%) simulated in 40.0002 s, estimated 19 s remaining.
+0.8463 s (84%) simulated in 50.0054 s, estimated 9 s remaining.
+1 s (100%) simulated in 59.1288 s
+Took 63.7s in total (runtime: 59.1s)
+Repeat 2: python COBAHH.py 8 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1702 s (17%) simulated in 10.0031 s, estimated 49 s remaining.
+0.3393 s (33%) simulated in 20.003 s, estimated 39 s remaining.
+0.5088 s (50%) simulated in 30.0002 s, estimated 29 s remaining.
+0.6782 s (67%) simulated in 40.0053 s, estimated 19 s remaining.
+0.8473 s (84%) simulated in 50.0003 s, estimated 9 s remaining.
+1 s (100%) simulated in 59.0071 s
+Took 63.5s in total (runtime: 59.0s)
+Repeat 3: python COBAHH.py 8 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1697 s (16%) simulated in 10.0005 s, estimated 49 s remaining.
+0.3388 s (33%) simulated in 20.0035 s, estimated 39 s remaining.
+0.5084 s (50%) simulated in 30.0024 s, estimated 29 s remaining.
+0.6777 s (67%) simulated in 40.004 s, estimated 19 s remaining.
+0.847 s (84%) simulated in 50.003 s, estimated 9 s remaining.
+1 s (100%) simulated in 59.0132 s
+Took 63.6s in total (runtime: 59.0s)
+Repeat 1: python COBAHH.py 16 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0705 s (7%) simulated in 10.0013 s, estimated 132 s remaining.
+0.1406 s (14%) simulated in 20.008 s, estimated 122 s remaining.
+0.2108 s (21%) simulated in 30.0122 s, estimated 112 s remaining.
+0.281 s (28%) simulated in 40.0035 s, estimated 102 s remaining.
+0.3508 s (35%) simulated in 50.0013 s, estimated 93 s remaining.
+0.4 s (40%) simulated in 60.0058 s, estimated 90 s remaining.
+0.4489 s (44%) simulated in 70.01 s, estimated 86 s remaining.
+0.4978 s (49%) simulated in 80.0078 s, estimated 81 s remaining.
+0.5469 s (54%) simulated in 90.0181 s, estimated 75 s remaining.
+0.5958 s (59%) simulated in 100.002 s, estimated 68 s remaining.
+0.6445 s (64%) simulated in 110.005 s, estimated 61 s remaining.
+0.6935 s (69%) simulated in 120.017 s, estimated 53 s remaining.
+0.7356 s (73%) simulated in 130.02 s, estimated 47 s remaining.
+0.7713 s (77%) simulated in 140.021 s, estimated 42 s remaining.
+0.807 s (80%) simulated in 150.026 s, estimated 36 s remaining.
+0.8426 s (84%) simulated in 160.009 s, estimated 30 s remaining.
+0.878 s (87%) simulated in 170.016 s, estimated 24 s remaining.
+0.9137 s (91%) simulated in 180.002 s, estimated 17 s remaining.
+0.9493 s (94%) simulated in 190.005 s, estimated 10 s remaining.
+0.9852 s (98%) simulated in 200.012 s, estimated 3 s remaining.
+1 s (100%) simulated in 204.144 s
+Took 211.2s in total (runtime: 204.1s)
+Repeat 2: python COBAHH.py 16 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0705 s (7%) simulated in 10.0088 s, estimated 132 s remaining.
+0.1406 s (14%) simulated in 20.0093 s, estimated 122 s remaining.
+0.2106 s (21%) simulated in 30.0008 s, estimated 112 s remaining.
+0.2806 s (28%) simulated in 40.0118 s, estimated 103 s remaining.
+0.3501 s (35%) simulated in 50.0092 s, estimated 93 s remaining.
+0.3996 s (39%) simulated in 60.0115 s, estimated 90 s remaining.
+0.4486 s (44%) simulated in 70.0042 s, estimated 86 s remaining.
+0.4975 s (49%) simulated in 80.0008 s, estimated 81 s remaining.
+0.5466 s (54%) simulated in 90.0134 s, estimated 75 s remaining.
+0.5955 s (59%) simulated in 100.014 s, estimated 68 s remaining.
+0.6442 s (64%) simulated in 110.004 s, estimated 61 s remaining.
+0.6931 s (69%) simulated in 120.018 s, estimated 53 s remaining.
+0.7352 s (73%) simulated in 130.024 s, estimated 47 s remaining.
+0.7707 s (77%) simulated in 140.019 s, estimated 42 s remaining.
+0.8062 s (80%) simulated in 150.016 s, estimated 36 s remaining.
+0.8417 s (84%) simulated in 160.009 s, estimated 30 s remaining.
+0.8772 s (87%) simulated in 170.006 s, estimated 24 s remaining.
+0.9128 s (91%) simulated in 180.012 s, estimated 17 s remaining.
+0.9484 s (94%) simulated in 190.016 s, estimated 10 s remaining.
+0.9842 s (98%) simulated in 200.023 s, estimated 3 s remaining.
+1 s (100%) simulated in 204.456 s
+Took 211.5s in total (runtime: 204.5s)
+Repeat 3: python COBAHH.py 16 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0706 s (7%) simulated in 10.0117 s, estimated 132 s remaining.
+0.1406 s (14%) simulated in 20.0069 s, estimated 122 s remaining.
+0.2109 s (21%) simulated in 30.0105 s, estimated 112 s remaining.
+0.2811 s (28%) simulated in 40.0051 s, estimated 102 s remaining.
+0.3507 s (35%) simulated in 50.0046 s, estimated 93 s remaining.
+0.3999 s (39%) simulated in 60.008 s, estimated 90 s remaining.
+0.4487 s (44%) simulated in 70.0192 s, estimated 86 s remaining.
+0.4974 s (49%) simulated in 80.0071 s, estimated 81 s remaining.
+0.5464 s (54%) simulated in 90 s, estimated 75 s remaining.
+0.5954 s (59%) simulated in 100.013 s, estimated 68 s remaining.
+0.6443 s (64%) simulated in 110.015 s, estimated 61 s remaining.
+0.6932 s (69%) simulated in 120.004 s, estimated 53 s remaining.
+0.7353 s (73%) simulated in 130.014 s, estimated 47 s remaining.
+0.771 s (77%) simulated in 140.009 s, estimated 42 s remaining.
+0.8067 s (80%) simulated in 150.027 s, estimated 36 s remaining.
+0.8422 s (84%) simulated in 160.004 s, estimated 30 s remaining.
+0.8777 s (87%) simulated in 170.027 s, estimated 24 s remaining.
+0.9134 s (91%) simulated in 180.026 s, estimated 17 s remaining.
+0.9489 s (94%) simulated in 190.013 s, estimated 10 s remaining.
+0.9846 s (98%) simulated in 200.012 s, estimated 3 s remaining.
+1 s (100%) simulated in 204.324 s
+Took 211.5s in total (runtime: 204.3s)
+Repeat 1: python COBAHH.py 16 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0849 s (8%) simulated in 10.0015 s, estimated 108 s remaining.
+0.1695 s (16%) simulated in 20.0033 s, estimated 98 s remaining.
+0.2533 s (25%) simulated in 30.0097 s, estimated 88 s remaining.
+0.3374 s (33%) simulated in 40.0064 s, estimated 79 s remaining.
+0.4223 s (42%) simulated in 50.0029 s, estimated 68 s remaining.
+0.5071 s (50%) simulated in 60.0041 s, estimated 58 s remaining.
+0.5918 s (59%) simulated in 70.0023 s, estimated 48 s remaining.
+0.6767 s (67%) simulated in 80.0009 s, estimated 38 s remaining.
+0.7614 s (76%) simulated in 90.0015 s, estimated 28 s remaining.
+0.8461 s (84%) simulated in 100.002 s, estimated 18 s remaining.
+0.9306 s (93%) simulated in 110.007 s, estimated 8 s remaining.
+1 s (100%) simulated in 118.252 s
+Took 125.5s in total (runtime: 118.3s)
+Repeat 2: python COBAHH.py 16 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0848 s (8%) simulated in 10.001 s, estimated 108 s remaining.
+0.1689 s (16%) simulated in 20.0036 s, estimated 98 s remaining.
+0.2528 s (25%) simulated in 30.0113 s, estimated 89 s remaining.
+0.337 s (33%) simulated in 40.0078 s, estimated 79 s remaining.
+0.4207 s (42%) simulated in 50.0028 s, estimated 69 s remaining.
+0.5037 s (50%) simulated in 60.0092 s, estimated 59 s remaining.
+0.5863 s (58%) simulated in 70.007 s, estimated 49 s remaining.
+0.6688 s (66%) simulated in 80.0045 s, estimated 40 s remaining.
+0.7536 s (75%) simulated in 90.0052 s, estimated 29 s remaining.
+0.8382 s (83%) simulated in 100.004 s, estimated 19 s remaining.
+0.9129 s (91%) simulated in 110.005 s, estimated 10 s remaining.
+0.9977 s (99%) simulated in 120.011 s, estimated 0 s remaining.
+1 s (100%) simulated in 120.279 s
+Took 127.5s in total (runtime: 120.3s)
+Repeat 3: python COBAHH.py 16 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0846 s (8%) simulated in 10.0099 s, estimated 108 s remaining.
+0.1687 s (16%) simulated in 20.009 s, estimated 99 s remaining.
+0.253 s (25%) simulated in 30.0039 s, estimated 89 s remaining.
+0.3376 s (33%) simulated in 40.0002 s, estimated 78 s remaining.
+0.4226 s (42%) simulated in 50.0072 s, estimated 68 s remaining.
+0.5075 s (50%) simulated in 60.0086 s, estimated 58 s remaining.
+0.5923 s (59%) simulated in 70.0098 s, estimated 48 s remaining.
+0.677 s (67%) simulated in 80.0022 s, estimated 38 s remaining.
+0.7616 s (76%) simulated in 90.0096 s, estimated 28 s remaining.
+0.8461 s (84%) simulated in 100.007 s, estimated 18 s remaining.
+0.9305 s (93%) simulated in 110.009 s, estimated 8 s remaining.
+1 s (100%) simulated in 118.162 s
+Took 125.5s in total (runtime: 118.2s)
+Repeat 1: python COBAHH.py 32 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.035 s (3%) simulated in 10.0057 s, estimated 276 s remaining.
+0.0705 s (7%) simulated in 20.0263 s, estimated 264 s remaining.
+0.1053 s (10%) simulated in 30.006 s, estimated 255 s remaining.
+0.1405 s (14%) simulated in 40.0135 s, estimated 245 s remaining.
+0.1756 s (17%) simulated in 50.0202 s, estimated 235 s remaining.
+0.2106 s (21%) simulated in 60.0186 s, estimated 225 s remaining.
+0.2454 s (24%) simulated in 70.0089 s, estimated 215 s remaining.
+0.2803 s (28%) simulated in 80.0161 s, estimated 205 s remaining.
+0.3154 s (31%) simulated in 90.0042 s, estimated 195 s remaining.
+0.3501 s (35%) simulated in 100.031 s, estimated 186 s remaining.
+0.3751 s (37%) simulated in 110.031 s, estimated 183 s remaining.
+0.3993 s (39%) simulated in 120.028 s, estimated 181 s remaining.
+0.4235 s (42%) simulated in 130.02 s, estimated 177 s remaining.
+0.4481 s (44%) simulated in 140.018 s, estimated 172 s remaining.
+0.4725 s (47%) simulated in 150.023 s, estimated 167 s remaining.
+0.4968 s (49%) simulated in 160.024 s, estimated 162 s remaining.
+0.5214 s (52%) simulated in 170.037 s, estimated 156 s remaining.
+0.5457 s (54%) simulated in 180.032 s, estimated 150 s remaining.
+0.5696 s (56%) simulated in 190.005 s, estimated 144 s remaining.
+0.5942 s (59%) simulated in 200.02 s, estimated 137 s remaining.
+0.6186 s (61%) simulated in 210 s, estimated 129 s remaining.
+0.6429 s (64%) simulated in 220.026 s, estimated 122 s remaining.
+0.6674 s (66%) simulated in 230.004 s, estimated 115 s remaining.
+0.6919 s (69%) simulated in 240.034 s, estimated 107 s remaining.
+0.7151 s (71%) simulated in 250.044 s, estimated 100 s remaining.
+0.7342 s (73%) simulated in 260.053 s, estimated 94 s remaining.
+0.7521 s (75%) simulated in 270.05 s, estimated 89 s remaining.
+0.7699 s (76%) simulated in 280.052 s, estimated 84 s remaining.
+0.7876 s (78%) simulated in 290.044 s, estimated 78 s remaining.
+0.8054 s (80%) simulated in 300.005 s, estimated 72 s remaining.
+0.8233 s (82%) simulated in 310.022 s, estimated 67 s remaining.
+0.8412 s (84%) simulated in 320.049 s, estimated 60 s remaining.
+0.8589 s (85%) simulated in 330.047 s, estimated 54 s remaining.
+0.8767 s (87%) simulated in 340.034 s, estimated 48 s remaining.
+0.8946 s (89%) simulated in 350.054 s, estimated 41 s remaining.
+0.9125 s (91%) simulated in 360.046 s, estimated 35 s remaining.
+0.93 s (93%) simulated in 370.013 s, estimated 28 s remaining.
+0.9479 s (94%) simulated in 380.036 s, estimated 21 s remaining.
+0.9657 s (96%) simulated in 390.014 s, estimated 14 s remaining.
+0.9835 s (98%) simulated in 400.018 s, estimated 7 s remaining.
+1 s (100%) simulated in 409.285 s
+Took 421.6s in total (runtime: 409.3s)
+Repeat 2: python COBAHH.py 32 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0352 s (3%) simulated in 10.0259 s, estimated 275 s remaining.
+0.0705 s (7%) simulated in 20.002 s, estimated 264 s remaining.
+0.1055 s (10%) simulated in 30.0037 s, estimated 254 s remaining.
+0.1409 s (14%) simulated in 40.0277 s, estimated 244 s remaining.
+0.1759 s (17%) simulated in 50.0194 s, estimated 234 s remaining.
+0.2107 s (21%) simulated in 60.0151 s, estimated 225 s remaining.
+0.2459 s (24%) simulated in 70.0234 s, estimated 215 s remaining.
+0.2809 s (28%) simulated in 80.024 s, estimated 205 s remaining.
+0.3162 s (31%) simulated in 90.0132 s, estimated 195 s remaining.
+0.3508 s (35%) simulated in 100.025 s, estimated 185 s remaining.
+0.3757 s (37%) simulated in 110.009 s, estimated 183 s remaining.
+0.4001 s (40%) simulated in 120 s, estimated 180 s remaining.
+0.4244 s (42%) simulated in 130.019 s, estimated 176 s remaining.
+0.4488 s (44%) simulated in 140.028 s, estimated 172 s remaining.
+0.4732 s (47%) simulated in 150.034 s, estimated 167 s remaining.
+0.4973 s (49%) simulated in 160.02 s, estimated 162 s remaining.
+0.5218 s (52%) simulated in 170.003 s, estimated 156 s remaining.
+0.5461 s (54%) simulated in 180.005 s, estimated 150 s remaining.
+0.5704 s (57%) simulated in 190.023 s, estimated 143 s remaining.
+0.595 s (59%) simulated in 200.03 s, estimated 136 s remaining.
+0.6193 s (61%) simulated in 210.006 s, estimated 129 s remaining.
+0.6436 s (64%) simulated in 220.025 s, estimated 122 s remaining.
+0.6681 s (66%) simulated in 230.024 s, estimated 114 s remaining.
+0.6925 s (69%) simulated in 240.001 s, estimated 107 s remaining.
+0.7159 s (71%) simulated in 250.035 s, estimated 99 s remaining.
+0.7347 s (73%) simulated in 260.003 s, estimated 94 s remaining.
+0.7526 s (75%) simulated in 270.002 s, estimated 89 s remaining.
+0.7704 s (77%) simulated in 280.006 s, estimated 83 s remaining.
+0.7882 s (78%) simulated in 290.021 s, estimated 78 s remaining.
+0.8061 s (80%) simulated in 300.047 s, estimated 72 s remaining.
+0.8239 s (82%) simulated in 310.004 s, estimated 66 s remaining.
+0.8418 s (84%) simulated in 320.012 s, estimated 60 s remaining.
+0.8595 s (85%) simulated in 330.028 s, estimated 54 s remaining.
+0.8774 s (87%) simulated in 340.036 s, estimated 48 s remaining.
+0.8952 s (89%) simulated in 350.009 s, estimated 41 s remaining.
+0.9131 s (91%) simulated in 360.025 s, estimated 34 s remaining.
+0.9307 s (93%) simulated in 370.027 s, estimated 28 s remaining.
+0.9486 s (94%) simulated in 380.022 s, estimated 21 s remaining.
+0.9665 s (96%) simulated in 390.023 s, estimated 14 s remaining.
+0.9843 s (98%) simulated in 400.025 s, estimated 6 s remaining.
+1 s (100%) simulated in 408.889 s
+Took 421.2s in total (runtime: 408.9s)
+Repeat 3: python COBAHH.py 32 cpp_standalone 1 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.035 s (3%) simulated in 10.0202 s, estimated 276 s remaining.
+0.0703 s (7%) simulated in 20.0108 s, estimated 265 s remaining.
+0.1052 s (10%) simulated in 30.0157 s, estimated 255 s remaining.
+0.1405 s (14%) simulated in 40.0013 s, estimated 245 s remaining.
+0.1755 s (17%) simulated in 50.0077 s, estimated 235 s remaining.
+0.2107 s (21%) simulated in 60.0197 s, estimated 225 s remaining.
+0.2459 s (24%) simulated in 70.0275 s, estimated 215 s remaining.
+0.2807 s (28%) simulated in 80.0135 s, estimated 205 s remaining.
+0.316 s (31%) simulated in 90.01 s, estimated 195 s remaining.
+0.3506 s (35%) simulated in 100.003 s, estimated 185 s remaining.
+0.3756 s (37%) simulated in 110.039 s, estimated 183 s remaining.
+0.3999 s (39%) simulated in 120.013 s, estimated 180 s remaining.
+0.4242 s (42%) simulated in 130.029 s, estimated 176 s remaining.
+0.4487 s (44%) simulated in 140.019 s, estimated 172 s remaining.
+0.473 s (47%) simulated in 150.001 s, estimated 167 s remaining.
+0.4974 s (49%) simulated in 160.036 s, estimated 162 s remaining.
+0.5219 s (52%) simulated in 170.037 s, estimated 156 s remaining.
+0.5462 s (54%) simulated in 180.022 s, estimated 150 s remaining.
+0.5706 s (57%) simulated in 190.023 s, estimated 143 s remaining.
+0.5952 s (59%) simulated in 200.028 s, estimated 136 s remaining.
+0.6196 s (61%) simulated in 210.018 s, estimated 129 s remaining.
+0.6439 s (64%) simulated in 220.013 s, estimated 122 s remaining.
+0.6686 s (66%) simulated in 230.04 s, estimated 114 s remaining.
+0.6924 s (69%) simulated in 240.027 s, estimated 107 s remaining.
+0.7156 s (71%) simulated in 250.037 s, estimated 99 s remaining.
+0.7346 s (73%) simulated in 260.039 s, estimated 94 s remaining.
+0.7524 s (75%) simulated in 270.003 s, estimated 89 s remaining.
+0.7701 s (77%) simulated in 280.041 s, estimated 84 s remaining.
+0.7878 s (78%) simulated in 290.048 s, estimated 78 s remaining.
+0.8056 s (80%) simulated in 300.004 s, estimated 72 s remaining.
+0.8233 s (82%) simulated in 310.027 s, estimated 67 s remaining.
+0.8411 s (84%) simulated in 320.017 s, estimated 60 s remaining.
+0.8587 s (85%) simulated in 330.038 s, estimated 54 s remaining.
+0.8765 s (87%) simulated in 340.042 s, estimated 48 s remaining.
+0.8944 s (89%) simulated in 350.019 s, estimated 41 s remaining.
+0.9123 s (91%) simulated in 360.055 s, estimated 35 s remaining.
+0.9299 s (92%) simulated in 370.053 s, estimated 28 s remaining.
+0.9477 s (94%) simulated in 380.034 s, estimated 21 s remaining.
+0.9656 s (96%) simulated in 390.019 s, estimated 14 s remaining.
+0.9835 s (98%) simulated in 400.047 s, estimated 7 s remaining.
+1 s (100%) simulated in 409.284 s
+Took 421.6s in total (runtime: 409.3s)
+Repeat 1: python COBAHH.py 32 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0424 s (4%) simulated in 10.0211 s, estimated 226 s remaining.
+0.085 s (8%) simulated in 20.01 s, estimated 215 s remaining.
+0.1271 s (12%) simulated in 30.0029 s, estimated 206 s remaining.
+0.1696 s (16%) simulated in 40.017 s, estimated 196 s remaining.
+0.2118 s (21%) simulated in 50.009 s, estimated 186 s remaining.
+0.2536 s (25%) simulated in 60.0045 s, estimated 177 s remaining.
+0.2962 s (29%) simulated in 70.0013 s, estimated 166 s remaining.
+0.3382 s (33%) simulated in 80.0012 s, estimated 157 s remaining.
+0.3809 s (38%) simulated in 90.0093 s, estimated 146 s remaining.
+0.423 s (42%) simulated in 100.021 s, estimated 136 s remaining.
+0.4656 s (46%) simulated in 110.014 s, estimated 126 s remaining.
+0.5076 s (50%) simulated in 120.011 s, estimated 116 s remaining.
+0.55 s (55%) simulated in 130.021 s, estimated 106 s remaining.
+0.5924 s (59%) simulated in 140.019 s, estimated 96 s remaining.
+0.6344 s (63%) simulated in 150.012 s, estimated 86 s remaining.
+0.6772 s (67%) simulated in 160.011 s, estimated 76 s remaining.
+0.7194 s (71%) simulated in 170.016 s, estimated 66 s remaining.
+0.7619 s (76%) simulated in 180 s, estimated 56 s remaining.
+0.8039 s (80%) simulated in 190.012 s, estimated 46 s remaining.
+0.8463 s (84%) simulated in 200 s, estimated 36 s remaining.
+0.8887 s (88%) simulated in 210.004 s, estimated 26 s remaining.
+0.9306 s (93%) simulated in 220.011 s, estimated 16 s remaining.
+0.9732 s (97%) simulated in 230.006 s, estimated 6 s remaining.
+1 s (100%) simulated in 236.386 s
+Took 248.9s in total (runtime: 236.4s)
+Repeat 2: python COBAHH.py 32 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0425 s (4%) simulated in 10.0041 s, estimated 225 s remaining.
+0.0851 s (8%) simulated in 20.0094 s, estimated 215 s remaining.
+0.1272 s (12%) simulated in 30.019 s, estimated 206 s remaining.
+0.1697 s (16%) simulated in 40.0056 s, estimated 196 s remaining.
+0.2118 s (21%) simulated in 50.012 s, estimated 186 s remaining.
+0.2539 s (25%) simulated in 60.0122 s, estimated 176 s remaining.
+0.2966 s (29%) simulated in 70.021 s, estimated 166 s remaining.
+0.3381 s (33%) simulated in 80.0138 s, estimated 157 s remaining.
+0.3792 s (37%) simulated in 90.0226 s, estimated 147 s remaining.
+0.4204 s (42%) simulated in 100.022 s, estimated 138 s remaining.
+0.4628 s (46%) simulated in 110.007 s, estimated 128 s remaining.
+0.505 s (50%) simulated in 120.016 s, estimated 118 s remaining.
+0.5474 s (54%) simulated in 130.023 s, estimated 108 s remaining.
+0.5896 s (58%) simulated in 140.013 s, estimated 97 s remaining.
+0.6316 s (63%) simulated in 150 s, estimated 87 s remaining.
+0.6742 s (67%) simulated in 160.023 s, estimated 77 s remaining.
+0.7155 s (71%) simulated in 170.01 s, estimated 68 s remaining.
+0.7582 s (75%) simulated in 180.007 s, estimated 57 s remaining.
+0.8 s (80%) simulated in 190.02 s, estimated 48 s remaining.
+0.8424 s (84%) simulated in 200.008 s, estimated 37 s remaining.
+0.8845 s (88%) simulated in 210.006 s, estimated 27 s remaining.
+0.9264 s (92%) simulated in 220.006 s, estimated 17 s remaining.
+0.9689 s (96%) simulated in 230.019 s, estimated 7 s remaining.
+1 s (100%) simulated in 237.445 s
+Took 250.0s in total (runtime: 237.4s)
+Repeat 3: python COBAHH.py 32 cpp_standalone 1 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0426 s (4%) simulated in 10.0118 s, estimated 225 s remaining.
+0.0854 s (8%) simulated in 20.018 s, estimated 214 s remaining.
+0.1274 s (12%) simulated in 30.0108 s, estimated 206 s remaining.
+0.1699 s (16%) simulated in 40.0075 s, estimated 195 s remaining.
+0.2122 s (21%) simulated in 50.0123 s, estimated 186 s remaining.
+0.254 s (25%) simulated in 60.0025 s, estimated 176 s remaining.
+0.2937 s (29%) simulated in 70.0141 s, estimated 168 s remaining.
+0.3357 s (33%) simulated in 80.0209 s, estimated 158 s remaining.
+0.3755 s (37%) simulated in 90.0082 s, estimated 150 s remaining.
+0.4176 s (41%) simulated in 100.012 s, estimated 139 s remaining.
+0.4574 s (45%) simulated in 110.011 s, estimated 131 s remaining.
+0.4995 s (49%) simulated in 120.004 s, estimated 120 s remaining.
+0.5393 s (53%) simulated in 130.008 s, estimated 111 s remaining.
+0.5816 s (58%) simulated in 140.001 s, estimated 101 s remaining.
+0.6211 s (62%) simulated in 150.023 s, estimated 92 s remaining.
+0.663 s (66%) simulated in 160.007 s, estimated 81 s remaining.
+0.7022 s (70%) simulated in 170.001 s, estimated 72 s remaining.
+0.745 s (74%) simulated in 180.018 s, estimated 62 s remaining.
+0.7837 s (78%) simulated in 190.02 s, estimated 52 s remaining.
+0.8262 s (82%) simulated in 200.006 s, estimated 42 s remaining.
+0.8654 s (86%) simulated in 210.005 s, estimated 33 s remaining.
+0.9078 s (90%) simulated in 220.001 s, estimated 22 s remaining.
+0.947 s (94%) simulated in 230.017 s, estimated 13 s remaining.
+0.9895 s (98%) simulated in 240.019 s, estimated 3 s remaining.
+1 s (100%) simulated in 242.536 s
+Took 254.9s in total (runtime: 242.5s)
+Repeat 1: python COBAHH.py 0.05 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.50002 s
+Took 2.4s in total (runtime: 0.5s)
+Repeat 2: python COBAHH.py 0.05 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.504724 s
+Took 2.5s in total (runtime: 0.5s)
+Repeat 3: python COBAHH.py 0.05 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.521203 s
+Took 2.5s in total (runtime: 0.5s)
+Repeat 1: python COBAHH.py 0.05 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.455247 s
+Took 2.5s in total (runtime: 0.5s)
+Repeat 2: python COBAHH.py 0.05 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.453057 s
+Took 2.4s in total (runtime: 0.5s)
+Repeat 3: python COBAHH.py 0.05 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.46309 s
+Took 2.4s in total (runtime: 0.5s)
+Repeat 1: python COBAHH.py 0.1 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.525796 s
+Took 2.6s in total (runtime: 0.5s)
+Repeat 2: python COBAHH.py 0.1 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.513539 s
+Took 2.5s in total (runtime: 0.5s)
+Repeat 3: python COBAHH.py 0.1 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.516965 s
+Took 2.6s in total (runtime: 0.5s)
+Repeat 1: python COBAHH.py 0.1 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.489772 s
+Took 2.5s in total (runtime: 0.5s)
+Repeat 2: python COBAHH.py 0.1 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.524394 s
+Took 2.5s in total (runtime: 0.5s)
+Repeat 3: python COBAHH.py 0.1 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.484243 s
+Took 2.5s in total (runtime: 0.5s)
+Repeat 1: python COBAHH.py 0.25 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.759062 s
+Took 2.7s in total (runtime: 0.8s)
+Repeat 2: python COBAHH.py 0.25 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.781798 s
+Took 2.8s in total (runtime: 0.8s)
+Repeat 3: python COBAHH.py 0.25 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.72666 s
+Took 2.7s in total (runtime: 0.7s)
+Repeat 1: python COBAHH.py 0.25 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.576987 s
+Took 2.5s in total (runtime: 0.6s)
+Repeat 2: python COBAHH.py 0.25 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.679759 s
+Took 2.8s in total (runtime: 0.7s)
+Repeat 3: python COBAHH.py 0.25 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.567927 s
+Took 2.5s in total (runtime: 0.6s)
+Repeat 1: python COBAHH.py 0.5 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.0684 s
+Took 3.2s in total (runtime: 1.1s)
+Repeat 2: python COBAHH.py 0.5 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.999182 s
+Took 3.6s in total (runtime: 1.0s)
+Repeat 3: python COBAHH.py 0.5 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.1072 s
+Took 3.3s in total (runtime: 1.1s)
+Repeat 1: python COBAHH.py 0.5 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.798942 s
+Took 3.0s in total (runtime: 0.8s)
+Repeat 2: python COBAHH.py 0.5 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.762053 s
+Took 2.9s in total (runtime: 0.8s)
+Repeat 3: python COBAHH.py 0.5 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.927911 s
+Took 3.1s in total (runtime: 0.9s)
+Repeat 1: python COBAHH.py 1 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.63072 s
+Took 4.0s in total (runtime: 1.6s)
+Repeat 2: python COBAHH.py 1 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.77266 s
+Took 4.0s in total (runtime: 1.8s)
+Repeat 3: python COBAHH.py 1 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.78434 s
+Took 4.2s in total (runtime: 1.8s)
+Repeat 1: python COBAHH.py 1 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.15632 s
+Took 3.6s in total (runtime: 1.2s)
+Repeat 2: python COBAHH.py 1 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.12289 s
+Took 3.5s in total (runtime: 1.1s)
+Repeat 3: python COBAHH.py 1 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.41194 s
+Took 3.6s in total (runtime: 1.4s)
+Repeat 1: python COBAHH.py 2 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.80876 s
+Took 5.5s in total (runtime: 2.8s)
+Repeat 2: python COBAHH.py 2 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.1406 s
+Took 5.9s in total (runtime: 3.1s)
+Repeat 3: python COBAHH.py 2 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.89563 s
+Took 5.5s in total (runtime: 2.9s)
+Repeat 1: python COBAHH.py 2 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.50761 s
+Took 5.1s in total (runtime: 2.5s)
+Repeat 2: python COBAHH.py 2 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.47362 s
+Took 5.1s in total (runtime: 2.5s)
+Repeat 3: python COBAHH.py 2 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.85155 s
+Took 4.5s in total (runtime: 1.9s)
+Repeat 1: python COBAHH.py 4 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 5.98313 s
+Took 9.5s in total (runtime: 6.0s)
+Repeat 2: python COBAHH.py 4 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 5.35224 s
+Took 8.7s in total (runtime: 5.4s)
+Repeat 3: python COBAHH.py 4 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 5.97492 s
+Took 9.1s in total (runtime: 6.0s)
+Repeat 1: python COBAHH.py 4 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 4.27439 s
+Took 7.6s in total (runtime: 4.3s)
+Repeat 2: python COBAHH.py 4 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.31468 s
+Took 6.4s in total (runtime: 3.3s)
+Repeat 3: python COBAHH.py 4 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 4.55854 s
+Took 8.1s in total (runtime: 4.6s)
+Repeat 1: python COBAHH.py 8 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.9038 s (90%) simulated in 10.0014 s, estimated 1 s remaining.
+1 s (100%) simulated in 11.4649 s
+Took 15.9s in total (runtime: 11.5s)
+Repeat 2: python COBAHH.py 8 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.9861 s (98%) simulated in 10 s, estimated 0 s remaining.
+1 s (100%) simulated in 10.1957 s
+Took 14.6s in total (runtime: 10.2s)
+Repeat 3: python COBAHH.py 8 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.9926 s (99%) simulated in 10.0011 s, estimated 0 s remaining.
+1 s (100%) simulated in 10.1071 s
+Took 14.6s in total (runtime: 10.1s)
+Repeat 1: python COBAHH.py 8 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 6.41371 s
+Took 11.0s in total (runtime: 6.4s)
+Repeat 2: python COBAHH.py 8 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 8.86602 s
+Took 13.5s in total (runtime: 8.9s)
+Repeat 3: python COBAHH.py 8 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 8.83937 s
+Took 13.5s in total (runtime: 8.8s)
+Repeat 1: python COBAHH.py 16 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.5281 s (52%) simulated in 10.0013 s, estimated 9 s remaining.
+0.9085 s (90%) simulated in 20.001 s, estimated 2 s remaining.
+1 s (100%) simulated in 22.7641 s
+Took 29.9s in total (runtime: 22.8s)
+Repeat 2: python COBAHH.py 16 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.5349 s (53%) simulated in 10.0001 s, estimated 9 s remaining.
+0.9165 s (91%) simulated in 20.0019 s, estimated 2 s remaining.
+1 s (100%) simulated in 22.509 s
+Took 29.7s in total (runtime: 22.5s)
+Repeat 3: python COBAHH.py 16 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.5986 s (59%) simulated in 10.0014 s, estimated 7 s remaining.
+0.9759 s (97%) simulated in 20.0004 s, estimated 0 s remaining.
+1 s (100%) simulated in 20.7341 s
+Took 27.8s in total (runtime: 20.7s)
+Repeat 1: python COBAHH.py 16 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.5876 s (58%) simulated in 10.0006 s, estimated 7 s remaining.
+1 s (100%) simulated in 17.0324 s
+Took 24.2s in total (runtime: 17.0s)
+Repeat 2: python COBAHH.py 16 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.5768 s (57%) simulated in 10.0012 s, estimated 7 s remaining.
+1 s (100%) simulated in 17.3525 s
+Took 24.7s in total (runtime: 17.4s)
+Repeat 3: python COBAHH.py 16 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.5867 s (58%) simulated in 10.0013 s, estimated 7 s remaining.
+1 s (100%) simulated in 17.0331 s
+Took 24.3s in total (runtime: 17.0s)
+Repeat 1: python COBAHH.py 32 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2993 s (29%) simulated in 10.0006 s, estimated 23 s remaining.
+0.538 s (53%) simulated in 20.0023 s, estimated 17 s remaining.
+0.752 s (75%) simulated in 30.0019 s, estimated 10 s remaining.
+0.9194 s (91%) simulated in 40.0043 s, estimated 4 s remaining.
+1 s (100%) simulated in 44.8373 s
+Took 57.1s in total (runtime: 44.8s)
+Repeat 2: python COBAHH.py 32 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2995 s (29%) simulated in 10.0026 s, estimated 23 s remaining.
+0.5377 s (53%) simulated in 20.0033 s, estimated 17 s remaining.
+0.7669 s (76%) simulated in 30.0041 s, estimated 9 s remaining.
+0.9553 s (95%) simulated in 40.0015 s, estimated 2 s remaining.
+1 s (100%) simulated in 42.374 s
+Took 54.7s in total (runtime: 42.4s)
+Repeat 3: python COBAHH.py 32 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2984 s (29%) simulated in 10.0004 s, estimated 24 s remaining.
+0.537 s (53%) simulated in 20.0023 s, estimated 17 s remaining.
+0.7512 s (75%) simulated in 30 s, estimated 10 s remaining.
+0.9192 s (91%) simulated in 40.0044 s, estimated 4 s remaining.
+1 s (100%) simulated in 44.833 s
+Took 57.5s in total (runtime: 44.8s)
+Repeat 1: python COBAHH.py 32 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2904 s (29%) simulated in 10.0004 s, estimated 24 s remaining.
+0.5795 s (57%) simulated in 20.002 s, estimated 15 s remaining.
+0.8706 s (87%) simulated in 30.0027 s, estimated 4 s remaining.
+1 s (100%) simulated in 34.4465 s
+Took 46.9s in total (runtime: 34.4s)
+Repeat 2: python COBAHH.py 32 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2971 s (29%) simulated in 10.0028 s, estimated 24 s remaining.
+0.6414 s (64%) simulated in 20.0001 s, estimated 11 s remaining.
+1 s (100%) simulated in 28.5859 s
+Took 41.4s in total (runtime: 28.6s)
+Repeat 3: python COBAHH.py 32 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2882 s (28%) simulated in 10.0011 s, estimated 25 s remaining.
+0.5774 s (57%) simulated in 20.0024 s, estimated 15 s remaining.
+0.8662 s (86%) simulated in 30.0017 s, estimated 5 s remaining.
+1 s (100%) simulated in 34.6233 s
+Took 47.4s in total (runtime: 34.6s)
+Repeat 1: python COBAHH.py 0.05 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.592656 s
+Took 2.6s in total (runtime: 0.6s)
+Repeat 2: python COBAHH.py 0.05 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.606796 s
+Took 2.8s in total (runtime: 0.6s)
+Repeat 3: python COBAHH.py 0.05 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.636985 s
+Took 2.7s in total (runtime: 0.6s)
+Repeat 1: python COBAHH.py 0.05 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.569064 s
+Took 2.6s in total (runtime: 0.6s)
+Repeat 2: python COBAHH.py 0.05 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.614752 s
+Took 2.6s in total (runtime: 0.6s)
+Repeat 3: python COBAHH.py 0.05 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.630304 s
+Took 2.6s in total (runtime: 0.6s)
+Repeat 1: python COBAHH.py 0.1 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.614228 s
+Took 2.7s in total (runtime: 0.6s)
+Repeat 2: python COBAHH.py 0.1 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.649737 s
+Took 2.7s in total (runtime: 0.6s)
+Repeat 3: python COBAHH.py 0.1 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.636756 s
+Took 2.7s in total (runtime: 0.6s)
+Repeat 1: python COBAHH.py 0.1 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.622742 s
+Took 2.6s in total (runtime: 0.6s)
+Repeat 2: python COBAHH.py 0.1 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.623499 s
+Took 2.7s in total (runtime: 0.6s)
+Repeat 3: python COBAHH.py 0.1 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.619157 s
+Took 2.8s in total (runtime: 0.6s)
+Repeat 1: python COBAHH.py 0.25 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.765753 s
+Took 2.8s in total (runtime: 0.8s)
+Repeat 2: python COBAHH.py 0.25 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.760048 s
+Took 2.8s in total (runtime: 0.8s)
+Repeat 3: python COBAHH.py 0.25 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.78023 s
+Took 2.8s in total (runtime: 0.8s)
+Repeat 1: python COBAHH.py 0.25 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.70521 s
+Took 2.6s in total (runtime: 0.7s)
+Repeat 2: python COBAHH.py 0.25 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.713762 s
+Took 2.7s in total (runtime: 0.7s)
+Repeat 3: python COBAHH.py 0.25 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.708432 s
+Took 3.0s in total (runtime: 0.7s)
+Repeat 1: python COBAHH.py 0.5 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.939008 s
+Took 3.0s in total (runtime: 0.9s)
+Repeat 2: python COBAHH.py 0.5 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.945573 s
+Took 3.1s in total (runtime: 0.9s)
+Repeat 3: python COBAHH.py 0.5 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.942981 s
+Took 2.9s in total (runtime: 0.9s)
+Repeat 1: python COBAHH.py 0.5 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.861678 s
+Took 3.1s in total (runtime: 0.9s)
+Repeat 2: python COBAHH.py 0.5 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.874686 s
+Took 2.9s in total (runtime: 0.9s)
+Repeat 3: python COBAHH.py 0.5 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 0.832602 s
+Took 2.9s in total (runtime: 0.8s)
+Repeat 1: python COBAHH.py 1 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.32024 s
+Took 3.8s in total (runtime: 1.3s)
+Repeat 2: python COBAHH.py 1 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.31382 s
+Took 3.6s in total (runtime: 1.3s)
+Repeat 3: python COBAHH.py 1 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.31628 s
+Took 3.7s in total (runtime: 1.3s)
+Repeat 1: python COBAHH.py 1 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.15394 s
+Took 3.5s in total (runtime: 1.2s)
+Repeat 2: python COBAHH.py 1 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.11146 s
+Took 3.4s in total (runtime: 1.1s)
+Repeat 3: python COBAHH.py 1 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.14932 s
+Took 3.5s in total (runtime: 1.1s)
+Repeat 1: python COBAHH.py 2 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.06037 s
+Took 4.6s in total (runtime: 2.1s)
+Repeat 2: python COBAHH.py 2 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.04997 s
+Took 4.7s in total (runtime: 2.0s)
+Repeat 3: python COBAHH.py 2 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.03959 s
+Took 4.8s in total (runtime: 2.0s)
+Repeat 1: python COBAHH.py 2 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.72171 s
+Took 4.6s in total (runtime: 1.7s)
+Repeat 2: python COBAHH.py 2 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.73564 s
+Took 4.3s in total (runtime: 1.7s)
+Repeat 3: python COBAHH.py 2 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 1.7357 s
+Took 4.5s in total (runtime: 1.7s)
+Repeat 1: python COBAHH.py 4 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.52898 s
+Took 7.8s in total (runtime: 3.5s)
+Repeat 2: python COBAHH.py 4 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.53921 s
+Took 6.8s in total (runtime: 3.5s)
+Repeat 3: python COBAHH.py 4 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 3.52955 s
+Took 6.8s in total (runtime: 3.5s)
+Repeat 1: python COBAHH.py 4 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.87307 s
+Took 6.3s in total (runtime: 2.9s)
+Repeat 2: python COBAHH.py 4 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.89387 s
+Took 6.2s in total (runtime: 2.9s)
+Repeat 3: python COBAHH.py 4 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 2.84095 s
+Took 6.2s in total (runtime: 2.8s)
+Repeat 1: python COBAHH.py 8 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 6.66202 s
+Took 11.3s in total (runtime: 6.7s)
+Repeat 2: python COBAHH.py 8 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 6.50684 s
+Took 11.2s in total (runtime: 6.5s)
+Repeat 3: python COBAHH.py 8 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 6.49534 s
+Took 11.2s in total (runtime: 6.5s)
+Repeat 1: python COBAHH.py 8 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 5.177 s
+Took 9.7s in total (runtime: 5.2s)
+Repeat 2: python COBAHH.py 8 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 5.15919 s
+Took 10.0s in total (runtime: 5.2s)
+Repeat 3: python COBAHH.py 8 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 5.17382 s
+Took 9.7s in total (runtime: 5.2s)
+Repeat 1: python COBAHH.py 16 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.85 s (85%) simulated in 10.0001 s, estimated 2 s remaining.
+1 s (100%) simulated in 12.4159 s
+Took 20.1s in total (runtime: 12.4s)
+Repeat 2: python COBAHH.py 16 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.8502 s (85%) simulated in 10.0014 s, estimated 2 s remaining.
+1 s (100%) simulated in 12.4168 s
+Took 19.8s in total (runtime: 12.4s)
+Repeat 3: python COBAHH.py 16 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.848 s (84%) simulated in 10.0006 s, estimated 2 s remaining.
+1 s (100%) simulated in 12.458 s
+Took 20.4s in total (runtime: 12.5s)
+Repeat 1: python COBAHH.py 16 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 9.75235 s
+Took 17.6s in total (runtime: 9.8s)
+Repeat 2: python COBAHH.py 16 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 9.8703 s
+Took 17.3s in total (runtime: 9.9s)
+Repeat 3: python COBAHH.py 16 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+1 s (100%) simulated in 9.89383 s
+Took 17.4s in total (runtime: 9.9s)
+Repeat 1: python COBAHH.py 32 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.4949 s (49%) simulated in 10.0016 s, estimated 10 s remaining.
+0.864 s (86%) simulated in 20.0002 s, estimated 3 s remaining.
+1 s (100%) simulated in 24.3081 s
+Took 37.0s in total (runtime: 24.3s)
+Repeat 2: python COBAHH.py 32 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.4947 s (49%) simulated in 10.0017 s, estimated 10 s remaining.
+0.8639 s (86%) simulated in 20.0022 s, estimated 3 s remaining.
+1 s (100%) simulated in 24.3104 s
+Took 36.9s in total (runtime: 24.3s)
+Repeat 3: python COBAHH.py 32 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.4921 s (49%) simulated in 10.002 s, estimated 10 s remaining.
+0.8605 s (86%) simulated in 20.0013 s, estimated 3 s remaining.
+1 s (100%) simulated in 24.4309 s
+Took 37.2s in total (runtime: 24.4s)
+Repeat 1: python COBAHH.py 32 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.5296 s (52%) simulated in 10.0003 s, estimated 9 s remaining.
+1 s (100%) simulated in 18.9399 s
+Took 31.9s in total (runtime: 18.9s)
+Repeat 2: python COBAHH.py 32 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.5265 s (52%) simulated in 10 s, estimated 9 s remaining.
+1 s (100%) simulated in 19.0544 s
+Took 32.0s in total (runtime: 19.1s)
+Repeat 3: python COBAHH.py 32 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.53 s (53%) simulated in 10.0007 s, estimated 9 s remaining.
+0.8824 s (88%) simulated in 20.0058 s, estimated 3 s remaining.
+1 s (100%) simulated in 26.9571 s
+Took 39.9s in total (runtime: 27.0s)
+Repeat 1: python COBAHH.py 64 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1498 s (14%) simulated in 10.0056 s, estimated 57 s remaining.
+0.298 s (29%) simulated in 20.0014 s, estimated 47 s remaining.
+0.4344 s (43%) simulated in 30.0002 s, estimated 39 s remaining.
+0.5612 s (56%) simulated in 40.0033 s, estimated 31 s remaining.
+0.6895 s (68%) simulated in 50 s, estimated 23 s remaining.
+0.7899 s (78%) simulated in 60.0088 s, estimated 16 s remaining.
+0.8843 s (88%) simulated in 70.0021 s, estimated 9 s remaining.
+0.9784 s (97%) simulated in 80.0057 s, estimated 2 s remaining.
+1 s (100%) simulated in 82.3495 s
+Took 105.7s in total (runtime: 82.3s)
+Repeat 2: python COBAHH.py 64 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.149 s (14%) simulated in 10.0027 s, estimated 57 s remaining.
+0.2966 s (29%) simulated in 20.0028 s, estimated 47 s remaining.
+0.4214 s (42%) simulated in 30.003 s, estimated 41 s remaining.
+0.5346 s (53%) simulated in 40.0001 s, estimated 35 s remaining.
+0.6466 s (64%) simulated in 50.006 s, estimated 27 s remaining.
+0.7496 s (74%) simulated in 60.0056 s, estimated 20 s remaining.
+0.8436 s (84%) simulated in 70.0019 s, estimated 13 s remaining.
+0.9369 s (93%) simulated in 80.0001 s, estimated 5 s remaining.
+1 s (100%) simulated in 86.669 s
+Took 109.9s in total (runtime: 86.7s)
+Repeat 3: python COBAHH.py 64 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1492 s (14%) simulated in 10.0026 s, estimated 57 s remaining.
+0.3081 s (30%) simulated in 20.0032 s, estimated 45 s remaining.
+0.4472 s (44%) simulated in 30.0037 s, estimated 37 s remaining.
+0.5739 s (57%) simulated in 40.0036 s, estimated 30 s remaining.
+0.7008 s (70%) simulated in 50.0051 s, estimated 21 s remaining.
+0.7989 s (79%) simulated in 60.0078 s, estimated 15 s remaining.
+0.8933 s (89%) simulated in 70.0062 s, estimated 8 s remaining.
+0.9874 s (98%) simulated in 80.0008 s, estimated 1 s remaining.
+1 s (100%) simulated in 81.4053 s
+Took 104.7s in total (runtime: 81.4s)
+Repeat 1: python COBAHH.py 64 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1508 s (15%) simulated in 10.004 s, estimated 56 s remaining.
+0.2996 s (29%) simulated in 20.0025 s, estimated 47 s remaining.
+0.4478 s (44%) simulated in 30.0028 s, estimated 37 s remaining.
+0.5961 s (59%) simulated in 40.001 s, estimated 27 s remaining.
+0.7429 s (74%) simulated in 50.0013 s, estimated 17 s remaining.
+0.8914 s (89%) simulated in 60.0059 s, estimated 7 s remaining.
+1 s (100%) simulated in 67.3526 s
+Took 90.6s in total (runtime: 67.4s)
+Repeat 2: python COBAHH.py 64 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1446 s (14%) simulated in 10.0061 s, estimated 59 s remaining.
+0.2903 s (29%) simulated in 20.0004 s, estimated 49 s remaining.
+0.4351 s (43%) simulated in 30.0061 s, estimated 39 s remaining.
+0.5811 s (58%) simulated in 40.0052 s, estimated 29 s remaining.
+0.727 s (72%) simulated in 50.006 s, estimated 19 s remaining.
+0.873 s (87%) simulated in 60.0053 s, estimated 9 s remaining.
+1 s (100%) simulated in 68.7006 s
+Took 92.4s in total (runtime: 68.7s)
+Repeat 3: python COBAHH.py 64 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1504 s (15%) simulated in 10.0025 s, estimated 57 s remaining.
+0.2987 s (29%) simulated in 20.0009 s, estimated 47 s remaining.
+0.4478 s (44%) simulated in 30.0045 s, estimated 37 s remaining.
+0.5971 s (59%) simulated in 40.0048 s, estimated 27 s remaining.
+0.7462 s (74%) simulated in 50.0011 s, estimated 17 s remaining.
+0.8954 s (89%) simulated in 60.0014 s, estimated 7 s remaining.
+1 s (100%) simulated in 67.0667 s
+Took 90.5s in total (runtime: 67.1s)
+Repeat 1: python COBAHH.py 128 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0764 s (7%) simulated in 10.0049 s, estimated 121 s remaining.
+0.1507 s (15%) simulated in 20.004 s, estimated 113 s remaining.
+0.225 s (22%) simulated in 30.007 s, estimated 103 s remaining.
+0.2995 s (29%) simulated in 40.0096 s, estimated 94 s remaining.
+0.3683 s (36%) simulated in 50.014 s, estimated 86 s remaining.
+0.4244 s (42%) simulated in 60.0131 s, estimated 81 s remaining.
+0.4806 s (48%) simulated in 70.014 s, estimated 76 s remaining.
+0.5384 s (53%) simulated in 80.0011 s, estimated 69 s remaining.
+0.5948 s (59%) simulated in 90.0087 s, estimated 61 s remaining.
+0.6508 s (65%) simulated in 100.01 s, estimated 54 s remaining.
+0.7067 s (70%) simulated in 110.002 s, estimated 46 s remaining.
+0.7528 s (75%) simulated in 120.015 s, estimated 39 s remaining.
+0.7942 s (79%) simulated in 130.022 s, estimated 34 s remaining.
+0.8369 s (83%) simulated in 140.013 s, estimated 27 s remaining.
+0.8784 s (87%) simulated in 150.002 s, estimated 21 s remaining.
+0.9207 s (92%) simulated in 160.011 s, estimated 14 s remaining.
+0.9627 s (96%) simulated in 170.015 s, estimated 7 s remaining.
+1 s (100%) simulated in 178.969 s
+Took 223.1s in total (runtime: 179.0s)
+Repeat 2: python COBAHH.py 128 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0746 s (7%) simulated in 10.0002 s, estimated 124 s remaining.
+0.1486 s (14%) simulated in 20.0086 s, estimated 115 s remaining.
+0.2228 s (22%) simulated in 30.0059 s, estimated 105 s remaining.
+0.2963 s (29%) simulated in 40.0106 s, estimated 95 s remaining.
+0.3755 s (37%) simulated in 50.0132 s, estimated 83 s remaining.
+0.4386 s (43%) simulated in 60.0064 s, estimated 77 s remaining.
+0.5019 s (50%) simulated in 70.0096 s, estimated 69 s remaining.
+0.5652 s (56%) simulated in 80.0138 s, estimated 62 s remaining.
+0.6287 s (62%) simulated in 90.0099 s, estimated 53 s remaining.
+0.6931 s (69%) simulated in 100.01 s, estimated 44 s remaining.
+0.7464 s (74%) simulated in 110.016 s, estimated 37 s remaining.
+0.7923 s (79%) simulated in 120.014 s, estimated 31 s remaining.
+0.8402 s (84%) simulated in 130 s, estimated 25 s remaining.
+0.8869 s (88%) simulated in 140.01 s, estimated 18 s remaining.
+0.9333 s (93%) simulated in 150.015 s, estimated 11 s remaining.
+0.9813 s (98%) simulated in 160.004 s, estimated 3 s remaining.
+1 s (100%) simulated in 164.107 s
+Took 208.0s in total (runtime: 164.1s)
+Repeat 3: python COBAHH.py 128 cpp_standalone 12 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0762 s (7%) simulated in 10.007 s, estimated 121 s remaining.
+0.1504 s (15%) simulated in 20.0085 s, estimated 113 s remaining.
+0.2246 s (22%) simulated in 30.0082 s, estimated 104 s remaining.
+0.2988 s (29%) simulated in 40.0006 s, estimated 94 s remaining.
+0.3677 s (36%) simulated in 50.0158 s, estimated 86 s remaining.
+0.4236 s (42%) simulated in 60.0041 s, estimated 82 s remaining.
+0.479 s (47%) simulated in 70.0035 s, estimated 76 s remaining.
+0.5361 s (53%) simulated in 80.0128 s, estimated 69 s remaining.
+0.5922 s (59%) simulated in 90.001 s, estimated 62 s remaining.
+0.648 s (64%) simulated in 100.001 s, estimated 54 s remaining.
+0.7041 s (70%) simulated in 110.005 s, estimated 46 s remaining.
+0.7507 s (75%) simulated in 120.012 s, estimated 40 s remaining.
+0.792 s (79%) simulated in 130.006 s, estimated 34 s remaining.
+0.8348 s (83%) simulated in 140.006 s, estimated 28 s remaining.
+0.8763 s (87%) simulated in 150.016 s, estimated 21 s remaining.
+0.9187 s (91%) simulated in 160.013 s, estimated 14 s remaining.
+0.9605 s (96%) simulated in 170.008 s, estimated 7 s remaining.
+1 s (100%) simulated in 179.47 s
+Took 223.6s in total (runtime: 179.5s)
+Repeat 1: python COBAHH.py 128 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0753 s (7%) simulated in 10.003 s, estimated 123 s remaining.
+0.1487 s (14%) simulated in 20.0048 s, estimated 115 s remaining.
+0.2223 s (22%) simulated in 30.0105 s, estimated 105 s remaining.
+0.3226 s (32%) simulated in 40.0034 s, estimated 84 s remaining.
+0.4267 s (42%) simulated in 50.0014 s, estimated 67 s remaining.
+0.5331 s (53%) simulated in 60.0062 s, estimated 53 s remaining.
+0.6355 s (63%) simulated in 70.004 s, estimated 40 s remaining.
+0.7425 s (74%) simulated in 80.0026 s, estimated 28 s remaining.
+0.8469 s (84%) simulated in 90.0032 s, estimated 16 s remaining.
+0.9512 s (95%) simulated in 100 s, estimated 5 s remaining.
+1 s (100%) simulated in 104.669 s
+Took 150.7s in total (runtime: 104.7s)
+Repeat 2: python COBAHH.py 128 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0752 s (7%) simulated in 10.0082 s, estimated 123 s remaining.
+0.1482 s (14%) simulated in 20.0005 s, estimated 115 s remaining.
+0.2213 s (22%) simulated in 30.0018 s, estimated 106 s remaining.
+0.2946 s (29%) simulated in 40.012 s, estimated 96 s remaining.
+0.3678 s (36%) simulated in 50 s, estimated 86 s remaining.
+0.4404 s (44%) simulated in 60.0107 s, estimated 76 s remaining.
+0.5138 s (51%) simulated in 70.0074 s, estimated 66 s remaining.
+0.5872 s (58%) simulated in 80.0056 s, estimated 56 s remaining.
+0.6604 s (66%) simulated in 90.0083 s, estimated 46 s remaining.
+0.7338 s (73%) simulated in 100.005 s, estimated 36 s remaining.
+0.8071 s (80%) simulated in 110 s, estimated 26 s remaining.
+0.8804 s (88%) simulated in 120.01 s, estimated 16 s remaining.
+0.9538 s (95%) simulated in 130.007 s, estimated 6 s remaining.
+1 s (100%) simulated in 136.356 s
+Took 181.9s in total (runtime: 136.4s)
+Repeat 3: python COBAHH.py 128 cpp_standalone 12 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0748 s (7%) simulated in 10.0028 s, estimated 124 s remaining.
+0.1477 s (14%) simulated in 20.0044 s, estimated 115 s remaining.
+0.2208 s (22%) simulated in 30.006 s, estimated 106 s remaining.
+0.2943 s (29%) simulated in 40.004 s, estimated 96 s remaining.
+0.3678 s (36%) simulated in 50.0011 s, estimated 86 s remaining.
+0.4637 s (46%) simulated in 60.0058 s, estimated 69 s remaining.
+0.5658 s (56%) simulated in 70.0002 s, estimated 54 s remaining.
+0.6706 s (67%) simulated in 80.0071 s, estimated 39 s remaining.
+0.7745 s (77%) simulated in 90.0001 s, estimated 26 s remaining.
+0.8801 s (88%) simulated in 100.004 s, estimated 14 s remaining.
+0.9861 s (98%) simulated in 110.003 s, estimated 2 s remaining.
+1 s (100%) simulated in 111.56 s
+Took 157.1s in total (runtime: 111.6s)
+Repeat 1: python COBAHH.py 64 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1368 s (13%) simulated in 10.0017 s, estimated 63 s remaining.
+0.356 s (35%) simulated in 20.0012 s, estimated 36 s remaining.
+0.5581 s (55%) simulated in 30.0007 s, estimated 24 s remaining.
+0.752 s (75%) simulated in 40.0003 s, estimated 13 s remaining.
+0.9069 s (90%) simulated in 50.0014 s, estimated 5 s remaining.
+1 s (100%) simulated in 56.0715 s
+Took 79.0s in total (runtime: 56.1s)
+Repeat 2: python COBAHH.py 64 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.265 s (26%) simulated in 10.0004 s, estimated 28 s remaining.
+0.491 s (49%) simulated in 20.001 s, estimated 21 s remaining.
+0.6986 s (69%) simulated in 30.0034 s, estimated 13 s remaining.
+0.8593 s (85%) simulated in 40.0036 s, estimated 7 s remaining.
+1 s (100%) simulated in 48.9665 s
+Took 72.6s in total (runtime: 49.0s)
+Repeat 3: python COBAHH.py 64 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2659 s (26%) simulated in 10.002 s, estimated 28 s remaining.
+0.4914 s (49%) simulated in 20.0017 s, estimated 21 s remaining.
+0.6987 s (69%) simulated in 30.0021 s, estimated 13 s remaining.
+0.8594 s (85%) simulated in 40.003 s, estimated 7 s remaining.
+1 s (100%) simulated in 48.9706 s
+Took 72.7s in total (runtime: 49.0s)
+Repeat 1: python COBAHH.py 64 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2643 s (26%) simulated in 10.0006 s, estimated 28 s remaining.
+0.5306 s (53%) simulated in 20 s, estimated 18 s remaining.
+0.793 s (79%) simulated in 30.0016 s, estimated 8 s remaining.
+1 s (100%) simulated in 37.8268 s
+Took 62.1s in total (runtime: 37.8s)
+Repeat 2: python COBAHH.py 64 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2644 s (26%) simulated in 10.003 s, estimated 28 s remaining.
+0.5303 s (53%) simulated in 20.0006 s, estimated 18 s remaining.
+0.7922 s (79%) simulated in 30.0008 s, estimated 8 s remaining.
+1 s (100%) simulated in 37.8522 s
+Took 62.2s in total (runtime: 37.9s)
+Repeat 3: python COBAHH.py 64 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.265 s (26%) simulated in 10.0003 s, estimated 28 s remaining.
+0.5324 s (53%) simulated in 20.0021 s, estimated 18 s remaining.
+0.7956 s (79%) simulated in 30.0013 s, estimated 8 s remaining.
+1 s (100%) simulated in 37.707 s
+Took 61.9s in total (runtime: 37.7s)
+Repeat 1: python COBAHH.py 128 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1344 s (13%) simulated in 10.0039 s, estimated 64 s remaining.
+0.2658 s (26%) simulated in 20.0061 s, estimated 55 s remaining.
+0.3897 s (38%) simulated in 30.0053 s, estimated 47 s remaining.
+0.4913 s (49%) simulated in 40.0053 s, estimated 41 s remaining.
+0.5961 s (59%) simulated in 50.0061 s, estimated 34 s remaining.
+0.6986 s (69%) simulated in 60.0009 s, estimated 26 s remaining.
+0.781 s (78%) simulated in 70.008 s, estimated 20 s remaining.
+0.8595 s (85%) simulated in 80.0041 s, estimated 13 s remaining.
+0.9381 s (93%) simulated in 90.0102 s, estimated 6 s remaining.
+1 s (100%) simulated in 97.8684 s
+Took 143.2s in total (runtime: 97.9s)
+Repeat 2: python COBAHH.py 128 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.134 s (13%) simulated in 10.0048 s, estimated 65 s remaining.
+0.2646 s (26%) simulated in 20.0026 s, estimated 56 s remaining.
+0.3884 s (38%) simulated in 30.0003 s, estimated 47 s remaining.
+0.4895 s (48%) simulated in 40.0004 s, estimated 42 s remaining.
+0.5939 s (59%) simulated in 50.0019 s, estimated 34 s remaining.
+0.6966 s (69%) simulated in 60.0028 s, estimated 26 s remaining.
+0.7789 s (77%) simulated in 70.0054 s, estimated 20 s remaining.
+0.857 s (85%) simulated in 80.0005 s, estimated 13 s remaining.
+0.9353 s (93%) simulated in 90.0006 s, estimated 6 s remaining.
+1 s (100%) simulated in 98.2403 s
+Took 143.6s in total (runtime: 98.2s)
+Repeat 3: python COBAHH.py 128 cpp_standalone 24 1 true float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.134 s (13%) simulated in 10.0019 s, estimated 65 s remaining.
+0.2646 s (26%) simulated in 20.003 s, estimated 56 s remaining.
+0.3884 s (38%) simulated in 30.0022 s, estimated 47 s remaining.
+0.4893 s (48%) simulated in 40.0001 s, estimated 42 s remaining.
+0.5937 s (59%) simulated in 50.0064 s, estimated 34 s remaining.
+0.6963 s (69%) simulated in 60.0053 s, estimated 26 s remaining.
+0.7786 s (77%) simulated in 70.0088 s, estimated 20 s remaining.
+0.8567 s (85%) simulated in 80.0016 s, estimated 13 s remaining.
+0.9351 s (93%) simulated in 90.0066 s, estimated 6 s remaining.
+1 s (100%) simulated in 98.2471 s
+Took 143.8s in total (runtime: 98.2s)
+Repeat 1: python COBAHH.py 128 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1328 s (13%) simulated in 10.0027 s, estimated 65 s remaining.
+0.2619 s (26%) simulated in 20.0005 s, estimated 56 s remaining.
+0.3948 s (39%) simulated in 30.0038 s, estimated 46 s remaining.
+0.5253 s (52%) simulated in 40.0016 s, estimated 36 s remaining.
+0.6544 s (65%) simulated in 50.004 s, estimated 26 s remaining.
+0.7836 s (78%) simulated in 60.0002 s, estimated 17 s remaining.
+0.9168 s (91%) simulated in 70.0008 s, estimated 6 s remaining.
+1 s (100%) simulated in 76.5159 s
+Took 123.6s in total (runtime: 76.5s)
+Repeat 2: python COBAHH.py 128 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1338 s (13%) simulated in 10.0018 s, estimated 65 s remaining.
+0.2642 s (26%) simulated in 20.0038 s, estimated 56 s remaining.
+0.3975 s (39%) simulated in 30.0008 s, estimated 45 s remaining.
+0.5298 s (52%) simulated in 40.0005 s, estimated 36 s remaining.
+0.6602 s (66%) simulated in 50.0041 s, estimated 26 s remaining.
+0.7906 s (79%) simulated in 60.0003 s, estimated 16 s remaining.
+0.9232 s (92%) simulated in 70.0049 s, estimated 6 s remaining.
+1 s (100%) simulated in 75.8798 s
+Took 122.9s in total (runtime: 75.9s)
+Repeat 3: python COBAHH.py 128 cpp_standalone 24 1 true float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1327 s (13%) simulated in 10.0051 s, estimated 65 s remaining.
+0.2633 s (26%) simulated in 20.0049 s, estimated 56 s remaining.
+0.3969 s (39%) simulated in 30 s, estimated 46 s remaining.
+0.5296 s (52%) simulated in 40.0034 s, estimated 36 s remaining.
+0.6604 s (66%) simulated in 50.0019 s, estimated 26 s remaining.
+0.7912 s (79%) simulated in 60.003 s, estimated 16 s remaining.
+0.9238 s (92%) simulated in 70.005 s, estimated 6 s remaining.
+1 s (100%) simulated in 75.8007 s
+Took 122.7s in total (runtime: 75.8s)
+Repeat 1: python COBAHH.py 64 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1507 s (15%) simulated in 10.0054 s, estimated 56 s remaining.
+0.322 s (32%) simulated in 20.005 s, estimated 42 s remaining.
+0.4584 s (45%) simulated in 30.0045 s, estimated 35 s remaining.
+0.5856 s (58%) simulated in 40.0038 s, estimated 28 s remaining.
+0.7121 s (71%) simulated in 50.003 s, estimated 20 s remaining.
+0.809 s (80%) simulated in 60.0064 s, estimated 14 s remaining.
+0.9036 s (90%) simulated in 70.0049 s, estimated 7 s remaining.
+0.9978 s (99%) simulated in 80.0024 s, estimated 0 s remaining.
+1 s (100%) simulated in 80.2471 s
+Took 103.1s in total (runtime: 80.2s)
+Repeat 2: python COBAHH.py 64 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1495 s (14%) simulated in 10.0041 s, estimated 57 s remaining.
+0.2977 s (29%) simulated in 20.0027 s, estimated 47 s remaining.
+0.4239 s (42%) simulated in 30.0002 s, estimated 41 s remaining.
+0.5519 s (55%) simulated in 40.0014 s, estimated 32 s remaining.
+0.6806 s (68%) simulated in 50.0008 s, estimated 23 s remaining.
+0.7836 s (78%) simulated in 60.0055 s, estimated 17 s remaining.
+0.8785 s (87%) simulated in 70.0096 s, estimated 10 s remaining.
+0.9733 s (97%) simulated in 80.0052 s, estimated 2 s remaining.
+1 s (100%) simulated in 82.8783 s
+Took 105.1s in total (runtime: 82.9s)
+Repeat 3: python COBAHH.py 64 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1499 s (14%) simulated in 10.0018 s, estimated 57 s remaining.
+0.2981 s (29%) simulated in 20.0026 s, estimated 47 s remaining.
+0.4228 s (42%) simulated in 30.0071 s, estimated 41 s remaining.
+0.536 s (53%) simulated in 40.0006 s, estimated 35 s remaining.
+0.6475 s (64%) simulated in 50.0022 s, estimated 27 s remaining.
+0.75 s (75%) simulated in 60.004 s, estimated 20 s remaining.
+0.8342 s (83%) simulated in 70.0068 s, estimated 14 s remaining.
+0.9182 s (91%) simulated in 80.0001 s, estimated 7 s remaining.
+1 s (100%) simulated in 89.792 s
+Took 112.6s in total (runtime: 89.8s)
+Repeat 1: python COBAHH.py 64 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.15 s (15%) simulated in 10.0006 s, estimated 57 s remaining.
+0.2989 s (29%) simulated in 20.001 s, estimated 47 s remaining.
+0.4473 s (44%) simulated in 30.0013 s, estimated 37 s remaining.
+0.5961 s (59%) simulated in 40.0055 s, estimated 27 s remaining.
+0.7439 s (74%) simulated in 50.006 s, estimated 17 s remaining.
+0.8958 s (89%) simulated in 60.0054 s, estimated 7 s remaining.
+1 s (100%) simulated in 67.1619 s
+Took 90.1s in total (runtime: 67.2s)
+Repeat 2: python COBAHH.py 64 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1473 s (14%) simulated in 10.0033 s, estimated 58 s remaining.
+0.2929 s (29%) simulated in 20.0004 s, estimated 48 s remaining.
+0.4389 s (43%) simulated in 30.0059 s, estimated 38 s remaining.
+0.5848 s (58%) simulated in 40.0041 s, estimated 28 s remaining.
+0.7307 s (73%) simulated in 50.0042 s, estimated 18 s remaining.
+0.8766 s (87%) simulated in 60.0042 s, estimated 8 s remaining.
+1 s (100%) simulated in 68.4963 s
+Took 91.4s in total (runtime: 68.5s)
+Repeat 3: python COBAHH.py 64 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1452 s (14%) simulated in 10.0058 s, estimated 59 s remaining.
+0.2897 s (28%) simulated in 20.001 s, estimated 49 s remaining.
+0.4356 s (43%) simulated in 30.0037 s, estimated 39 s remaining.
+0.5834 s (58%) simulated in 40.0024 s, estimated 29 s remaining.
+0.7299 s (72%) simulated in 50.0057 s, estimated 19 s remaining.
+0.8747 s (87%) simulated in 60.0001 s, estimated 9 s remaining.
+1 s (100%) simulated in 68.5121 s
+Took 92.1s in total (runtime: 68.5s)
+Repeat 1: python COBAHH.py 128 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0753 s (7%) simulated in 10.0045 s, estimated 123 s remaining.
+0.1488 s (14%) simulated in 20.0012 s, estimated 114 s remaining.
+0.2223 s (22%) simulated in 30.007 s, estimated 105 s remaining.
+0.2958 s (29%) simulated in 40.001 s, estimated 95 s remaining.
+0.3648 s (36%) simulated in 50.0004 s, estimated 87 s remaining.
+0.4203 s (42%) simulated in 60.0101 s, estimated 83 s remaining.
+0.4763 s (47%) simulated in 70.0119 s, estimated 77 s remaining.
+0.5329 s (53%) simulated in 80.0003 s, estimated 70 s remaining.
+0.5885 s (58%) simulated in 90.0081 s, estimated 63 s remaining.
+0.6439 s (64%) simulated in 100.003 s, estimated 55 s remaining.
+0.6999 s (69%) simulated in 110.007 s, estimated 47 s remaining.
+0.7469 s (74%) simulated in 120.016 s, estimated 41 s remaining.
+0.7885 s (78%) simulated in 130.019 s, estimated 35 s remaining.
+0.8313 s (83%) simulated in 140.01 s, estimated 28 s remaining.
+0.8727 s (87%) simulated in 150.018 s, estimated 22 s remaining.
+0.9151 s (91%) simulated in 160.01 s, estimated 15 s remaining.
+0.9567 s (95%) simulated in 170.017 s, estimated 8 s remaining.
+0.9985 s (99%) simulated in 180.019 s, estimated 0 s remaining.
+1 s (100%) simulated in 180.387 s
+Took 224.1s in total (runtime: 180.4s)
+Repeat 2: python COBAHH.py 128 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0751 s (7%) simulated in 10.0008 s, estimated 123 s remaining.
+0.1504 s (15%) simulated in 20.0095 s, estimated 113 s remaining.
+0.2393 s (23%) simulated in 30.0019 s, estimated 95 s remaining.
+0.3136 s (31%) simulated in 40.007 s, estimated 88 s remaining.
+0.3849 s (38%) simulated in 50.009 s, estimated 80 s remaining.
+0.4486 s (44%) simulated in 60.0044 s, estimated 74 s remaining.
+0.5122 s (51%) simulated in 70.0005 s, estimated 67 s remaining.
+0.5759 s (57%) simulated in 80.0105 s, estimated 59 s remaining.
+0.6389 s (63%) simulated in 90.0076 s, estimated 51 s remaining.
+0.7011 s (70%) simulated in 100.008 s, estimated 43 s remaining.
+0.7533 s (75%) simulated in 110.005 s, estimated 36 s remaining.
+0.8 s (80%) simulated in 120.014 s, estimated 30 s remaining.
+0.8475 s (84%) simulated in 130.005 s, estimated 23 s remaining.
+0.8951 s (89%) simulated in 140.001 s, estimated 16 s remaining.
+0.9418 s (94%) simulated in 150.013 s, estimated 9 s remaining.
+0.9899 s (98%) simulated in 160.006 s, estimated 2 s remaining.
+1 s (100%) simulated in 162.281 s
+Took 206.2s in total (runtime: 162.3s)
+Repeat 3: python COBAHH.py 128 cpp_standalone 12 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.077 s (7%) simulated in 10.0105 s, estimated 120 s remaining.
+0.1517 s (15%) simulated in 20.0061 s, estimated 112 s remaining.
+0.2265 s (22%) simulated in 30.0077 s, estimated 102 s remaining.
+0.3048 s (30%) simulated in 40.0006 s, estimated 91 s remaining.
+0.3821 s (38%) simulated in 50.0031 s, estimated 81 s remaining.
+0.4458 s (44%) simulated in 60.001 s, estimated 75 s remaining.
+0.5094 s (50%) simulated in 70.0054 s, estimated 67 s remaining.
+0.5727 s (57%) simulated in 80.0024 s, estimated 60 s remaining.
+0.6363 s (63%) simulated in 90.0115 s, estimated 51 s remaining.
+0.7005 s (70%) simulated in 100.01 s, estimated 43 s remaining.
+0.7528 s (75%) simulated in 110 s, estimated 36 s remaining.
+0.7995 s (79%) simulated in 120.005 s, estimated 30 s remaining.
+0.847 s (84%) simulated in 130.003 s, estimated 23 s remaining.
+0.8946 s (89%) simulated in 140.016 s, estimated 16 s remaining.
+0.9412 s (94%) simulated in 150.01 s, estimated 9 s remaining.
+0.9894 s (98%) simulated in 160.018 s, estimated 2 s remaining.
+1 s (100%) simulated in 162.4 s
+Took 207.2s in total (runtime: 162.4s)
+Repeat 1: python COBAHH.py 128 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0759 s (7%) simulated in 10.001 s, estimated 122 s remaining.
+0.1499 s (14%) simulated in 20.0005 s, estimated 113 s remaining.
+0.224 s (22%) simulated in 30.0085 s, estimated 104 s remaining.
+0.2968 s (29%) simulated in 40.0078 s, estimated 95 s remaining.
+0.3708 s (37%) simulated in 50.0029 s, estimated 85 s remaining.
+0.4449 s (44%) simulated in 60.012 s, estimated 75 s remaining.
+0.5189 s (51%) simulated in 70.0002 s, estimated 65 s remaining.
+0.593 s (59%) simulated in 80.0004 s, estimated 55 s remaining.
+0.6671 s (66%) simulated in 90.0028 s, estimated 45 s remaining.
+0.7518 s (75%) simulated in 100.006 s, estimated 33 s remaining.
+0.8525 s (85%) simulated in 110.001 s, estimated 19 s remaining.
+0.9583 s (95%) simulated in 120.008 s, estimated 5 s remaining.
+1 s (100%) simulated in 124.045 s
+Took 169.6s in total (runtime: 124.0s)
+Repeat 2: python COBAHH.py 128 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0958 s (9%) simulated in 10.0078 s, estimated 94 s remaining.
+0.1989 s (19%) simulated in 20.0054 s, estimated 81 s remaining.
+0.3049 s (30%) simulated in 30.0008 s, estimated 68 s remaining.
+0.4073 s (40%) simulated in 40.0028 s, estimated 58 s remaining.
+0.5135 s (51%) simulated in 50.0046 s, estimated 47 s remaining.
+0.615 s (61%) simulated in 60.0006 s, estimated 38 s remaining.
+0.7172 s (71%) simulated in 70.0081 s, estimated 28 s remaining.
+0.8224 s (82%) simulated in 80.0034 s, estimated 17 s remaining.
+0.9257 s (92%) simulated in 90.0012 s, estimated 7 s remaining.
+1 s (100%) simulated in 97.1934 s
+Took 142.7s in total (runtime: 97.2s)
+Repeat 3: python COBAHH.py 128 cpp_standalone 12 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.0742 s (7%) simulated in 10.0035 s, estimated 125 s remaining.
+0.1473 s (14%) simulated in 20.003 s, estimated 116 s remaining.
+0.2215 s (22%) simulated in 30.0003 s, estimated 105 s remaining.
+0.3256 s (32%) simulated in 40.0006 s, estimated 83 s remaining.
+0.4303 s (43%) simulated in 50.0001 s, estimated 66 s remaining.
+0.5047 s (50%) simulated in 60.0046 s, estimated 59 s remaining.
+0.579 s (57%) simulated in 70.0042 s, estimated 51 s remaining.
+0.6534 s (65%) simulated in 80.0059 s, estimated 42 s remaining.
+0.7535 s (75%) simulated in 90.0043 s, estimated 29 s remaining.
+0.8562 s (85%) simulated in 100 s, estimated 17 s remaining.
+0.962 s (96%) simulated in 110.002 s, estimated 4 s remaining.
+1 s (100%) simulated in 113.707 s
+Took 159.2s in total (runtime: 113.7s)
+Repeat 1: python COBAHH.py 64 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2712 s (27%) simulated in 10.0007 s, estimated 27 s remaining.
+0.4986 s (49%) simulated in 20.0014 s, estimated 20 s remaining.
+0.707 s (70%) simulated in 30.003 s, estimated 12 s remaining.
+0.8689 s (86%) simulated in 40.0046 s, estimated 6 s remaining.
+1 s (100%) simulated in 48.2536 s
+Took 71.6s in total (runtime: 48.3s)
+Repeat 2: python COBAHH.py 64 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2702 s (27%) simulated in 10.0027 s, estimated 27 s remaining.
+0.4973 s (49%) simulated in 20 s, estimated 20 s remaining.
+0.7054 s (70%) simulated in 30.0039 s, estimated 13 s remaining.
+0.8671 s (86%) simulated in 40.0037 s, estimated 6 s remaining.
+1 s (100%) simulated in 48.3909 s
+Took 71.8s in total (runtime: 48.4s)
+Repeat 3: python COBAHH.py 64 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2704 s (27%) simulated in 10.0031 s, estimated 27 s remaining.
+0.4974 s (49%) simulated in 20.0001 s, estimated 20 s remaining.
+0.7055 s (70%) simulated in 30.0016 s, estimated 13 s remaining.
+0.8674 s (86%) simulated in 40.0007 s, estimated 6 s remaining.
+1 s (100%) simulated in 48.3662 s
+Took 71.7s in total (runtime: 48.4s)
+Repeat 1: python COBAHH.py 64 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2668 s (26%) simulated in 10.0021 s, estimated 27 s remaining.
+0.5353 s (53%) simulated in 20.0023 s, estimated 17 s remaining.
+0.8003 s (80%) simulated in 30 s, estimated 7 s remaining.
+1 s (100%) simulated in 37.4997 s
+Took 61.6s in total (runtime: 37.5s)
+Repeat 2: python COBAHH.py 64 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2638 s (26%) simulated in 10.0028 s, estimated 28 s remaining.
+0.5291 s (52%) simulated in 20.003 s, estimated 18 s remaining.
+0.7904 s (79%) simulated in 30.0021 s, estimated 8 s remaining.
+1 s (100%) simulated in 37.951 s
+Took 62.0s in total (runtime: 38.0s)
+Repeat 3: python COBAHH.py 64 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.2639 s (26%) simulated in 10.0003 s, estimated 28 s remaining.
+0.5308 s (53%) simulated in 20.0015 s, estimated 18 s remaining.
+0.7939 s (79%) simulated in 30.0012 s, estimated 8 s remaining.
+1 s (100%) simulated in 37.7807 s
+Took 61.8s in total (runtime: 37.8s)
+Repeat 1: python COBAHH.py 128 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.138 s (13%) simulated in 10.0022 s, estimated 62 s remaining.
+0.2728 s (27%) simulated in 20.0017 s, estimated 53 s remaining.
+0.3966 s (39%) simulated in 30.0027 s, estimated 46 s remaining.
+0.5006 s (50%) simulated in 40.0033 s, estimated 40 s remaining.
+0.6069 s (60%) simulated in 50.0068 s, estimated 32 s remaining.
+0.7096 s (70%) simulated in 60.0039 s, estimated 25 s remaining.
+0.7917 s (79%) simulated in 70.0097 s, estimated 18 s remaining.
+0.871 s (87%) simulated in 80.0113 s, estimated 12 s remaining.
+0.9506 s (95%) simulated in 90.004 s, estimated 5 s remaining.
+1 s (100%) simulated in 96.2374 s
+Took 141.3s in total (runtime: 96.2s)
+Repeat 2: python COBAHH.py 128 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1384 s (13%) simulated in 10.0058 s, estimated 62 s remaining.
+0.2732 s (27%) simulated in 20.006 s, estimated 53 s remaining.
+0.3968 s (39%) simulated in 30.0002 s, estimated 46 s remaining.
+0.501 s (50%) simulated in 40.0046 s, estimated 40 s remaining.
+0.6045 s (60%) simulated in 50.0038 s, estimated 33 s remaining.
+0.6308 s (63%) simulated in 60.0049 s, estimated 35 s remaining.
+0.7165 s (71%) simulated in 70.0202 s, estimated 28 s remaining.
+0.7933 s (79%) simulated in 80.0079 s, estimated 21 s remaining.
+0.8726 s (87%) simulated in 90.0068 s, estimated 13 s remaining.
+0.9519 s (95%) simulated in 100.004 s, estimated 5 s remaining.
+1 s (100%) simulated in 106.1 s
+Took 151.1s in total (runtime: 106.1s)
+Repeat 3: python COBAHH.py 128 cpp_standalone 24 1 false float32 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1377 s (13%) simulated in 10.0033 s, estimated 63 s remaining.
+0.272 s (27%) simulated in 20.0032 s, estimated 54 s remaining.
+0.3957 s (39%) simulated in 30.004 s, estimated 46 s remaining.
+0.4992 s (49%) simulated in 40 s, estimated 40 s remaining.
+0.6052 s (60%) simulated in 50.0081 s, estimated 33 s remaining.
+0.7075 s (70%) simulated in 60.0003 s, estimated 25 s remaining.
+0.7899 s (78%) simulated in 70.0001 s, estimated 19 s remaining.
+0.8695 s (86%) simulated in 80.0052 s, estimated 12 s remaining.
+0.9491 s (94%) simulated in 90.0106 s, estimated 5 s remaining.
+1 s (100%) simulated in 96.4354 s
+Took 141.4s in total (runtime: 96.4s)
+Repeat 1: python COBAHH.py 128 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1333 s (13%) simulated in 10.0007 s, estimated 65 s remaining.
+0.2633 s (26%) simulated in 20.0011 s, estimated 56 s remaining.
+0.3965 s (39%) simulated in 30.0007 s, estimated 46 s remaining.
+0.5282 s (52%) simulated in 40.0015 s, estimated 36 s remaining.
+0.6584 s (65%) simulated in 50.0045 s, estimated 26 s remaining.
+0.7884 s (78%) simulated in 60.0053 s, estimated 16 s remaining.
+0.9211 s (92%) simulated in 70.0001 s, estimated 6 s remaining.
+1 s (100%) simulated in 76.108 s
+Took 122.9s in total (runtime: 76.1s)
+Repeat 2: python COBAHH.py 128 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1339 s (13%) simulated in 10.0006 s, estimated 65 s remaining.
+0.2645 s (26%) simulated in 20.0008 s, estimated 56 s remaining.
+0.3978 s (39%) simulated in 30 s, estimated 45 s remaining.
+0.5304 s (53%) simulated in 40.0061 s, estimated 35 s remaining.
+0.6611 s (66%) simulated in 50.0001 s, estimated 26 s remaining.
+0.7917 s (79%) simulated in 60.0011 s, estimated 16 s remaining.
+0.9239 s (92%) simulated in 70.0062 s, estimated 6 s remaining.
+1 s (100%) simulated in 75.8098 s
+Took 122.1s in total (runtime: 75.8s)
+Repeat 3: python COBAHH.py 128 cpp_standalone 24 1 false float64 2018-09-13_c6a4ae8d7e8b
+Starting simulation at t=0 s for duration 1 s
+0.1346 s (13%) simulated in 10.006 s, estimated 64 s remaining.
+0.2657 s (26%) simulated in 20.0043 s, estimated 55 s remaining.
+0.3992 s (39%) simulated in 30.0041 s, estimated 45 s remaining.
+0.5326 s (53%) simulated in 40 s, estimated 35 s remaining.
+0.6641 s (66%) simulated in 50.0024 s, estimated 25 s remaining.
+0.7953 s (79%) simulated in 60.0004 s, estimated 15 s remaining.
+0.927 s (92%) simulated in 70.0013 s, estimated 6 s remaining.
+1 s (100%) simulated in 75.4758 s
+Took 121.9s in total (runtime: 75.5s)
