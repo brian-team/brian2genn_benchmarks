@@ -1,8 +1,12 @@
+# coding=utf-8
+from __future__ import unicode_literals
+
 import os
 import sys
 import itertools
 
 import pandas as pd
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -11,11 +15,6 @@ FIGURE_EXTENSION = '.png'
 plt.style.use('figures.conf')
 
 directory = None  # replace this or pass the directory as a command line arg
-if directory is None:
-    if len(sys.argv) == 2:
-        directory = sys.argv[1]
-    else:
-        raise ValueError('Need the directory name as an argument')
 
 
 def load_benchmark(directory, fname):
@@ -127,6 +126,38 @@ def plot_total(benchmarks, ax, legend=False, skip=('Brian2GeNN CPU',),
     ax.set(xlabel='Model size (# neurons)',
            ylabel=axis_label)
 
+
+def plot_total_comparisons(benchmarks, machine_names, GPU_names, ax, legend=False):
+    colors = mpl.cm.tab10.colors
+    for idx, (benchmark, machine_name, GPU_name) in enumerate(zip(benchmarks,
+                                                                  machine_names,
+                                                                  GPU_names)):
+        # We do the log scale for the x axis manually -- easier to get the ticks/labels right
+        # Only use Brian2GeNN GPU and maximum number of threads
+        max_threads = benchmark.loc[benchmark['device'] == 'cpp_standalone']['n_threads'].max()
+        gpu_results = benchmark.loc[(benchmark['device'] == 'genn') & (benchmark['n_threads'] == 0)]
+        cpu_results = benchmark.loc[(benchmark['device'] == 'cpp_standalone') & (benchmark['n_threads'] == max_threads)]
+
+        for subset, name, ls in [(gpu_results, '{} – {}'.format(machine_name, GPU_name), ':'),
+                                 (cpu_results, '{} – {} CPU cores'.format(machine_name, max_threads), ':')]:
+            if len(subset) == 0:
+                continue
+            ax.plot(np.log(subset['n_neurons'].values),
+                    subset['duration_run']['amin'],
+                    'o-', label=name, color=colors[idx], linestyle=ls, mec='none')
+        used_n_neuron_values = benchmark['n_neurons'].unique()
+        # Make sure we show the xtick label for the highest value
+    if len(used_n_neuron_values) % 2 == 0:
+        start = 1
+    else:
+        start = 0
+    ax.set_xticks(np.log(sorted(used_n_neuron_values))[start::2])
+    ax.set_xticklabels(sorted(used_n_neuron_values)[start::2], rotation=45)
+    ax.set(xlabel='Model size (# neurons)',
+           ylabel='Simulation time (s)',
+           yscale='log')
+    if legend:
+        ax.legend(loc='upper left', frameon=True, edgecolor='none')
 
 def plot_detailed_times(benchmark, ax, legend=False):
     # Prepare data for stacked plot
@@ -268,9 +299,89 @@ def plot_detail_comparison(benchmarks):
     plt.tight_layout()
     return fig
 
+
+def plot_necessary_runtime(benchmarks, reference_benchmarks, labels, ax, legend=False):
+    for benchmark, reference_benchmark, label in zip(benchmarks, reference_benchmarks, labels):
+        benchmark.sort_values(by='n_neurons')
+        reference_benchmark.sort_values(by='n_neurons')
+        variable_time_gpu = benchmark['duration_run']['amin'].values
+        fixed_time_gpu = benchmark['total']['amin'].values - variable_time_gpu
+        variable_time_cpu = reference_benchmark['duration_run']['amin'].values
+        fixed_time_cpu = reference_benchmark['total']['amin'].values - variable_time_cpu
+        # Check assumptions
+        assert all(fixed_time_gpu > fixed_time_cpu)
+        necessary = (fixed_time_cpu - fixed_time_gpu)/(variable_time_gpu - variable_time_cpu)
+        # If GPU takes longer per simulated second, no way to get a faster sim
+        necessary[variable_time_gpu > variable_time_cpu] = np.NaN
+
+        ax.plot(np.log(benchmark['n_neurons']).values, necessary, 'o-',
+                mec='white', label=label)
+
+    # Make sure we show the xtick label for the highest value
+    x = benchmarks[0]['n_neurons']
+    if len(x) % 2 == 0:
+        start = 1
+    else:
+        start = 0
+
+    ax.set_xticklabels(sorted(x)[start::2], rotation=45)
+    ax.grid(b=True, which='minor', color='#b0b0b0', linestyle='-',
+            linewidth=0.33)
+    ax.set(xticks=np.log(x)[start::2],
+           xlabel='Model size (# neurons)',
+           ylabel='necessary biological runtime (s)',
+           yscale='log')
+    if legend:
+        ax.legend(loc='upper right', frameon=True, edgecolor='none')
+
+
 if __name__ == '__main__':
+    if directory is None:
+        if len(sys.argv) == 2:
+            directory = sys.argv[1]
+        else:
+            raise ValueError('Need the directory name as an argument')
+
     COBA_full = load_benchmark(directory, 'benchmarks_COBAHH.txt')
     Mbody_full = load_benchmark(directory, 'benchmarks_Mbody_example.txt')
+
+    # Summary plot, showing the biological runtime that is necessary to get a
+    # faster simulation with the GPU
+    COBA32 = mean_and_std_fixed_time(COBA_full, monitor=False, float_dtype='float32')
+    COBA64 = mean_and_std_fixed_time(COBA_full, monitor=False, float_dtype='float64')
+    Mbody32 = mean_and_std_fixed_time(Mbody_full, monitor=False, float_dtype='float32')
+    Mbody64 = mean_and_std_fixed_time(Mbody_full, monitor=False, float_dtype='float64')
+    benchmark_gpus = [COBA32.loc[(COBA32['device'] == 'genn') &
+                                 (COBA32['n_threads'] == 0)],
+                      COBA64.loc[(COBA64['device'] == 'genn') &
+                                 (COBA64['n_threads'] == 0)],
+                      Mbody32.loc[(Mbody32['device'] == 'genn') &
+                                  (Mbody32['n_threads'] == 0)],
+                      Mbody64.loc[(Mbody64['device'] == 'genn') &
+                                  (Mbody64['n_threads'] == 0)]
+                      ]
+    max_threads = COBA32.loc[COBA32['device'] == 'cpp_standalone']['n_threads'].max()
+    benchmark_cpus = [COBA32.loc[(COBA32['device'] == 'cpp_standalone') &
+                                 (COBA32['n_threads'] == max_threads)],
+                      COBA64.loc[(COBA64['device'] == 'cpp_standalone') &
+                                 (COBA64['n_threads'] == max_threads)],
+                      Mbody32.loc[(Mbody32['device'] == 'cpp_standalone') &
+                                  (Mbody32['n_threads'] == max_threads)],
+                      Mbody64.loc[(Mbody64['device'] == 'cpp_standalone') &
+                                  (Mbody64['n_threads'] == max_threads)]
+                      ]
+    labels = ['COBA – single precision', 'COBA – double precision',
+              'Mbody – single precision', 'Mbody – double precision']
+
+    fig, (ax_left, ax_right) = plt.subplots(1, 2, figsize=(6.3, 6.3*.6666),
+                                            sharey='row')
+    plot_necessary_runtime(benchmark_gpus[:2], benchmark_cpus[:2], labels[:2], ax_right, legend=True)
+    plot_necessary_runtime(benchmark_gpus[2:], benchmark_cpus[2:], labels[2:], ax_left, legend=True)
+
+    fig.tight_layout()
+    fig.savefig(os.path.join(directory,
+                             'necessary_biological_runtime' + FIGURE_EXTENSION))
+    plt.close(fig)
 
     for with_monitor in [True, False]:
         monitor_suffix = '' if with_monitor else '_no_monitor'
@@ -284,7 +395,7 @@ if __name__ == '__main__':
                                           float_dtype='float32')
 
         for COBA_benchmark, Mbody_benchmark, suffix in [(COBA, Mbody, ''),
-                                                        (COBA32, Mbody, ' single precision')]:
+                                                        (COBA32, Mbody32, ' single precision')]:
             # Total time (including compilation)
             fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
                                                     figsize=(6.3, 6.3 * .666))
@@ -380,3 +491,22 @@ if __name__ == '__main__':
                                          'detailed_runtime_relative_%s%s%s' % (name,
                                                                                monitor_suffix,
                                                                                FIGURE_EXTENSION)))
+
+        # Plot details for GPU-only and a single benchmark
+        for benchmark_double, benchmark_float, name in [(COBA, COBA32, 'COBAHH'),
+                                                        (Mbody, Mbody32, 'Mbody')]:
+            gpu = benchmark_double.loc[(benchmark_double['device'] == 'genn') &
+                                       (benchmark_double['n_threads'] == 0)]
+            gpu32 = benchmark_float.loc[(benchmark_float['device'] == 'genn') &
+                                        (benchmark_float['n_threads'] == 0)]
+
+            fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
+                                                    figsize=(6.3, 6.3 * .666))
+            plot_detailed_times(gpu, ax_left, legend=True)
+            inside_title(ax_left, name + ' – double precision')
+            plot_detailed_times(gpu32, ax_right)
+            inside_title(ax_right, name + ' – single precision')
+            fig.tight_layout()
+            fig.savefig(os.path.join(directory,'gpu_detailed_runtime_%s%s' % (name, FIGURE_EXTENSION)))
+            plt.close(fig)
+
