@@ -79,7 +79,7 @@ def mean_and_std_fixed_time(benchmarks, monitor=True, float_dtype='float64',
     return aggregated
 
 
-def label_and_color(device, n_threads):
+def label_and_color(device, n_threads, all_threads):
     if device == 'genn':
         if n_threads == -1:
             return 'Brian2GeNN CPU', 'lightblue'
@@ -87,13 +87,9 @@ def label_and_color(device, n_threads):
             return 'Brian2GeNN GPU', 'darkblue'
     else:
         label = 'C++ %2d threads' % n_threads
-        # Quick&dirty colour selection
-        color = {1: 'gold',
-                 2: 'darkorange',
-                 4: 'tomato',
-                 8: 'darkred',
-                 12: 'darkviolet',
-                 16: 'indigo'}[n_threads]
+        colors = ['gold', 'darkorange', 'tomato', 'darkred',
+                  'darkviolet', 'indigo']
+        color = colors[np.nonzero(sorted(all_threads) == n_threads)[0].item()]
         return label, color
 
 
@@ -109,9 +105,10 @@ def plot_total(benchmarks, ax, legend=False, skip=('Brian2GeNN CPU',),
     ax.set_yscale('log')
     # We do the log scale for the x axis manually -- easier to get the ticks/labels right
     conditions = benchmarks.groupby(['device', 'n_threads'])
+    all_threads = benchmarks.loc[benchmarks['device'] == 'cpp_standalone']['n_threads'].unique()
     for condition in conditions:
         (device, threads), results = condition
-        label, color = label_and_color(device, threads)
+        label, color = label_and_color(device, threads, all_threads)
         if label in skip:
             continue
         ax.plot(np.log(results['n_neurons'].values),
