@@ -5,17 +5,27 @@ if [ "$3" == "test" ]; then
     SCALING_BIG="32"
     MONITORS="false"
     N_REPEATS=1
+    BLOCKSIZE=0
 else
-    SCALING="0.05 0.1 0.25 0.5 1 2 4 8 16 32"
-    SCALING_BIG="64 128 256 512"
-    if [ "$1" = "COBAHH.py" ]; then
-        MONITORS="true false"
-        SCALING_BIG="64 128"
+    if [ "$3" == "blocksize" ]; then
+	SCALING=""
+	SCALING_BIG="0.05 0.1 0.25 0.5 1 2 4 8 16 32"
+	MONITORS="false"
+	N_REPEATS=1
+	BLOCKSIZE=1
     else
-        MONITORS="false"
-        SCALING_BIG="64 128 256 512 1024 2048 4096"
+	SCALING="0.05 0.1 0.25 0.5 1 2 4 8 16 32"
+	SCALING_BIG="64 128 256 512"
+	if [ "$1" = "COBAHH.py" ]; then
+            MONITORS="true false"
+            SCALING_BIG="64 128"
+	else
+            MONITORS="false"
+            SCALING_BIG="64 128 256 512 1024 2048 4096"
+	fi
+	N_REPEATS=3
+	BLOCKSIZE=0
     fi
-    N_REPEATS=3
 fi
 
 for monitor in $MONITORS; do
@@ -23,12 +33,12 @@ for monitor in $MONITORS; do
         for scaling in $SCALING; do
             for float_dtype in float32 float64; do
                 for repeat in $(seq $N_REPEATS); do
-                    echo Repeat $repeat: python $1 $scaling genn $threads 1 $monitor $float_dtype $2
-                    python $1 $scaling genn $threads 1 $monitor $float_dtype $2
-                    rm -r GeNNworkspace
+		    echo Repeat $repeat: python $1 $scaling genn $threads 1 $monitor $float_dtype $2
+		    python $1 $scaling genn $threads 1 $monitor $float_dtype $2
+		    rm -r GeNNworkspace
                 done
-	        done
-       done
+	    done
+	done
    done
 done
 
@@ -39,6 +49,14 @@ for monitor in $MONITORS; do
             for repeat in $(seq $N_REPEATS); do
                 echo Repeat $repeat: python $1 $scaling genn 0 1 $monitor $float_dtype $2
                 python $1 $scaling genn 0 1 $monitor $float_dtype $2
+		if [ "$BLOCKSIZE" == "1" ]; then
+		    cd GeNNworkspace
+		    echo "$GENN_PATH/lib/bin/genn-buildmodel.sh magicnetwork_model.cpp &> buildmodel.log"
+		    $GENN_PATH/lib/bin/genn-buildmodel.sh magicnetwork_model.cpp &> buildmodel.log
+		    cat buildmodel.log | grep "block size:" | tee > blocksizes
+		    cd ..
+		    python blocksize_util.py ${1%.py} $scaling $2
+		fi
                 rm -r GeNNworkspace
             done
         done
