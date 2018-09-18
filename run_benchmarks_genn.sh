@@ -9,7 +9,7 @@ if [ "$3" == "test" ]; then
 else
     if [ "$3" == "blocksize" ]; then
 	SCALING=""
-	SCALING_BIG="0.05 0.1 0.25 0.5 1 2 4 8 16 32"
+	SCALING_BIG="0.05 0.1 0.25 0.5 1 2 4 8 16 32 64 128 256 512"
 	MONITORS="false"
 	N_REPEATS=1
 	BLOCKSIZE=1
