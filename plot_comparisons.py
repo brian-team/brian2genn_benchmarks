@@ -23,9 +23,11 @@ def plot_total_comparisons(benchmarks, machine_names, GPU_names, ax, title, lege
         max_threads = benchmark.loc[benchmark['device'] == 'cpp_standalone']['n_threads'].max()
         gpu_results = benchmark.loc[(benchmark['device'] == 'genn') & (benchmark['n_threads'] == 0)]
         cpu_results = benchmark.loc[(benchmark['device'] == 'cpp_standalone') & (benchmark['n_threads'] == max_threads)]
+        cpu_results_single = benchmark.loc[(benchmark['device'] == 'cpp_standalone') & (benchmark['n_threads'] == 1)]
 
         for subset, name, ls in [(gpu_results, '{} – {}'.format(machine_name, GPU_name), '-'),
-                                 (cpu_results, '{} – {} CPU cores'.format(machine_name, max_threads), ':')]:
+                                 (cpu_results, '{} – {} CPU cores'.format(machine_name, max_threads), ':'),
+                                 (cpu_results_single, '{} – single thread'.format(machine_name), ':')]:
             if len(subset) == 0:
                 continue
             ax.plot(np.log(subset['n_neurons'].values),
@@ -52,12 +54,14 @@ def plot_total_comparisons(benchmarks, machine_names, GPU_names, ax, title, lege
         ax.legend(loc='upper left', frameon=True, edgecolor='none')
 
 
-def plot_total_comparisons_only_GPU(benchmarks, reference_benchmark, GPU_names,
-                                    reference_label, ax, title, legend=False):
+def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
+                                    reference_labels, ax, title, legend=False):
     colors = mpl.cm.tab10.colors
-    ax.plot(np.log(reference_benchmark['n_neurons'].values),
-            reference_benchmark['duration_run_rel']['amin'],
-            '-', label=reference_label, color='black')
+    for idx, (reference_benchmark, reference_label) in enumerate(zip(reference_benchmarks, reference_labels)):
+        c = (0.3*idx, 0.3*idx, 0.3*idx)
+        ax.plot(np.log(reference_benchmark['n_neurons'].values),
+                reference_benchmark['duration_run_rel']['amin'],
+                '-', label=reference_label, color=c)
 
     for idx, (benchmark, machine_name, GPU_name) in enumerate(zip(benchmarks,
                                                                   machine_names,
@@ -193,12 +197,21 @@ if __name__ == '__main__':
                 reference = mean_and_std_fixed_time(load_benchmark(reference_dir, fname),
                                                     monitor=monitor,
                                                     float_dtype=float_dtype)
-                reference = reference.loc[(reference['device'] == 'cpp_standalone') &
-                                          (reference['n_threads'] == 24)]
-                plot_total_comparisons_only_GPU(benchmarks, reference,
-                                                gpu_names, 'CPU / 24 threads',
+                reference24 = reference.loc[(reference['device'] == 'cpp_standalone') &
+                                            (reference['n_threads'] == 24)]
+                reference12 = reference.loc[(reference['device'] == 'cpp_standalone') &
+                                           (reference['n_threads'] == 12)]
+                reference1 = reference.loc[(reference['device'] == 'cpp_standalone') &
+                                           (reference['n_threads'] == 1)]
+                plot_total_comparisons_only_GPU(benchmarks, [reference1,
+                                                             reference12,
+                                                             reference24],
+                                                gpu_names,
+                                                ['CPU / 1 thread',
+                                                 'CPU / 12 thread',
+                                                 'CPU / 24 threads'],
                                                 ax, title + ' – ' + precision,
-                                                legend=(ax == axes_gpu[0, 1]))
+                                                legend=(ax == axes_gpu[1, 0]))
         fig.tight_layout()
         fig.savefig(os.path.join(target_dir,
                                  'runtime_comparison{}.png'.format(monitor_str)))
