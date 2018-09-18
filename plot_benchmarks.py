@@ -92,8 +92,8 @@ def label_and_color(device, n_threads, all_threads):
         return label, color
 
 
-def inside_title(ax, text, x=0.98, y=.04):
-    t = ax.text(x, y, text, weight='bold', horizontalalignment='right',
+def inside_title(ax, text, x=0.98, y=.04, horizontalalignment='right'):
+    t = ax.text(x, y, text, weight='bold', horizontalalignment=horizontalalignment,
                      transform=ax.transAxes)
     t.set_bbox({'facecolor': 'white', 'edgecolor': 'none', 'alpha': 0.8})
 
@@ -159,7 +159,8 @@ def plot_total_comparisons(benchmarks, machine_names, GPU_names, ax, legend=Fals
     if legend:
         ax.legend(loc='upper left', frameon=True, edgecolor='none')
 
-def plot_detailed_times(benchmark, ax, legend=False):
+
+def plot_detailed_times(benchmark, ax_detail, ax_sim, title=None, legend=False):
     # Prepare data for stacked plot
     x = np.array(benchmark['n_neurons'])
     # code generation and build
@@ -174,28 +175,59 @@ def plot_detailed_times(benchmark, ax, legend=False):
     simulate = benchmark['duration_run']['amin']
     # TODO: Check that the total matches
     total = benchmark['total']['amin']
+    handles = []
+    labels = []
     for data, label in [(build, 'code gen & compile'),
                         (read_write_convert, 'overhead'),
-                        (create_initialize, 'synapse creation & initialization'),
-                        (simulate, 'simulation')]:
-        ax.plot(np.log(x), data, 'o-', label=label, mec='white')
-    ax.plot(np.log(x), total, 'ko-', mec='white', label='Total')
-    ax.grid(b=True, which='minor', color='#b0b0b0', linestyle='-',
-            linewidth=0.33)
-    if legend:
-        ax.legend(bbox_to_anchor=(0, 1.02, 1, 0.2), loc="lower left",
-                   mode="expand", borderaxespad=0, ncol=2)
-        # ax.legend(loc='upper left')
+                        (create_initialize, 'synapse creation & initialization')]:
+        h = ax_detail.plot(np.log(x), data, 'o-', mec='white')[0]
+        if legend:
+            xl, yl = legend[label]
+            ax_detail.text(np.log(xl), yl, label,
+                           fontsize=8, fontweight='bold', color=h.get_color())
+    ax_detail.grid(b=True, which='major', color='#b0b0b0', linestyle='-',
+                   linewidth=0.5)
+    # We plot simulation/total times for 1s, 10s, and 100s
+    for idx, (biological_time, align) in enumerate([(1, 'top'),
+                                                    (10, 'center'),
+                                                    (100, 'bottom')]):
+        import colorsys
+        brighten_by = idx * 0.2
+        basecolor_sim = colorsys.rgb_to_hls(*mpl.cm.tab10.colors[3])
+        color_sim = colorsys.hls_to_rgb(basecolor_sim[0],
+                                        basecolor_sim[1] + brighten_by*(1 - basecolor_sim[1]),
+                                        basecolor_sim[2])
+        ax_sim.plot(np.log(x), simulate*biological_time,
+                    'o-', mec='white', color=color_sim)
+        if idx == 0:
+            if legend:
+                xl, yl = legend['simulation']
+                ax_sim.text(np.log(xl), yl, 'simulation',
+                            fontsize=8, color=color_sim,
+                            fontweight='bold')
+
+        ax_sim.text(np.log(x[-1]), simulate.values[-1]*biological_time,
+                    ' {:3d}s'.format(biological_time),
+                    verticalalignment=align, fontsize=8, color=color_sim,
+                    fontweight='bold')
+    ax_sim.grid(b=True, which='major', color='#b0b0b0', linestyle='-',
+                   linewidth=0.5)
     # Make sure we show the xtick label for the highest value
     if len(x) % 2 == 0:
         start = 1
     else:
         start = 0
-    ax.set(xticks=np.log(x)[start::2],
-           xlabel='Model size (# neurons)',
-           ylabel='Wall clock time (s)',
-           yscale='log')
-    ax.set_xticklabels(sorted(x)[start::2], rotation=45)
+    ax_detail.set(xticks=np.log(x)[start::2],
+                  xlabel='Model size (# neurons)',
+                  ylabel='Wall clock time (s)')
+    ax_sim.set(xlabel='', ylabel='', yscale='log')
+    ax_sim.set_yticks([1e-1, 1e0, 1e1, 1e2, 1e3, 1e4, 1e5])
+    ax_sim.spines['bottom'].set_visible(False)
+    ax_detail.set_yscale('symlog', linthreshy=0.01, linscaley=np.log10(np.e))
+    ax_detail.set_xticklabels(sorted(x)[start::2], rotation=45)
+    plt.setp(ax_sim.xaxis.get_ticklines(), visible=False)
+    if title is not None:
+        ax_sim.set_title(title)
 
 
 def plot_detailed_times_stacked(benchmark, ax, legend=False):
@@ -449,21 +481,25 @@ if __name__ == '__main__':
                                  (Mbody32, 'Mbody single precision')]:
             # We use the maximum number of threads for which we have data
             max_threads = benchmarks.loc[benchmarks['device'] == 'cpp_standalone']['n_threads'].max()
-
-            fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
-                                                    figsize=(6.3, 6.3 * .666))
+            fig, axes = plt.subplots(2, 2, sharey='row', sharex='col',
+                                     figsize=(6.3, 6.3 * .666),
+                                     gridspec_kw={'height_ratios': [1, 4]})
             GeNN_GPU = benchmarks.loc[(benchmarks['device'] == 'genn') &
                                       (benchmarks['n_threads'] == 0)]
             if len(GeNN_GPU):
-                plot_detailed_times(GeNN_GPU, ax_left, legend=True)
-                inside_title(ax_left, '%s (Brian2GeNN GPU)' % name)
+                plot_detailed_times(GeNN_GPU, axes[1, 0], axes[0, 0],
+                                    title='%s (Brian2GeNN GPU)' % name,
+                                    legend={'simulation': (300, 1e3),
+                                            'code gen & compile': (300, 20),
+                                            'overhead': (300, 0.9),
+                                            'synapse creation & initialization': (2700, 1.1e-2)})
             else:
                 ax_left.axis('off')
             cpp_threads = benchmarks.loc[(benchmarks['device'] == 'cpp_standalone') &
                                          (benchmarks['n_threads'] == max_threads)]
             if len(cpp_threads):
-                plot_detailed_times(cpp_threads, ax_right)
-                inside_title(ax_right, '%s (C++ %d threads)' % (name, max_threads))
+                plot_detailed_times(cpp_threads, axes[1, 1], axes[0, 1],
+                                    title='%s (C++ %d threads)' % (name, max_threads))
             else:
                 ax_right.axis('off')
             plt.tight_layout()
@@ -500,13 +536,19 @@ if __name__ == '__main__':
             gpu32 = benchmark_float.loc[(benchmark_float['device'] == 'genn') &
                                         (benchmark_float['n_threads'] == 0)]
 
-            fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
-                                                    figsize=(6.3, 6.3 * .666))
-            plot_detailed_times(gpu, ax_left, legend=True)
-            inside_title(ax_left, name + ' – double precision')
-            plot_detailed_times(gpu32, ax_right)
-            inside_title(ax_right, name + ' – single precision')
+            fig, axes = plt.subplots(2, 2, sharey='row', sharex='col',
+                                     figsize=(6.3, 6.3 * .666),
+                                     gridspec_kw={'height_ratios': [1, 2]})
+            plot_detailed_times(gpu, axes[1, 0], axes[0, 0],
+                                legend={'simulation': (300, 2e2),
+                                        'code gen & compile': (300, 20),
+                                        'overhead': (300, 0.9),
+                                        'synapse creation & initialization': (2700, 1.1e-2)},
+                                title=name + ' – double precision')
+            plot_detailed_times(gpu32, axes[1, 1], axes[0, 1],
+                                title=name + ' – single precision')
             fig.tight_layout()
-            fig.savefig(os.path.join(directory,'gpu_detailed_runtime_%s%s' % (name, FIGURE_EXTENSION)))
+            fig.savefig(os.path.join(directory,
+                                     'gpu_detailed_runtime_%s%s' % (name, FIGURE_EXTENSION)))
             plt.close(fig)
 
