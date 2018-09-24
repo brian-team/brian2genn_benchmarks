@@ -9,8 +9,8 @@ else
     SCALING=""
     SCALING_BIG="64 128 256 512"
     if [ "$1" = "COBAHH.py" ]; then
-        MONITORS="true false"
-        SCALING_BIG="64 128"
+        MONITORS="false"
+        SCALING_BIG="0.05 0.1 0.25 0.5 1 2 4 8 16 32 64 128"
     else
         MONITORS="false"
         SCALING_BIG="0.05 0.1 0.25 0.5 1 2 4 8 16 32 64 128 256 512 1024 2048 4096"
