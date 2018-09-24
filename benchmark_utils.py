@@ -35,6 +35,7 @@ def prepare_benchmark(argv):
     if config['device'] == 'genn':
         prefs.devices.genn.auto_choose_device = False
         prefs.devices.genn.default_device = 0
+        prefs.devices.genn.synapse_span_type = 'PRESYNAPTIC'
         if config['threads'] > 0:
             warnings.warn('Brian2GeNN cannot run multi-threaded, setting '
                           'number of threads to 0')

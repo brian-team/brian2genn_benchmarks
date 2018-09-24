@@ -14,8 +14,14 @@ directory = None  # replace this or pass the directory as a command line arg
 if directory is None:
     if len(sys.argv) == 2:
         directory = sys.argv[1]
+        compareplot = False
     else:
-        raise ValueError('Need the directory name as an argument')
+        if len(sys.argv) == 3:
+            directory = sys.argv[1]
+            directory2 = sys.argv[2]
+            compareplot= True
+        else:
+            raise ValueError('Need the directory name as an argument')
 
 
 def load_benchmark(directory, fname):
@@ -272,114 +278,169 @@ def plot_detail_comparison(benchmarks):
     return fig
 
 if __name__ == '__main__':
-    COBA_full = load_benchmark(directory, 'benchmarks_COBAHH.txt')
-    Mbody_full = load_benchmark(directory, 'benchmarks_Mbody_example.txt')
+    if not compareplot:
+        COBA_full = load_benchmark(directory, 'benchmarks_COBAHH.txt')
+        Mbody_full = load_benchmark(directory, 'benchmarks_Mbody_example.txt')
+        
+        for with_monitor in [True, False]:
+            monitor_suffix = '' if with_monitor else '_no_monitor'
+            # COBA with linear scaling
+            COBA = mean_and_std_fixed_time(COBA_full, monitor=with_monitor)
+            COBA32 = mean_and_std_fixed_time(COBA_full, monitor=with_monitor,
+                                             float_dtype='float32')
+            # Mushroom body
+            Mbody = mean_and_std_fixed_time(Mbody_full, monitor=False)
+            Mbody32 = mean_and_std_fixed_time(Mbody_full, monitor=False,
+                                              float_dtype='float32')
 
-    for with_monitor in [True, False]:
-        monitor_suffix = '' if with_monitor else '_no_monitor'
+            for COBA_benchmark, Mbody_benchmark, suffix in [(COBA, Mbody, ''),
+                                                            (COBA32, Mbody32, ' single precision')]:
+                # Total time (including compilation)
+                fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
+                                                        figsize=(6.3, 6.3 * .666))
+                plot_total(COBA_benchmark, ax_left, legend=True)
+                ax_left.set_title('COBAHH%s' % suffix)
+                plot_total(Mbody_benchmark, ax_right, legend=False)
+                ax_right.set_title('Mushroom body%s' % suffix)
+                plt.tight_layout()
+                fig.savefig(os.path.join(directory, 'total_runtime%s%s%s' % (monitor_suffix,
+                                                                             suffix,
+                                                                             FIGURE_EXTENSION)))
+                
+                # Runtime relative to realtime
+                fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
+                                                        figsize=(6.3, 6.3 * .666))
+                plot_total(COBA_benchmark, ax_left, legend=True, plot_what='duration_run_rel',
+                           axis_label='Simulation time (relative to real-time)')
+                ax_left.set_title('COBAHH')
+                plot_total(Mbody_benchmark, ax_right, legend=False, plot_what='duration_run_rel',
+                           axis_label='Simulation time (relative to real-time)')
+                ax_right.set_title('Mushroom body')
+                plt.tight_layout()
+                fig.savefig(os.path.join(directory, 'simulation_time_only%s%s%s' % (monitor_suffix,
+                                                                                    suffix,
+                                                                                    FIGURE_EXTENSION)))
+
+
+                # TODO: This is a bit redundant...
+                max_threads = COBA_full.loc[COBA_full['device'] == 'cpp_standalone']['n_threads'].max()
+                for name, dev, threads in [('cpp', 'cpp_standalone', max_threads),
+                                           ('GeNN GPU', 'genn', 0 )]:
+                    subset = COBA_full.loc[(COBA_full['device'] == dev) &
+                                           (COBA_full['n_threads'] == threads)]
+                    grouped = subset.groupby(['n_neurons', 'float_dtype', 'with_monitor'])
+                    COBA_all = grouped.agg([np.min, np.mean, np.std]).reset_index()
+                    
+                    subset = Mbody_full.loc[(Mbody_full['device'] == dev) &
+                                            (Mbody_full['n_threads'] == threads)]
+                    grouped = subset.groupby(['n_neurons', 'float_dtype', 'with_monitor'])
+                    Mbody_all = grouped.agg([np.min, np.mean, np.std]).reset_index()
+                    
+                    fig = plot_detail_comparison(COBA_all)
+                    fig.savefig(os.path.join(directory, 'COBA_detail_comparison%s' % FIGURE_EXTENSION))
+                    
+                    fig = plot_detail_comparison(Mbody_all)
+                    fig.savefig(
+                        os.path.join(directory, 'Mbody_detail_comparison%s' % FIGURE_EXTENSION))
+                    
+                    for benchmarks, name in [(COBA, 'COBAHH'),
+                                             (Mbody, 'Mbody'),
+                                             (COBA32, 'COBAHH single precision'),
+                                             (Mbody32, 'Mbody single precision')]:
+                        # We use the maximum number of threads for which we have data
+                        print(benchmarks)
+                        max_threads = benchmarks.loc[benchmarks['device'] == 'cpp_standalone']['n_threads'].max()
+                        
+                        fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
+                                                                figsize=(6.3, 6.3 * .666))
+                        GeNN_GPU = benchmarks.loc[(benchmarks['device'] == 'genn') &
+                                                  (benchmarks['n_threads'] == 0)]
+                        if len(GeNN_GPU):
+                            plot_detailed_times(GeNN_GPU, ax_left, legend=True)
+                            inside_title(ax_left, '%s (Brian2GeNN GPU)' % name)
+                        else:
+                            ax_left.axis('off')
+                            cpp_threads = benchmarks.loc[(benchmarks['device'] == 'cpp_standalone') &
+                                                         (benchmarks['n_threads'] == max_threads)]
+                            if len(cpp_threads):
+                                plot_detailed_times(cpp_threads, ax_right)
+                                inside_title(ax_right, '%s (C++ %d threads)' % (name, max_threads))
+                            else:
+                                ax_right.axis('off')
+                                plt.tight_layout()
+                                if len(GeNN_GPU) or len(cpp_threads):
+                                    fig.savefig(os.path.join(directory,
+                                                             'detailed_runtime_%s%s%s' % (name,
+                                                                                          monitor_suffix,
+                                                                                          FIGURE_EXTENSION)))
+                                    
+                                    fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
+                                                                            figsize=(6.3, 6.3 * .666))
+                                    if len(GeNN_GPU):
+                                        plot_detailed_times_stacked(GeNN_GPU, ax_left, legend=True)
+                                        inside_title(ax_left, '%s (Brian2GeNN GPU)' % name)
+                                    else:
+                                        ax_left.axis('off')
+                                        if len(cpp_threads):
+                                            plot_detailed_times_stacked(cpp_threads, ax_right)
+                                            inside_title(ax_right, '%s (C++ %d threads)' % (name, max_threads))
+                                        else:
+                                            ax_right.axis('off')
+                                            plt.tight_layout()
+                                            if len(GeNN_GPU) or len(cpp_threads):
+                                                fig.savefig(os.path.join(directory,
+                                                                         'detailed_runtime_relative_%s%s%s' % (name,
+                                                                                                               monitor_suffix,
+                                                                               FIGURE_EXTENSION)))
+    else: #compareplot
+        COBA_full = load_benchmark(directory, 'benchmarks_COBAHH.txt')
+        Mbody_full = load_benchmark(directory, 'benchmarks_Mbody_example.txt')
+        COBA_full_cmp = load_benchmark(directory2, 'benchmarks_COBAHH.txt')
+        Mbody_full_cmp = load_benchmark(directory2, 'benchmarks_Mbody_example.txt')
+
         # COBA with linear scaling
-        COBA = mean_and_std_fixed_time(COBA_full, monitor=with_monitor)
-        COBA32 = mean_and_std_fixed_time(COBA_full, monitor=with_monitor,
+        COBA = mean_and_std_fixed_time(COBA_full, monitor=True)
+        COBA32 = mean_and_std_fixed_time(COBA_full, monitor=True,
+                                         float_dtype='float32')
+        COBA_cmp = mean_and_std_fixed_time(COBA_full_cmp, monitor=True)
+        COBA32_cmp = mean_and_std_fixed_time(COBA_full_cmp, monitor=True,
                                          float_dtype='float32')
         # Mushroom body
-        Mbody = mean_and_std_fixed_time(Mbody_full, monitor=with_monitor)
-        Mbody32 = mean_and_std_fixed_time(Mbody_full, monitor=with_monitor,
-                                          float_dtype='float32')
+        Mbody = mean_and_std_fixed_time(Mbody_full, monitor=False)
+        Mbody32 = mean_and_std_fixed_time(Mbody_full, monitor=False,
+                                              float_dtype='float32')
+        Mbody_cmp = mean_and_std_fixed_time(Mbody_full_cmp, monitor=False)
+        Mbody32_cmp = mean_and_std_fixed_time(Mbody_full_cmp, monitor=False,
+                                              float_dtype='float32')
 
-        for COBA_benchmark, Mbody_benchmark, suffix in [(COBA, Mbody, ''),
-                                                        (COBA32, Mbody, ' single precision')]:
-            # Total time (including compilation)
-            fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
-                                                    figsize=(6.3, 6.3 * .666))
-            plot_total(COBA_benchmark, ax_left, legend=True)
-            ax_left.set_title('COBAHH%s' % suffix)
-            plot_total(Mbody_benchmark, ax_right, legend=False)
-            ax_right.set_title('Mushroom body%s' % suffix)
-            plt.tight_layout()
-            fig.savefig(os.path.join(directory, 'total_runtime%s%s%s' % (monitor_suffix,
-                                                                         suffix,
-                                                                         FIGURE_EXTENSION)))
-
-            # Runtime relative to realtime
-            fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
-                                                    figsize=(6.3, 6.3 * .666))
-            plot_total(COBA_benchmark, ax_left, legend=True, plot_what='duration_run_rel',
-                       axis_label='Simulation time (relative to real-time)')
-            ax_left.set_title('COBAHH')
-            plot_total(Mbody_benchmark, ax_right, legend=False, plot_what='duration_run_rel',
-                       axis_label='Simulation time (relative to real-time)')
-            ax_right.set_title('Mushroom body')
-            plt.tight_layout()
-            fig.savefig(os.path.join(directory, 'simulation_time_only%s%s%s' % (monitor_suffix,
-                                                                                suffix,
-                                                                                FIGURE_EXTENSION)))
-
-    # TODO: This is a bit redundant...
-    max_threads = COBA_full.loc[COBA_full['device'] == 'cpp_standalone']['n_threads'].max()
-    for name, dev, threads in [('cpp', 'cpp_standalone', max_threads),
-                               ('GeNN GPU', 'genn', 0 )]:
-        subset = COBA_full.loc[(COBA_full['device'] == dev) &
-                               (COBA_full['n_threads'] == threads)]
-        grouped = subset.groupby(['n_neurons', 'float_dtype', 'with_monitor'])
-        COBA_all = grouped.agg([np.min, np.mean, np.std]).reset_index()
-
-        subset = Mbody_full.loc[(Mbody_full['device'] == dev) &
-                                (Mbody_full['n_threads'] == threads)]
-        grouped = subset.groupby(['n_neurons', 'float_dtype', 'with_monitor'])
-        Mbody_all = grouped.agg([np.min, np.mean, np.std]).reset_index()
-
-        fig = plot_detail_comparison(COBA_all)
-        fig.savefig(os.path.join(directory, 'COBA_detail_comparison%s' % FIGURE_EXTENSION))
-
-        fig = plot_detail_comparison(Mbody_all)
-        fig.savefig(
-            os.path.join(directory, 'Mbody_detail_comparison%s' % FIGURE_EXTENSION))
-
-        for benchmarks, name in [(COBA, 'COBAHH'),
-                                 (Mbody, 'Mbody'),
-                                 (COBA32, 'COBAHH single precision'),
-                                 (Mbody32, 'Mbody single precision')]:
-            # We use the maximum number of threads for which we have data
-            max_threads = benchmarks.loc[benchmarks['device'] == 'cpp_standalone']['n_threads'].max()
-
-            fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
-                                                    figsize=(6.3, 6.3 * .666))
-            GeNN_GPU = benchmarks.loc[(benchmarks['device'] == 'genn') &
-                                      (benchmarks['n_threads'] == 0)]
-            if len(GeNN_GPU):
-                plot_detailed_times(GeNN_GPU, ax_left, legend=True)
-                inside_title(ax_left, '%s (Brian2GeNN GPU)' % name)
-            else:
-                ax_left.axis('off')
-            cpp_threads = benchmarks.loc[(benchmarks['device'] == 'cpp_standalone') &
-                                         (benchmarks['n_threads'] == max_threads)]
-            if len(cpp_threads):
-                plot_detailed_times(cpp_threads, ax_right)
-                inside_title(ax_right, '%s (C++ %d threads)' % (name, max_threads))
-            else:
-                ax_right.axis('off')
-            plt.tight_layout()
-            if len(GeNN_GPU) or len(cpp_threads):
-                fig.savefig(os.path.join(directory,
-                                         'detailed_runtime_%s%s%s' % (name,
-                                                                      monitor_suffix,
-                                                                      FIGURE_EXTENSION)))
-
-            fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
-                                                    figsize=(6.3, 6.3 * .666))
-            if len(GeNN_GPU):
-                plot_detailed_times_stacked(GeNN_GPU, ax_left, legend=True)
-                inside_title(ax_left, '%s (Brian2GeNN GPU)' % name)
-            else:
-                ax_left.axis('off')
-            if len(cpp_threads):
-                plot_detailed_times_stacked(cpp_threads, ax_right)
-                inside_title(ax_right, '%s (C++ %d threads)' % (name, max_threads))
-            else:
-                ax_right.axis('off')
-            plt.tight_layout()
-            if len(GeNN_GPU) or len(cpp_threads):
-                fig.savefig(os.path.join(directory,
-                                         'detailed_runtime_relative_%s%s%s' % (name,
-                                                                               monitor_suffix,
-                                                                               FIGURE_EXTENSION)))
+        for COBA_benchmark, Mbody_benchmark, COBA_b2, Mbody_b2, suffix in [(COBA, Mbody, COBA_cmp, Mbody_cmp, ' cmp'),
+                                                            (COBA32, Mbody32, COBA32_cmp, Mbody32_cmp, ' cmp single precision')]:
+                # Total time (including compilation)
+                fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
+                                                        figsize=(6.3, 6.3 * .666))
+                plot_total(COBA_benchmark, ax_left, legend=True)
+                ax_left.set_title('COBAHH%s' % suffix)
+                plot_total(COBA_b2, ax_left, legend=True)
+                ax_left.set_title('COBAHH pre %s' % suffix)
+                plot_total(Mbody_benchmark, ax_right, legend=False)
+                ax_right.set_title('Mushroom body%s' % suffix)
+                plot_total(Mbody_b2, ax_right, legend=False)
+                ax_right.set_title('Mushroom body pre %s' % suffix)
+                plt.tight_layout()
+                fig.savefig(os.path.join(directory, 'total_runtime%s%s' % (suffix, FIGURE_EXTENSION)))
+                
+                # Runtime relative to realtime
+                fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
+                                                        figsize=(6.3, 6.3 * .666))
+                plot_total(COBA_benchmark, ax_left, legend=True, plot_what='duration_run_rel',
+                           axis_label='Simulation time (relative to real-time)')
+                plot_total(COBA_b2, ax_left, legend=True, plot_what='duration_run_rel',
+                           axis_label='Simulation time (relative to real-time)')
+                ax_left.set_title('COBAHH')
+                plot_total(Mbody_benchmark, ax_right, legend=False, plot_what='duration_run_rel',
+                           axis_label='Simulation time (relative to real-time)')
+                plot_total(Mbody_b2, ax_right, legend=False, plot_what='duration_run_rel',
+                           axis_label='Simulation time (relative to real-time)')
+                ax_right.set_title('Mushroom body')
+                plt.tight_layout()
+                fig.savefig(os.path.join(directory, 'simulation_time_only%s%s' % (suffix, FIGURE_EXTENSION)))
