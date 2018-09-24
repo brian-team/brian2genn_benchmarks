@@ -6,14 +6,14 @@ if [ "$3" == "test" ]; then
     MONITORS="false"
     N_REPEATS=1
 else
-    SCALING="0.05 0.1 0.25 0.5 1 2 4 8 16 32"
+    SCALING=""
     SCALING_BIG="64 128 256 512"
     if [ "$1" = "COBAHH.py" ]; then
         MONITORS="true false"
         SCALING_BIG="64 128"
     else
         MONITORS="false"
-        SCALING_BIG="64 128 256 512 1024 2048 4096"
+        SCALING_BIG="0.05 0.1 0.25 0.5 1 2 4 8 16 32 64 128 256 512 1024 2048 4096"
     fi
     N_REPEATS=3
 fi
@@ -38,7 +38,7 @@ for monitor in $MONITORS; do
         for float_dtype in float32 float64; do
             for repeat in $(seq $N_REPEATS); do
                 echo Repeat $repeat: python $1 $scaling genn 0 1 $monitor $float_dtype $2
-                python $1 $scaling genn 0 1 $monitor $float_dtype $2
+                python $1 $scaling genn 0 10 $monitor $float_dtype $2
                 rm -r GeNNworkspace
             done
         done
