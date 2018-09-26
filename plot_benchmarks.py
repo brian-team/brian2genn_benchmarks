@@ -99,7 +99,8 @@ def label_and_color(device, n_threads):
                  4: 'tomato',
                  8: 'darkred',
                  12: 'darkviolet',
-                 16: 'indigo'}[n_threads]
+                 16: 'indigo',
+                 24: 'green',}[n_threads]
         return label, color
 
 
