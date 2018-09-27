@@ -65,10 +65,8 @@ def load_benchmark(directory, fname):
     return benchmarks
 
 
-def mean_and_std_fixed_time(benchmarks, monitor=True, float_dtype='float64',
-                            runtime=1):
+def mean_and_std_fixed_time(benchmarks, monitor=True, float_dtype='float64'):
     subset = benchmarks.loc[(benchmarks['with_monitor'] == monitor) &
-                            (benchmarks['runtime'] == runtime) &
                             (benchmarks['float_dtype'] == float_dtype)]
 
     # Average over trials
