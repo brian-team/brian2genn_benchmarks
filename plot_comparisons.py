@@ -85,14 +85,16 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
             ax.plot(np.log(gpu_results_post['n_neurons'].values),
                     gpu_results_post['duration_run_rel']['amin'],
                     '--', color=colors[idx], label='parallel over post')
+        if algorithm_details:
+            style, label, mec, fc = 'o', 'best', colors[idx], 'none'
+        else:
+            style, label, mec, fc = 'o-', name, 'white', colors[idx]
 
-        style = 'o' if algorithm_details else 'o-'
-        label = 'best' if algorithm_details else name
         ax.plot(np.log(gpu_results_pre['n_neurons'].values),
                 np.amin(np.vstack([gpu_results_pre['duration_run_rel']['amin'],
                                    gpu_results_post['duration_run_rel']['amin']]),
                         axis=0),
-                style, label=label, color=colors[idx], mec='white')
+                style, label=label, color=fc, mec=mec)
         used_n_neuron_values = benchmark['n_neurons'].unique()
     # Make sure we show the xtick label for the highest value
     if len(used_n_neuron_values) % 2 == 0:
