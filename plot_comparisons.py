@@ -8,7 +8,7 @@ import warnings
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
-
+import pandas as pd
 
 from plot_benchmarks import load_benchmark, mean_and_std_fixed_time
 
@@ -55,10 +55,11 @@ def plot_total_comparisons(benchmarks, machine_names, GPU_names, ax, title, lege
 
 
 def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
-                                    reference_labels, ax, title, legend=False):
+                                    reference_labels, ax, title, legend=False,
+                                    algorithm_details=False):
     colors = mpl.cm.tab10.colors
     for idx, (reference_benchmark, reference_label) in enumerate(zip(reference_benchmarks, reference_labels)):
-        c = (0.3*idx, 0.3*idx, 0.3*idx)
+        c = (0.3*(idx+1), 0.3*(idx+1), 0.3*(idx+1))
         ax.plot(np.log(reference_benchmark['n_neurons'].values),
                 reference_benchmark['duration_run_rel']['amin'],
                 '-', label=reference_label, color=c)
@@ -69,14 +70,31 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
         # We do the log scale for the x axis manually -- easier to get the ticks/labels right
         # Only use Brian2GeNN GPU and maximum number of threads
         max_threads = benchmark.loc[benchmark['device'] == 'cpp_standalone']['n_threads'].max()
-        gpu_results = benchmark.loc[(benchmark['device'] == 'genn') & (benchmark['n_threads'] == 0)]
+        gpu_results_pre = benchmark.loc[(benchmark['device'] == 'genn') &
+                                        (benchmark['n_threads'] == 0) &
+                                        (benchmark['algorithm'] == 'pre')]
+        gpu_results_post = benchmark.loc[(benchmark['device'] == 'genn') &
+                                         (benchmark['n_threads'] == 0) &
+                                         (benchmark['algorithm'] == 'post')]
 
         name = GPU_name # '{} – {}'.format(machine_name, GPU_name)
-        ax.plot(np.log(gpu_results['n_neurons'].values),
-                gpu_results['duration_run_rel']['amin'],
-                'o-', label=name, color=colors[idx], mec='white')
+        if algorithm_details:
+            ax.plot(np.log(gpu_results_pre['n_neurons'].values),
+                    gpu_results_pre['duration_run_rel']['amin'],
+                    ':', color=colors[idx], label='parallel over pre')
+            ax.plot(np.log(gpu_results_post['n_neurons'].values),
+                    gpu_results_post['duration_run_rel']['amin'],
+                    '--', color=colors[idx], label='parallel over post')
+
+        style = 'o' if algorithm_details else 'o-'
+        label = 'best' if algorithm_details else name
+        ax.plot(np.log(gpu_results_pre['n_neurons'].values),
+                np.amin(np.vstack([gpu_results_pre['duration_run_rel']['amin'],
+                                   gpu_results_post['duration_run_rel']['amin']]),
+                        axis=0),
+                style, label=label, color=colors[idx], mec='white')
         used_n_neuron_values = benchmark['n_neurons'].unique()
-        # Make sure we show the xtick label for the highest value
+    # Make sure we show the xtick label for the highest value
     if len(used_n_neuron_values) % 2 == 0:
         start = 1
     else:
@@ -142,47 +160,59 @@ if __name__ == '__main__':
     target_dir = 'benchmark_results/comparisons'
     if not os.path.exists(target_dir):
         os.mkdir(target_dir)
-    benchmark_dirs = ['benchmark_results/2018-09-13_vuvuzela',
-                      'benchmark_results/2018-09-13_inf900777/',
-                      'benchmark_results/2018-09-13_c6a4ae8d7e8b',
-                      'benchmark_results/2018-09-14_jwc09n009/']
-    float_dtypes_per_benchmark = [('float32', 'float64'),
-                                  (),  # leave the K40 away for now...
+    benchmark_dirs_pre = ['benchmark_results/2018-09-13_c6a4ae8d7e8b',
+                          'benchmark_results/2018-09-13_inf900777/',
+                          'benchmark_results/2018-09-14_jwc09n009/']
+    benchmark_dirs_post = ['benchmark_results/2018-09-24_c3594791990b',
+                           'benchmark_results/2018-09-21_inf900777',
+                           'benchmark_results/2018-09-25_jwc09n012/']
+
+    float_dtypes_per_benchmark = [('float64', ),
                                   ('float32', 'float64'),
                                   ('float64', )]
     reference_dir = 'benchmark_results/2018-09-13_c6a4ae8d7e8b'
     machine_names = []
     gpu_names = []
 
-    for dirname in benchmark_dirs:
+    for dirname_pre, dirname_post in zip(benchmark_dirs_pre, benchmark_dirs_post):
         try:
-            machine_name = open(os.path.join(dirname, 'machine_name.txt')).read().strip()
+            machine_name = open(os.path.join(dirname_pre, 'machine_name.txt')).read().strip()
         except (IOError, OSError):
             warnings.warn('Could not open {} to get a human-readable '
-                          'machine name.'.format(os.path.join(dirname, 'machine_name.txt')))
-            machine_name = os.path.abspath(dirname).split(os.sep)[-1][12:]
+                          'machine name.'.format(os.path.join(dirname_pre, 'machine_name.txt')))
+            machine_name = os.path.abspath(dirname_pre).split(os.sep)[-1][12:]
         try:
-            gpu_name = open(os.path.join(dirname, 'gpu_name.txt')).read().strip()
+            gpu_name = open(os.path.join(dirname_pre, 'gpu_name.txt')).read().strip()
         except (IOError, OSError):
             warnings.warn('Could not open {} to get a human-readable '
-                          'GPU name.'.format(os.path.join(dirname, 'gpu_name.txt')))
+                          'GPU name.'.format(os.path.join(dirname_pre, 'gpu_name.txt')))
             gpu_name = 'GPU'
         machine_names.append(machine_name)
         gpu_names.append(gpu_name)
 
-    for monitor in [True, False]:
+    for monitor in [False]:
         monitor_str = '' if monitor else '_no_monitor'
         fig, axes = plt.subplots(2, 2, sharey='row', sharex='row',
                                  figsize=(6.33, 6.33*1.33))
         fig_gpu, axes_gpu = plt.subplots(2, 2, sharey='row', sharex='row',
                                          figsize=(6.33, 6.33*1.33))
+        fig_gpu_algos, axes_gpu_algos = plt.subplots(1, 2, sharey='row',
+                                                     figsize=(6.33, 6.33*0.666))
         for col, float_dtype in enumerate(['float64', 'float32']):
             precision = 'single precision' if float_dtype == 'float32' else 'double precision'
             for ax, title, fname in [(axes[1, col], 'COBAHH', 'benchmarks_COBAHH.txt'),
                                      (axes[0, col], 'Mbody', 'benchmarks_Mbody_example.txt')]:
-                benchmarks = [mean_and_std_fixed_time(load_benchmark(dirname, fname),
-                                                      monitor=monitor, float_dtype=float_dtype)
-                              for dirname in benchmark_dirs]
+                benchmarks_pre = [mean_and_std_fixed_time(load_benchmark(dirname, fname),
+                                                          monitor=monitor, float_dtype=float_dtype)
+                                  for dirname in benchmark_dirs_pre]
+                benchmarks_post = [mean_and_std_fixed_time(load_benchmark(dirname, fname),
+                                                           monitor=monitor, float_dtype=float_dtype)
+                                   for dirname in benchmark_dirs_post]
+
+                for benchmark_pre, benchmark_post in zip(benchmarks_pre, benchmarks_post):
+                    benchmark_pre['algorithm'] = 'pre'
+                    benchmark_post['algorithm'] = 'post'
+                benchmarks = [pd.concat([b1, b2]) for b1, b2 in zip(benchmarks_pre, benchmarks_post)]
 
                 plot_total_comparisons(benchmarks, machine_names, gpu_names,
                                        ax, title + ' – ' + precision,
@@ -190,28 +220,65 @@ if __name__ == '__main__':
 
             for ax, title, fname in [(axes_gpu[1, col], 'COBAHH', 'benchmarks_COBAHH.txt'),
                                      (axes_gpu[0, col], 'Mbody', 'benchmarks_Mbody_example.txt')]:
-                benchmarks = [mean_and_std_fixed_time(load_benchmark(dirname, fname),
-                                                      monitor=monitor,
-                                                      float_dtype=float_dtype)
-                              for dirname in benchmark_dirs]
+                benchmarks_pre = [mean_and_std_fixed_time(load_benchmark(dirname, fname),
+                                                          monitor=monitor, float_dtype=float_dtype)
+                                  for dirname in benchmark_dirs_pre]
+                benchmarks_post = [mean_and_std_fixed_time(load_benchmark(dirname, fname),
+                                                           monitor=monitor, float_dtype=float_dtype)
+                                   for dirname in benchmark_dirs_post]
+
+                for benchmark_pre, benchmark_post in zip(benchmarks_pre, benchmarks_post):
+                    benchmark_pre['algorithm'] = 'pre'
+                    benchmark_post['algorithm'] = 'post'
+                benchmarks = [pd.concat([b1, b2]) for b1, b2 in zip(benchmarks_pre, benchmarks_post)]
                 reference = mean_and_std_fixed_time(load_benchmark(reference_dir, fname),
                                                     monitor=monitor,
                                                     float_dtype=float_dtype)
-                reference24 = reference.loc[(reference['device'] == 'cpp_standalone') &
-                                            (reference['n_threads'] == 24)]
                 reference12 = reference.loc[(reference['device'] == 'cpp_standalone') &
                                            (reference['n_threads'] == 12)]
                 reference1 = reference.loc[(reference['device'] == 'cpp_standalone') &
                                            (reference['n_threads'] == 1)]
                 plot_total_comparisons_only_GPU(benchmarks, [reference1,
-                                                             reference12,
-                                                             reference24],
+                                                             reference12],
                                                 gpu_names,
                                                 ['CPU / 1 thread',
-                                                 'CPU / 12 thread',
-                                                 'CPU / 24 threads'],
+                                                 'CPU / 12 thread'],
                                                 ax, title + ' – ' + precision,
                                                 legend=(ax == axes_gpu[1, 0]))
+
+
+        float_dtype = 'float32'
+        for ax_detail, title, fname in [(axes_gpu_algos[1],
+                                         'COBAHH', 'benchmarks_COBAHH.txt'),
+                                        (axes_gpu_algos[0],
+                                         'Mbody', 'benchmarks_Mbody_example.txt')]:
+            benchmarks_pre = [mean_and_std_fixed_time(load_benchmark(dirname, fname),
+                                                      monitor=monitor, float_dtype=float_dtype)
+                              for dirname in benchmark_dirs_pre]
+            benchmarks_post = [mean_and_std_fixed_time(load_benchmark(dirname, fname),
+                                                       monitor=monitor, float_dtype=float_dtype)
+                               for dirname in benchmark_dirs_post]
+
+            for benchmark_pre, benchmark_post in zip(benchmarks_pre, benchmarks_post):
+                benchmark_pre['algorithm'] = 'pre'
+                benchmark_post['algorithm'] = 'post'
+            benchmarks = [pd.concat([b1, b2]) for b1, b2 in zip(benchmarks_pre, benchmarks_post)]
+            reference = mean_and_std_fixed_time(load_benchmark(reference_dir, fname),
+                                                monitor=monitor,
+                                                float_dtype=float_dtype)
+            reference12 = reference.loc[(reference['device'] == 'cpp_standalone') &
+                                       (reference['n_threads'] == 12)]
+            reference1 = reference.loc[(reference['device'] == 'cpp_standalone') &
+                                       (reference['n_threads'] == 1)]
+            plot_total_comparisons_only_GPU(benchmarks[:1], [reference1,
+                                                              reference12],
+                                            gpu_names[:1],
+                                            ['CPU / 1 thread',
+                                             'CPU / 12 thread'],
+                                            ax_detail, title + ' – ' + precision,
+                                            legend=(ax_detail == axes_gpu_algos[0]),
+                                            algorithm_details=True)
+
         fig.tight_layout()
         fig.savefig(os.path.join(target_dir,
                                  'runtime_comparison{}.png'.format(monitor_str)))
@@ -222,6 +289,11 @@ if __name__ == '__main__':
                                  'gpu_runtime_comparison{}.png'.format(monitor_str)))
         plt.close(fig_gpu)
 
+        fig_gpu_algos.tight_layout()
+        fig_gpu_algos.savefig(os.path.join(target_dir,
+                                           'gpu_runtime_comparison{}_algos.png'.format(monitor_str)))
+        plt.close(fig_gpu_algos)
+
         fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
                                                 figsize=(6.33, 6.33))
         for ax, title, fname in [(ax_right, 'COBAHH', 'benchmarks_COBAHH.txt'),
@@ -230,7 +302,7 @@ if __name__ == '__main__':
                 mean_and_std_fixed_time(load_benchmark(dirname, fname),
                                         monitor=False,
                                         float_dtype=float_dtype)
-                for dirname, float_dtypes in zip(benchmark_dirs, float_dtypes_per_benchmark)
+                for dirname, float_dtypes in zip(benchmark_dirs_pre, float_dtypes_per_benchmark)
                 for float_dtype in float_dtypes]
             reference = mean_and_std_fixed_time(
                 load_benchmark(reference_dir, fname),
