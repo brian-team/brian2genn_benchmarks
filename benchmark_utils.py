@@ -30,12 +30,17 @@ def prepare_benchmark(argv):
         config['monitor'] = sys.argv[5].lower() == 'true' or sys.argv[5] == '1'
         config['float_dtype'] = sys.argv[6]
         config['label'] = sys.argv[7]
+        config['paramode'] = sys.argv[8].lower()
+        config['kerneltiming'] = sys.argv[9].lower() == 'true' or sys.argv[9] == '1'
         config['debug'] = False
 
     if config['device'] == 'genn':
         prefs.devices.genn.auto_choose_device = False
         prefs.devices.genn.default_device = 0
-        prefs.devices.genn.synapse_span_type = 'PRESYNAPTIC'
+        if config['paramode'] == 'pre':
+            prefs.devices.genn.synapse_span_type = 'PRESYNAPTIC'
+        if config['kerneltiming']:
+            prefs.devices.genn.kernel_timing = True
         if config['threads'] > 0:
             warnings.warn('Brian2GeNN cannot run multi-threaded, setting '
                           'number of threads to 0')
@@ -105,13 +110,22 @@ def write_benchmark_results(name, config, neurons, synapses, took):
     if not os.path.exists(folder):
         os.mkdir(folder)
     with open('%s/benchmarks_%s.txt' % (folder, name), 'a') as f:
-        data = [config['device'], config['threads'], neurons, synapses,
+        data = [config['device'], config['paramode'], config['threads'], neurons, synapses,
                 config['runtime'] / second, with_monitor,
                 prefs.core.default_float_dtype.__name__, took]
         f.write('\t'.join('%s' % d for d in data) + '\t')
         with open('%s/results/benchmark.time' % directory, 'r') as bf:
+            outline= ''
             for line in bf:
                 line = line.strip()
-                line = '\t'.join(
-                    '%s' % item for item in line.split(' ')) + '\n'
-                f.write(line)
+                outline = outline + '\t'.join(
+                    '%s' % item for item in line.split(' '))
+        if config['kerneltiming']:
+            outline = outline + '\t'
+            with open('%s/test_output/test.time' % directory, 'r') as bf:
+                for line in bf:
+                    line = line.strip()
+                    outline = outline + '\t'.join(
+                        '%s' % item for item in line.split(' '))
+        outline= outline+'\n'
+        f.write(outline)

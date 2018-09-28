@@ -29,36 +29,40 @@ else
 fi
 
 for monitor in $MONITORS; do
-    for threads in 0 -1; do
-        for scaling in $SCALING; do
-            for float_dtype in float32 float64; do
-                for repeat in $(seq $N_REPEATS); do
-		    echo Repeat $repeat: python $1 $scaling genn $threads 1 $monitor $float_dtype $2
-		    python $1 $scaling genn $threads 1 $monitor $float_dtype $2
-		    rm -r GeNNworkspace
-                done
+    for para in pre post; do
+	for threads in 0 -1; do
+            for scaling in $SCALING; do
+		for float_dtype in float32 float64; do
+                    for repeat in $(seq $N_REPEATS); do
+			    echo Repeat $repeat: python $1 $scaling genn $threads 1 $monitor $float_dtype $2 $para 1
+			    python $1 $scaling genn $threads 1 $monitor $float_dtype $2 $para 1
+			    rm -r GeNNworkspace
+			done
+		    done
+		done
 	    done
-	done
-   done
+       done		
 done
 
 # The really long runs (don't run with GeNN CPU-only, etc.)
 for monitor in $MONITORS; do
-    for scaling in $SCALING_BIG; do
-        for float_dtype in float32 float64; do
-            for repeat in $(seq $N_REPEATS); do
-                echo Repeat $repeat: python $1 $scaling genn 0 1 $monitor $float_dtype $2
-                python $1 $scaling genn 0 1 $monitor $float_dtype $2
-		if [ "$BLOCKSIZE" == "1" ]; then
-		    cd GeNNworkspace
-		    echo "$GENN_PATH/lib/bin/genn-buildmodel.sh magicnetwork_model.cpp &> buildmodel.log"
-		    $GENN_PATH/lib/bin/genn-buildmodel.sh magicnetwork_model.cpp &> buildmodel.log
-		    cat buildmodel.log | grep "block size:" | tee > blocksizes
-		    cd ..
-		    python blocksize_util.py ${1%.py} $scaling $2
-		fi
-                rm -r GeNNworkspace
-            done
-        done
-    done
+    for para in pre post; do
+	for scaling in $SCALING_BIG; do
+            for float_dtype in float32 float64; do
+		for repeat in $(seq $N_REPEATS); do
+			echo Repeat $repeat: python $1 $scaling genn 0 1 $monitor $float_dtype $2 $para 1
+			python $1 $scaling genn 0 1 $monitor $float_dtype $2  $para 1
+			if [ "$BLOCKSIZE" == "1" ]; then
+			    cd GeNNworkspace
+			    echo "$GENN_PATH/lib/bin/genn-buildmodel.sh magicnetwork_model.cpp &> buildmodel.log"
+			    $GENN_PATH/lib/bin/genn-buildmodel.sh magicnetwork_model.cpp &> buildmodel.log
+			    cat buildmodel.log | grep "block size:" | tee > blocksizes
+			    cd ..
+			    python blocksize_util.py ${1%.py} $scaling $2
+			fi
+			rm -r GeNNworkspace
+		done
+	    done
+	done
+    done	    
 done
