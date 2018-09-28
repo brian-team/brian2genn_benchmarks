@@ -136,28 +136,43 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
         ax.legend(loc='upper left', frameon=True, edgecolor='none')
 
 
-
 def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark,
                                        labels, ax, title, legend=False):
     used_neuron_values = None
     for benchmark, label in zip(benchmarks, labels):
         benchmark = benchmark.loc[(benchmark['device'] == 'genn') &
                                   (benchmark['n_threads'] == 0)]
-        benchmark.sort_values(by='n_neurons')
+
+        # Merge the results from the two algorithms
+        merged = pd.concat([benchmark['n_neurons'],
+                            benchmark['total']['amin'],
+                            benchmark['duration_run_rel']['amin']],
+                           axis=1)
+        print(len(merged))
+        merged.columns = ['n_neurons', 'total', 'duration_run_rel']
+        grouped = merged.groupby(['n_neurons'])
+        benchmark = grouped.agg([np.min]).reset_index()
+        print(len(benchmark))
         if used_neuron_values is None:
             used_neuron_values = benchmark['n_neurons'].values
-        reference_benchmark.sort_values(by='n_neurons')
-        variable_time_gpu = benchmark['duration_run']['amin'].values
+        reference_benchmark = reference_benchmark.sort_values(by='n_neurons')
+        variable_time_gpu = benchmark['duration_run_rel']['amin'].values
         fixed_time_gpu = benchmark['total']['amin'].values - variable_time_gpu
-        variable_time_cpu = reference_benchmark['duration_run']['amin'].values
+        variable_time_cpu = reference_benchmark['duration_run_rel']['amin'].values
         fixed_time_cpu = reference_benchmark['total']['amin'].values - variable_time_cpu
         # Check assumptions
+        print(label)
+        print(variable_time_cpu)
+        print(variable_time_gpu)
+        print(fixed_time_cpu)
+        print(fixed_time_gpu)
+        print()
         necessary = (fixed_time_cpu - fixed_time_gpu)/(variable_time_gpu - variable_time_cpu)
         # If GPU takes longer per simulated second, no way to get a faster sim
         necessary[variable_time_gpu > variable_time_cpu] = np.NaN
         # Fixed time is already lower for GPU
         necessary[fixed_time_gpu < fixed_time_cpu] = 0
-        ax.plot(np.log(benchmark['n_neurons']).values, necessary, 'o-',
+        ax.plot(np.log(benchmark['n_neurons']).unique(), necessary, 'o-',
                 mec='white', label=label)
 
     # Make sure we show the xtick label for the highest value
@@ -191,8 +206,8 @@ if __name__ == '__main__':
                            'benchmark_results/2018-09-21_inf900777',
                            'benchmark_results/2018-09-25_jwc09n012/']
 
-    float_dtypes_per_benchmark = [('float64', ),
-                                  ('float32', 'float64'),
+    float_dtypes_per_benchmark = [('float32', 'float64'),
+                                  ('float64', ),
                                   ('float64', )]
     reference_dir = 'benchmark_results/2018-09-13_c6a4ae8d7e8b'
     machine_names = []
@@ -323,12 +338,19 @@ if __name__ == '__main__':
                                                 figsize=(6.33, 6.33))
         for ax, title, fname in [(ax_right, 'COBAHH', 'benchmarks_COBAHH.txt'),
                                  (ax_left, 'Mbody', 'benchmarks_Mbody_example.txt')]:
-            benchmarks = [
-                mean_and_std_fixed_time(load_benchmark(dirname, fname),
-                                        monitor=False,
-                                        float_dtype=float_dtype)
-                for dirname, float_dtypes in zip(benchmark_dirs_pre, float_dtypes_per_benchmark)
-                for float_dtype in float_dtypes]
+            benchmarks_pre = [mean_and_std_fixed_time(load_benchmark(dirname, fname),
+                                                      monitor=monitor, float_dtype=float_dtype)
+                              for dirname, float_dtypes in zip(benchmark_dirs_pre, float_dtypes_per_benchmark)
+                              for float_dtype in float_dtypes]
+            benchmarks_post = [mean_and_std_fixed_time(load_benchmark(dirname, fname),
+                                                      monitor=monitor, float_dtype=float_dtype)
+                              for dirname, float_dtypes in zip(benchmark_dirs_post, float_dtypes_per_benchmark)
+                              for float_dtype in float_dtypes]
+
+            for benchmark_pre, benchmark_post in zip(benchmarks_pre, benchmarks_post):
+                benchmark_pre['algorithm'] = 'pre'
+                benchmark_post['algorithm'] = 'post'
+            benchmarks = [pd.concat([b1, b2]) for b1, b2 in zip(benchmarks_pre, benchmarks_post)]
             reference = mean_and_std_fixed_time(
                 load_benchmark(reference_dir, fname),
                 monitor=False,
