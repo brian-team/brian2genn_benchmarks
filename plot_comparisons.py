@@ -148,11 +148,9 @@ def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark,
                             benchmark['total']['amin'],
                             benchmark['duration_run_rel']['amin']],
                            axis=1)
-        print(len(merged))
         merged.columns = ['n_neurons', 'total', 'duration_run_rel']
         grouped = merged.groupby(['n_neurons'])
         benchmark = grouped.agg([np.min]).reset_index()
-        print(len(benchmark))
         if used_neuron_values is None:
             used_neuron_values = benchmark['n_neurons'].values
         reference_benchmark = reference_benchmark.sort_values(by='n_neurons')
@@ -161,12 +159,6 @@ def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark,
         variable_time_cpu = reference_benchmark['duration_run_rel']['amin'].values
         fixed_time_cpu = reference_benchmark['total']['amin'].values - variable_time_cpu
         # Check assumptions
-        print(label)
-        print(variable_time_cpu)
-        print(variable_time_gpu)
-        print(fixed_time_cpu)
-        print(fixed_time_gpu)
-        print()
         necessary = (fixed_time_cpu - fixed_time_gpu)/(variable_time_gpu - variable_time_cpu)
         # If GPU takes longer per simulated second, no way to get a faster sim
         necessary[variable_time_gpu > variable_time_cpu] = np.NaN
