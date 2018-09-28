@@ -56,17 +56,22 @@ def plot_total_comparisons(benchmarks, machine_names, GPU_names, ax, title, lege
 
 def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
                                     reference_labels, ax, title, legend=False,
-                                    algorithm_details=False):
+                                    algorithm_details=False, select_benchmarks=None):
     colors = mpl.cm.tab10.colors
+    if select_benchmarks is None:
+        select_benchmarks = np.arange(len(benchmarks))
+    ref_handles = []
     for idx, (reference_benchmark, reference_label) in enumerate(zip(reference_benchmarks, reference_labels)):
         c = (0.3*(idx+1), 0.3*(idx+1), 0.3*(idx+1))
-        ax.plot(np.log(reference_benchmark['n_neurons'].values),
-                reference_benchmark['duration_run_rel']['amin'],
-                '-', label=reference_label, color=c)
-
+        ref_handles.append(ax.plot(np.log(reference_benchmark['n_neurons'].values),
+                                   reference_benchmark['duration_run_rel']['amin'],
+                                   '-', label=reference_label, color=c)[0])
+    algo_handles = []
     for idx, (benchmark, machine_name, GPU_name) in enumerate(zip(benchmarks,
                                                                   machine_names,
                                                                   GPU_names)):
+        if idx not in select_benchmarks:
+            continue
         # We do the log scale for the x axis manually -- easier to get the ticks/labels right
         # Only use Brian2GeNN GPU and maximum number of threads
         max_threads = benchmark.loc[benchmark['device'] == 'cpp_standalone']['n_threads'].max()
@@ -79,22 +84,22 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
 
         name = GPU_name # '{} – {}'.format(machine_name, GPU_name)
         if algorithm_details:
-            ax.plot(np.log(gpu_results_pre['n_neurons'].values),
-                    gpu_results_pre['duration_run_rel']['amin'],
-                    ':', color=colors[idx], label='parallel over pre')
-            ax.plot(np.log(gpu_results_post['n_neurons'].values),
-                    gpu_results_post['duration_run_rel']['amin'],
-                    '--', color=colors[idx], label='parallel over post')
+            algo_handles.append(ax.plot(np.log(gpu_results_pre['n_neurons'].values),
+                                        gpu_results_pre['duration_run_rel']['amin'],
+                                        ':', color=colors[idx], label='parallel over pre')[0])
+            algo_handles.append(ax.plot(np.log(gpu_results_post['n_neurons'].values),
+                                        gpu_results_post['duration_run_rel']['amin'],
+                                        '--', color=colors[idx], label='parallel over post')[0])
         if algorithm_details:
             style, label, mec, fc = 'o', 'best', colors[idx], 'none'
         else:
             style, label, mec, fc = 'o-', name, 'white', colors[idx]
 
-        ax.plot(np.log(gpu_results_pre['n_neurons'].values),
-                np.amin(np.vstack([gpu_results_pre['duration_run_rel']['amin'],
-                                   gpu_results_post['duration_run_rel']['amin']]),
-                        axis=0),
-                style, label=label, color=fc, mec=mec)
+        algo_handles.append(ax.plot(np.log(gpu_results_pre['n_neurons'].values),
+                                    np.amin(np.vstack([gpu_results_pre['duration_run_rel']['amin'],
+                                                       gpu_results_post['duration_run_rel']['amin']]),
+                                            axis=0),
+                                    style, label=label, color=fc, mec=mec)[0])
         used_n_neuron_values = benchmark['n_neurons'].unique()
     # Make sure we show the xtick label for the highest value
     if len(used_n_neuron_values) % 2 == 0:
@@ -111,8 +116,25 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
            ylabel='Simulation time (relative to biological time)',
            yscale='log',
            title=title)
-    if legend:
+    if algorithm_details:
+        from matplotlib.lines import Line2D
+        # Manually put a legend
+        if legend:
+            # legend for the CPUs/GPUs
+            lines = ref_handles + [Line2D([0], [0], color=colors[idx], lw=2)
+                                   for idx in select_benchmarks]
+            labels = reference_labels + [GPU_names[idx] for idx in select_benchmarks]
+            ax.legend(lines, labels, loc='upper left',
+                      frameon=True, edgecolor='none')
+        else:
+            labels = (['', '', '']*(len(select_benchmarks) - 1) +
+                      ['parallel over pre', 'parallel over post', 'best'])
+            ax.legend(algo_handles, labels, loc='upper left',
+                      frameon=True, edgecolor='none', ncol=len(select_benchmarks),
+                      columnspacing=0.)
+    elif legend:
         ax.legend(loc='upper left', frameon=True, edgecolor='none')
+
 
 
 def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark,
@@ -162,10 +184,10 @@ if __name__ == '__main__':
     target_dir = 'benchmark_results/comparisons'
     if not os.path.exists(target_dir):
         os.mkdir(target_dir)
-    benchmark_dirs_pre = ['benchmark_results/2018-09-13_c6a4ae8d7e8b',
+    benchmark_dirs_post = ['benchmark_results/2018-09-13_c6a4ae8d7e8b',
                           'benchmark_results/2018-09-13_inf900777/',
                           'benchmark_results/2018-09-14_jwc09n009/']
-    benchmark_dirs_post = ['benchmark_results/2018-09-24_c3594791990b',
+    benchmark_dirs_pre = ['benchmark_results/2018-09-24_c3594791990b',
                            'benchmark_results/2018-09-21_inf900777',
                            'benchmark_results/2018-09-25_jwc09n012/']
 
@@ -272,14 +294,15 @@ if __name__ == '__main__':
                                        (reference['n_threads'] == 12)]
             reference1 = reference.loc[(reference['device'] == 'cpp_standalone') &
                                        (reference['n_threads'] == 1)]
-            plot_total_comparisons_only_GPU(benchmarks[:1], [reference1,
+            plot_total_comparisons_only_GPU(benchmarks, [reference1,
                                                               reference12],
-                                            gpu_names[:1],
+                                            gpu_names,
                                             ['CPU / 1 thread',
                                              'CPU / 12 thread'],
                                             ax_detail, title + ' – ' + precision,
                                             legend=(ax_detail == axes_gpu_algos[0]),
-                                            algorithm_details=True)
+                                            algorithm_details=True,
+                                            select_benchmarks=[0, 2])
 
         fig.tight_layout()
         fig.savefig(os.path.join(target_dir,
