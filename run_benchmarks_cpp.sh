@@ -38,8 +38,8 @@ for monitor in $MONITORS; do
         for scaling in $SCALING; do
             for float_dtype in float32 float64; do
                 for repeat in $(seq $N_REPEATS); do
-                    echo Repeat $repeat: python $1 $scaling cpp_standalone $threads 1 $monitor $float_dtype $2
-                    python $1 $scaling cpp_standalone $threads 1 $monitor $float_dtype $2
+                    echo Repeat $repeat: python $1 $scaling cpp_standalone $threads 1 $monitor $float_dtype $2 pre False
+                    python $1 $scaling cpp_standalone $threads 1 $monitor $float_dtype $2 pre False
                     rm -r output
                done
             done
@@ -53,8 +53,8 @@ for monitor in $MONITORS; do
         for scaling in $SCALING_BIG; do
             for float_dtype in float32 float64; do
                 for repeat in $(seq $N_REPEATS); do
-                    echo Repeat $repeat: python $1 $scaling cpp_standalone $threads 1 $monitor $float_dtype $2
-                    python $1 $scaling cpp_standalone $threads 1 $monitor $float_dtype $2
+                    echo Repeat $repeat: python $1 $scaling cpp_standalone $threads 1 $monitor $float_dtype $2 pre False
+                    python $1 $scaling cpp_standalone $threads 1 $monitor $float_dtype $2 pre False
                     rm -r output
                 done
             done
