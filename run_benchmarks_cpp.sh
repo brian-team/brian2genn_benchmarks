@@ -23,19 +23,19 @@ else
         THREADS="1 $N_CPUS"
         THREADS_BIG="$N_CPUS"
     fi
-    SCALING="0.05 0.1 0.25 0.5 1 2 4 8 16 32"
+    SCALING="0.05 0.1 0.25 0.5 1 2 4 8 16 32 64"
     MONITORS="false"
     if [ "$1" == "COBAHH.py" ]; then
         if [ "$3" == "short" ]; then
-            SCALING_BIG="64 128"
+            SCALING_BIG="128"
         else
-            SCALING_BIG="64 128 256 512"
+            SCALING_BIG="128 256 512"
         fi
     else
         if [ "$3" == "short" ]; then
-            SCALING_BIG="64 128 256 512 1024 2048 4096"
+            SCALING_BIG="128 256 512 1024 2048 4096"
         else
-            SCALING_BIG="64 128 256 512 1024 2048 4096 8192"
+            SCALING_BIG="128 256 512 1024 2048 4096 8192"
         fi
     fi
     N_REPEATS=3
