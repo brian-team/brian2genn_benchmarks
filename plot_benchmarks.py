@@ -20,14 +20,16 @@ directory = None  # replace this or pass the directory as a command line arg
 def load_benchmark(directory, fname):
     full_fname = os.path.join(directory, fname)
     benchmarks = pd.read_csv(full_fname, sep=r'\s+', header=None, index_col=None,
-                             names=['device', 'n_threads', 'n_neurons', 'n_synapses',
+                             names=['device', 'para_mode', 'n_threads', 'n_neurons', 'n_synapses',
                                     'runtime', 'with_monitor', 'float_dtype',
                                     'total',
                                     't_after_load',
                                     't_before_synapses', 't_after_synapses',
                                     't_after_init', 't_before_run',
-                                    't_after_run', 't_before_write', 't_after_write'],
+                                    't_after_run', 't_before_write', 't_after_write',
+                                    'genn_neuron', 'genn_synapse', 'genn_total'],
                              dtype={'device': 'category',
+                                    'para_mode': 'category',
                                     'with_monitor': 'bool',
                                     'float_dtype': 'category',
                                     'runtime': 'float64',

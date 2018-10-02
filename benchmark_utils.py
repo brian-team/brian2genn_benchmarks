@@ -1,5 +1,6 @@
 import warnings
 import os
+import sys
 
 from brian2 import *
 
@@ -30,11 +31,20 @@ def prepare_benchmark(argv):
         config['monitor'] = sys.argv[5].lower() == 'true' or sys.argv[5] == '1'
         config['float_dtype'] = sys.argv[6]
         config['label'] = sys.argv[7]
+        if len(sys.argv) > 8:
+            config['paramode'] = sys.argv[8].lower()
+        else:
+            config['paramode'] = 'N/A'
+        config['kerneltiming'] = len(sys.argv) > 9 and (sys.argv[9].lower() == 'true' or sys.argv[9] == '1')
         config['debug'] = False
 
     if config['device'] == 'genn':
         prefs.devices.genn.auto_choose_device = False
         prefs.devices.genn.default_device = 0
+        if config['paramode'] == 'pre':
+            prefs.devices.genn.synapse_span_type = 'PRESYNAPTIC'
+        if config['kerneltiming']:
+            prefs.devices.genn.kernel_timing = True
         if config['threads'] > 0:
             warnings.warn('Brian2GeNN cannot run multi-threaded, setting '
                           'number of threads to 0')
@@ -104,7 +114,7 @@ def write_benchmark_results(name, config, neurons, synapses, took):
     if not os.path.exists(folder):
         os.mkdir(folder)
     with open('%s/benchmarks_%s.txt' % (folder, name), 'a') as f:
-        data = [config['device'], config['threads'], neurons, synapses,
+        data = [config['device'], config['paramode'], config['threads'], neurons, synapses,
                 config['runtime'] / second, with_monitor,
                 prefs.core.default_float_dtype.__name__, took]
         f.write('\t'.join('%s' % d for d in data) + '\t')
