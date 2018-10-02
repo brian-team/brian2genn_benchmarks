@@ -14,6 +14,7 @@ if [ "$3" == "test" ]; then
     SCALING_BIG="32"
     MONITORS="false"
     N_REPEATS=1
+    RUNTIME=1
 else
     if [ $N_CPUS -ne $N_CPUS_LOGICAL ]; then
         THREADS="1 $N_CPUS $N_CPUS_LOGICAL"
@@ -38,9 +39,9 @@ else
         fi
     fi
     N_REPEATS=3
+    RUNTIME=10
 fi
 
-RUNTIME=10
 for monitor in $MONITORS; do
     for threads in $THREADS; do
         for scaling in $SCALING; do
