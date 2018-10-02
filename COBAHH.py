@@ -44,8 +44,6 @@ taui = 10 * ms
 # Reversal potentials
 Ee = 0 * mV
 Ei = -80 * mV
-we = 0 * nS  # excitatory synaptic weight
-wi = 0 * nS  # inhibitory synaptic weight
 
 # The model
 eqs = Equations('''
@@ -73,8 +71,8 @@ P = NeuronGroup(int(4000 * config['scale']), model=eqs,
                 method='exponential_euler')
 Pe = P[:int(3200 * config['scale'])]
 Pi = P[int(3200 * config['scale']):]
-Ce = Synapses(Pe, P, on_pre='ge+=we')
-Ci = Synapses(Pi, P, on_pre='gi+=wi')
+Ce = Synapses(Pe, P, 'we : siemens (constant)', on_pre='ge+=we')
+Ci = Synapses(Pi, P, 'wi : siemens (constant)', on_pre='gi+=wi')
 bu.insert_benchmark_point()
 Ce.connect(p=1000./len(P))
 Ci.connect(p=1000./len(P))
@@ -83,6 +81,8 @@ bu.insert_benchmark_point()
 P.v = 'El + (randn() * 5 - 5)*mV'
 P.ge = '(randn() * 1.5 + 4) * 10.*nS'
 P.gi = '(randn() * 12 + 20) * 10.*nS'
+Ce.we = 'rand() * 1e-9*nS'
+Ci.wi = 'rand() * 1e-9*nS'
 bu.insert_benchmark_point()
 
 # Record 1% of all neurons
