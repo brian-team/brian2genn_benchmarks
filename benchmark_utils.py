@@ -4,7 +4,7 @@ import sys
 
 from brian2 import *
 
-TIME_DIFF = 'std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - _benchmark_start).count()'
+TIME_DIFF = 'std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - _benchmark_start).count()'
 NOTE_TIME = '_benchmark_file << {timediff} << " ";'.format(timediff=TIME_DIFF)
 
 

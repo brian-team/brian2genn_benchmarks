@@ -31,38 +31,46 @@ def load_benchmark(directory, fname):
                              dtype={'device': 'category',
                                     'para_mode': 'category',
                                     'with_monitor': 'bool',
+                                    't_after_load': 'int64',
+                                    't_before_synapses': 'int64',
+                                    't_after_synapses': 'int64',
+                                    't_after_init': 'int64',
+                                    't_before_run': 'int64',
+                                    't_after_run': 'int64',
+                                    't_before_write': 'int64',
+                                    't_after_write': 'int64',
                                     'float_dtype': 'category',
                                     'runtime': 'float64',
                                     'total': 'float64'})
-    # The times in the benchmark file are the full times (in milliseconds) that
+    # The times in the benchmark file are the full times (in microseconds) that
     # have elapsed since the start of the simulation.
     # codegen & build time is the time in the total time that was not measured by GeNN
-    benchmarks['duration_compile'] = benchmarks['total'] - benchmarks['t_after_write'] / 1000.  # t_after_write is last measured time point
+    benchmarks['duration_compile'] = benchmarks['total'] - benchmarks['t_after_write'] / 1e6  # t_after_write is last measured time point
 
     # Prepare time includes allocating memory and loading static arrays from disk
     # In GeNN, this also includes things like converting arrays to GeNN's format
     benchmarks['duration_before'] = (benchmarks['t_after_load'] +
                                      (benchmarks['t_before_run'] -
-                                      benchmarks['t_after_init'])) / 1000.
+                                      benchmarks['t_after_init'])) / 1e6
 
     # Synapse creation
     benchmarks['duration_synapses'] = (benchmarks['t_after_synapses'] -
-                                       benchmarks['t_before_synapses']) / 1000.
+                                       benchmarks['t_before_synapses']) / 1e6
 
     # Neuronal + synaptic variable initialization
     benchmarks['duration_init'] = (benchmarks['t_after_init'] -
-                                   benchmarks['t_after_synapses']) / 1000.
+                                   benchmarks['t_after_synapses']) / 1e6
 
     # The actual simulation time
     benchmarks['duration_run'] = (benchmarks['t_after_run'] -
-                                  benchmarks['t_before_run']) / 1000.
+                                  benchmarks['t_before_run']) / 1e6
     # Simulation time relative to realtime
     benchmarks['duration_run_rel'] = benchmarks['duration_run']/benchmarks['runtime']
 
     # The time after the simulation, most importantly to write values to disk
     # but for Brian2GeNN also conversion from GeNN data structures to Brian format
     benchmarks['duration_after'] = (benchmarks['t_after_write'] -
-                                    benchmarks['t_after_run']) / 1000.
+                                    benchmarks['t_after_run']) / 1e6
 
     return benchmarks
 
