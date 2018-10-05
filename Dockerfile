@@ -31,7 +31,7 @@ WORKDIR /root
 
 RUN conda install -c conda-forge --only-deps --yes brian2
 RUN pip install https://github.com/brian-team/brian2/archive/master.zip
-RUN pip install https://github.com/brian-team/brian2genn/archive/expose_blocksize_prefs.zip
+RUN pip install https://github.com/brian-team/brian2genn/archive/master.zip
 RUN git clone https://github.com/genn-team/genn
 
 ENV GENN_PATH=/root/genn
