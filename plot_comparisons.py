@@ -171,7 +171,7 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
 
 def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark,
                                        labels, ax, title, legend=False):
-    used_neuron_values = None
+    used_neuron_values = set()
     # Make sure that the runtime was the same for all runs with the same
     # condition
     assert all(reference_benchmark['runtime']['std'] == 0)
@@ -185,34 +185,35 @@ def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark,
         merged = pd.concat([benchmark['n_neurons'],
                             benchmark['total']['amin'],
                             benchmark['duration_run_rel']['amin'],
-                            benchmark['runtime']['amin']],
+                            benchmark['duration_run']['amin']],
                            axis=1)
-        merged.columns = ['n_neurons', 'total', 'duration_run_rel', 'runtime']
+        merged.columns = ['n_neurons', 'total', 'duration_run_rel', 'duration_run']
         grouped = merged.groupby(['n_neurons'])
         benchmark = grouped.agg([np.min]).reset_index()
-        if used_neuron_values is None:
-            used_neuron_values = benchmark['n_neurons'].values
+        used_neuron_values |= set(benchmark['n_neurons'].values)
         benchmark = benchmark.sort_values(by='n_neurons')
         reference_benchmark = reference_benchmark.sort_values(by='n_neurons')
         # Only use those values where we have both kind of results
         available_sizes = set(benchmark['n_neurons'].unique()) & set(reference_benchmark['n_neurons'].unique())
         if len(set(benchmark['n_neurons'].unique()) - available_sizes):
-            print('Benchmark {}/{} has no results for sizes {} on the GPU'.format(title, label, set(benchmark['n_neurons'].unique()) - available_sizes))
+            print('Benchmark {}/{} has no results for sizes {} on the CPU'.format(title, label, set(benchmark['n_neurons'].unique()) - available_sizes))
         if len(set(reference_benchmark['n_neurons'].unique()) - available_sizes):
-            print('Benchmark {}/{} has no results for sizes {} on the CPU'.format(
+            print('Benchmark {}/{} has no results for sizes {} on the GPU'.format(
                 title, label, set(reference_benchmark['n_neurons'].unique()) - available_sizes))
         benchmark = benchmark.loc[benchmark['n_neurons'].isin(available_sizes)]
-        reference_benchmark = reference_benchmark.loc[reference_benchmark['n_neurons'].isin(available_sizes)]
+        reference_benchmark_subset = reference_benchmark.loc[reference_benchmark['n_neurons'].isin(available_sizes)]
         variable_time_gpu = benchmark['duration_run_rel']['amin'].values
-        fixed_time_gpu = benchmark['total']['amin'].values - variable_time_gpu*benchmark['runtime']['amin'].values
-        variable_time_cpu = reference_benchmark['duration_run_rel']['amin'].values
-        fixed_time_cpu = reference_benchmark['total']['amin'].values - variable_time_cpu*reference_benchmark['runtime']['amin'].values
+        fixed_time_gpu = benchmark['total']['amin'].values - benchmark['duration_run']['amin'].values
+        variable_time_cpu = reference_benchmark_subset['duration_run_rel']['amin'].values
+        fixed_time_cpu = reference_benchmark_subset['total']['amin'].values - reference_benchmark_subset['duration_run']['amin'].values
         # Check assumptions
         necessary = (fixed_time_cpu - fixed_time_gpu)/(variable_time_gpu - variable_time_cpu)
         # If GPU takes longer per simulated second, no way to get a faster sim
         necessary[variable_time_gpu > variable_time_cpu] = np.NaN
         # Fixed time is already lower for GPU
         necessary[fixed_time_gpu < fixed_time_cpu] = 0
+        if any(fixed_time_gpu < fixed_time_cpu):
+            print('Fixed time on GPU is lower for', label)
         ax.plot(np.log(benchmark['n_neurons']).unique(), necessary, 'o-',
                 mec='white', label=label)
 
@@ -221,8 +222,8 @@ def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark,
         start = 1
     else:
         start = 0
-
-    ax.set_xticklabels(sorted(used_neuron_values)[start::2], rotation=45)
+    used_neuron_values = np.array(sorted(used_neuron_values))
+    ax.set_xticklabels(used_neuron_values[start::2], rotation=45)
     ax.grid(b=True, which='major', color='#e0e0e0', linestyle='-',
             linewidth=1.5)
     ax.grid(b=True, which='minor', color='#e0e0e0', linestyle='-',
@@ -240,12 +241,14 @@ if __name__ == '__main__':
     target_dir = 'benchmark_results/comparisons'
     if not os.path.exists(target_dir):
         os.mkdir(target_dir)
-    benchmark_dirs = ['benchmark_results/2018-10-02_f152b85d2726',
+    benchmark_dirs = ['benchmark_results/2018-10-05_vuvuzela',
                       'benchmark_results/2018-10-02_inf900777',
+                      'benchmark_results/2018-10-02_f152b85d2726',
                       'benchmark_results/2018-10-04_jwc09n012']
 
     float_dtypes_per_benchmark = [('float32', ),
                                   ('float64', ),
+                                  ('float32', ),
                                   ('float64', )]
     reference_dir = 'benchmark_results/2018-10-02_f152b85d2726'
     machine_names = []
@@ -305,7 +308,7 @@ if __name__ == '__main__':
                                             ['CPU / 1 thread',
                                              'CPU / 24 threads'],
                                             ax, title + ' – ' + precision,
-                                            legend=(ax == axes_gpu[1, 0]))
+                                            legend=(ax == axes_gpu[1, 1]))
 
     fig.tight_layout()
     fig.savefig(os.path.join(target_dir,
