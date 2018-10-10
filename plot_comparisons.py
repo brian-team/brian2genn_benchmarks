@@ -236,9 +236,9 @@ if __name__ == '__main__':
 
     monitor_str = '_no_monitor'
     fig, axes = plt.subplots(2, 2, sharey='row', sharex='row',
-                             figsize=(6.33, 6.33*1.2))
+                             figsize=(6.33, 6.33*1))
     fig_gpu, axes_gpu = plt.subplots(2, 2, sharey='row', sharex='row',
-                                     figsize=(6.33, 6.33*1.2))
+                                     figsize=(6.33, 6.33*1))
 
     for col, float_dtype in enumerate(['float64', 'float32']):
         precision = 'single precision' if float_dtype == 'float32' else 'double precision'
@@ -285,7 +285,7 @@ if __name__ == '__main__':
     plt.close(fig_gpu)
 
     fig_gpu_algos, axes_gpu_algos = plt.subplots(1, 2, sharey='row',
-                                                 figsize=(6.33, 6.33*0.666))
+                                                 figsize=(6.33, 6.33*0.5))
     float_dtype = 'float32'
     for ax_detail, title, fname in [(axes_gpu_algos[1],
                                      'COBAHH', 'benchmarks_COBAHH.txt'),
@@ -319,7 +319,7 @@ if __name__ == '__main__':
     plt.close(fig_gpu_algos)
 
     fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
-                                            figsize=(6.33, 6.33*0.666))
+                                            figsize=(6.33, 6.33*0.5))
     for ax, title, fname in [(ax_right, 'COBAHH', 'benchmarks_COBAHH.txt'),
                              (ax_left, 'Mbody', 'benchmarks_Mbody_example.txt')]:
         benchmarks = [mean_and_std_fixed_time(load_benchmark(dirname, fname),
