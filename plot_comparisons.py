@@ -1,5 +1,6 @@
 # coding=utf-8
 from __future__ import unicode_literals
+from __future__ import print_function
 
 import os
 import sys
@@ -66,22 +67,38 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
         ref_handles.append(ax.plot(np.log(reference_benchmark['n_neurons'].values),
                                    reference_benchmark['duration_run_rel']['amin'],
                                    '-', label=reference_label, color=c)[0])
+    ref_sizes = [reference_benchmark['n_neurons'].values[-1] for
+                 reference_benchmark in reference_benchmarks]
+    ref_sizes.extend([reference_benchmark['n_neurons'].values[-2] for reference_benchmark in reference_benchmarks])
+    ref_sizes.extend([reference_benchmark['n_neurons'].values[-3] for reference_benchmark in reference_benchmarks])
+    ref_sizes = sorted(ref_sizes)
+    compare_sizes = []
+    compare_times = []
+    compare_labels = []
+    for ref_size in ref_sizes:
+        for reference_benchmark, reference_label in zip(reference_benchmarks, reference_labels):
+            if ref_size in reference_benchmark['n_neurons'].values:
+                ref_time = reference_benchmark.loc[reference_benchmark['n_neurons'] == ref_size]['duration_run_rel']['amin'].values
+                assert len(ref_time) == 1
+                compare_times.append(ref_time[0])
+                compare_labels.append(reference_label + '({} neurons)'.format(ref_size))
+                compare_sizes.append(ref_size)
+
+    speedups = []
     algo_handles = []
     for idx, (benchmark, machine_name, GPU_name) in enumerate(zip(benchmarks,
                                                                   machine_names,
                                                                   GPU_names)):
         if idx not in select_benchmarks:
             continue
-        # We do the log scale for the x axis manually -- easier to get the ticks/labels right
-        # Only use Brian2GeNN GPU and maximum number of threads
-        max_threads = benchmark.loc[benchmark['device'] == 'cpp_standalone']['n_threads'].max()
         gpu_results_pre = benchmark.loc[(benchmark['device'] == 'genn') &
                                         (benchmark['n_threads'] == 0) &
                                         (benchmark['algorithm'] == 'pre')]
         gpu_results_post = benchmark.loc[(benchmark['device'] == 'genn') &
                                          (benchmark['n_threads'] == 0) &
                                          (benchmark['algorithm'] == 'post')]
-
+        gpu_results_pre = gpu_results_pre.sort_values(by='n_neurons')
+        gpu_results_post = gpu_results_post.sort_values(by='n_neurons')
         name = GPU_name # '{} – {}'.format(machine_name, GPU_name)
         if algorithm_details:
             algo_handles.append(ax.plot(np.log(gpu_results_pre['n_neurons'].values),
@@ -95,12 +112,28 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
         else:
             style, label, mec, fc = 'o-', name, 'white', colors[idx]
 
+        gpu_results = np.amin(np.vstack([gpu_results_pre['duration_run_rel']['amin'].values,
+                                         gpu_results_post['duration_run_rel']['amin'].values]), axis=0)
         algo_handles.append(ax.plot(np.log(gpu_results_pre['n_neurons'].values),
-                                    np.amin(np.vstack([gpu_results_pre['duration_run_rel']['amin'].values,
-                                                       gpu_results_post['duration_run_rel']['amin'].values]),
-                                            axis=0),
+                                    gpu_results,
                                     style, label=label, color=fc, mec=mec)[0])
         used_n_neuron_values = benchmark['n_neurons'].unique()
+        this_speedup = []
+        for compare_size, compare_time in zip(compare_sizes, compare_times):
+            if compare_size in gpu_results_pre['n_neurons'].values:
+                idx = np.nonzero(gpu_results_pre['n_neurons'] == compare_size)[0]
+                this_speedup.append((compare_time/gpu_results[idx]).item())
+            else:
+                this_speedup.append(np.nan)
+        speedups.append(this_speedup)
+
+    if not algorithm_details:
+        # Print out some values for the achieved speed up
+        print('{}, speedups compared to: '.format(title))
+        print(', '.join(compare_labels))
+        for speedup, gpu in zip(speedups, gpu_names):
+            print (gpu + ': ' + ', '.join('{:.1f}×'.format(s) for s in speedup))
+        print()
     # Make sure we show the xtick label for the highest value
     if len(used_n_neuron_values) % 2 == 0:
         start = 1
