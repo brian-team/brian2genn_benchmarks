@@ -236,9 +236,9 @@ if __name__ == '__main__':
 
     monitor_str = '_no_monitor'
     fig, axes = plt.subplots(2, 2, sharey='row', sharex='row',
-                             figsize=(6.33, 6.33*1.33))
+                             figsize=(6.33, 6.33*1.2))
     fig_gpu, axes_gpu = plt.subplots(2, 2, sharey='row', sharex='row',
-                                     figsize=(6.33, 6.33*1.33))
+                                     figsize=(6.33, 6.33*1.2))
 
     for col, float_dtype in enumerate(['float64', 'float32']):
         precision = 'single precision' if float_dtype == 'float32' else 'double precision'
