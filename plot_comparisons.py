@@ -128,7 +128,7 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
                       frameon=True, edgecolor='none')
         else:
             labels = (['', '', '']*(len(select_benchmarks) - 1) +
-                      ['“pre” strategy', '“post”', 'best strategy'])
+                      ['“pre” strategy', '“post” strategy', 'best strategy'])
             ax.legend(algo_handles, labels, loc='upper left',
                       frameon=True, edgecolor='none', ncol=len(select_benchmarks),
                       columnspacing=0.)
