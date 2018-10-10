@@ -211,7 +211,7 @@ if __name__ == '__main__':
                       'benchmark_results/2018-10-02_inf900777',
                       'benchmark_results/2018-10-04_jwc09n012']
 
-    float_dtypes_per_benchmark = [('float32', 'float64'),
+    float_dtypes_per_benchmark = [('float32', ),
                                   ('float64', ),
                                   ('float64', )]
     reference_dir = 'benchmark_results/2018-10-02_f152b85d2726'
