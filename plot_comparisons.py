@@ -139,35 +139,41 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
 def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark,
                                        labels, ax, title, legend=False):
     used_neuron_values = None
+    # Make sure that the runtime was the same for all runs with the same
+    # condition
+    assert all(reference_benchmark['runtime']['std'] == 0)
     for benchmark, label in zip(benchmarks, labels):
         benchmark = benchmark.loc[(benchmark['device'] == 'genn') &
                                   (benchmark['n_threads'] == 0)]
-
+        # Make sure that the runtime was the same for all runs with the same
+        # condition
+        assert all(benchmark['runtime']['std'] == 0)
         # Merge the results from the two algorithms
         merged = pd.concat([benchmark['n_neurons'],
                             benchmark['total']['amin'],
-                            benchmark['duration_run_rel']['amin']],
+                            benchmark['duration_run_rel']['amin'],
+                            benchmark['runtime']['amin']],
                            axis=1)
-        merged.columns = ['n_neurons', 'total', 'duration_run_rel']
+        merged.columns = ['n_neurons', 'total', 'duration_run_rel', 'runtime']
         grouped = merged.groupby(['n_neurons'])
         benchmark = grouped.agg([np.min]).reset_index()
         if used_neuron_values is None:
             used_neuron_values = benchmark['n_neurons'].values
+        benchmark = benchmark.sort_values(by='n_neurons')
         reference_benchmark = reference_benchmark.sort_values(by='n_neurons')
         # Only use those values where we have both kind of results
         available_sizes = set(benchmark['n_neurons'].unique()) & set(reference_benchmark['n_neurons'].unique())
         if len(set(benchmark['n_neurons'].unique()) - available_sizes):
-            print('Benchmark {} has no results for sizes {} on the GPU'.format(title, set(benchmark['n_neurons'].unique()) - available_sizes))
+            print('Benchmark {}/{} has no results for sizes {} on the GPU'.format(title, label, set(benchmark['n_neurons'].unique()) - available_sizes))
         if len(set(reference_benchmark['n_neurons'].unique()) - available_sizes):
-            print('Benchmark {} has no results for sizes {} on the CPU'.format(
-                title, set(reference_benchmark['n_neurons'].unique()) - available_sizes))
+            print('Benchmark {}/{} has no results for sizes {} on the CPU'.format(
+                title, label, set(reference_benchmark['n_neurons'].unique()) - available_sizes))
         benchmark = benchmark.loc[benchmark['n_neurons'].isin(available_sizes)]
         reference_benchmark = reference_benchmark.loc[reference_benchmark['n_neurons'].isin(available_sizes)]
-
         variable_time_gpu = benchmark['duration_run_rel']['amin'].values
-        fixed_time_gpu = benchmark['total']['amin'].values - variable_time_gpu
+        fixed_time_gpu = benchmark['total']['amin'].values - variable_time_gpu*benchmark['runtime']['amin'].values
         variable_time_cpu = reference_benchmark['duration_run_rel']['amin'].values
-        fixed_time_cpu = reference_benchmark['total']['amin'].values - variable_time_cpu
+        fixed_time_cpu = reference_benchmark['total']['amin'].values - variable_time_cpu*reference_benchmark['runtime']['amin'].values
         # Check assumptions
         necessary = (fixed_time_cpu - fixed_time_gpu)/(variable_time_gpu - variable_time_cpu)
         # If GPU takes longer per simulated second, no way to get a faster sim
@@ -202,11 +208,11 @@ if __name__ == '__main__':
     if not os.path.exists(target_dir):
         os.mkdir(target_dir)
     benchmark_dirs = ['benchmark_results/2018-10-02_f152b85d2726',
-                      'benchmark_results/2018-10-05_vuvuzela',
+                      'benchmark_results/2018-10-02_inf900777',
                       'benchmark_results/2018-10-04_jwc09n012']
 
     float_dtypes_per_benchmark = [('float32', 'float64'),
-                                  ('float32', ),
+                                  ('float64', ),
                                   ('float64', )]
     reference_dir = 'benchmark_results/2018-10-02_f152b85d2726'
     machine_names = []
@@ -313,7 +319,7 @@ if __name__ == '__main__':
     plt.close(fig_gpu_algos)
 
     fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
-                                            figsize=(6.33, 6.33))
+                                            figsize=(6.33, 6.33*0.666))
     for ax, title, fname in [(ax_right, 'COBAHH', 'benchmarks_COBAHH.txt'),
                              (ax_left, 'Mbody', 'benchmarks_Mbody_example.txt')]:
         benchmarks = [mean_and_std_fixed_time(load_benchmark(dirname, fname),
@@ -334,7 +340,8 @@ if __name__ == '__main__':
                                            title=title)
 
     fig.tight_layout()
-    fname = os.path.join(target_dir, 'necessary_biological_runtime_across_GPUs{}{}'.format(monitor_str,
-                                                                                         FIGURE_EXTENSION))
+    fname = os.path.join(target_dir,
+                         'necessary_biological_runtime_across_GPUs{}{}'.format(monitor_str,
+                                                                               FIGURE_EXTENSION))
     fig.savefig(fname)
     plt.close(fig)
