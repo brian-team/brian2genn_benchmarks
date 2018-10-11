@@ -170,7 +170,8 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
 
 
 def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark,
-                                       labels, ax, title, legend=False):
+                                       labels, ax, title, legend=False,
+                                       max_neurons=None):
     used_neuron_values = set()
     # Make sure that the runtime was the same for all runs with the same
     # condition
@@ -190,7 +191,6 @@ def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark,
         merged.columns = ['n_neurons', 'total', 'duration_run_rel', 'duration_run']
         grouped = merged.groupby(['n_neurons'])
         benchmark = grouped.agg([np.min]).reset_index()
-        used_neuron_values |= set(benchmark['n_neurons'].values)
         benchmark = benchmark.sort_values(by='n_neurons')
         reference_benchmark = reference_benchmark.sort_values(by='n_neurons')
         # Only use those values where we have both kind of results
@@ -200,8 +200,12 @@ def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark,
         if len(set(reference_benchmark['n_neurons'].unique()) - available_sizes):
             print('Benchmark {}/{} has no results for sizes {} on the GPU'.format(
                 title, label, set(reference_benchmark['n_neurons'].unique()) - available_sizes))
+        if max_neurons is not None:
+            available_sizes = np.array(sorted(available_sizes))
+            available_sizes = available_sizes[available_sizes <= max_neurons]
         benchmark = benchmark.loc[benchmark['n_neurons'].isin(available_sizes)]
         reference_benchmark_subset = reference_benchmark.loc[reference_benchmark['n_neurons'].isin(available_sizes)]
+        used_neuron_values |= set(benchmark['n_neurons'].values)
         variable_time_gpu = benchmark['duration_run_rel']['amin'].values
         fixed_time_gpu = benchmark['total']['amin'].values - benchmark['duration_run']['amin'].values
         variable_time_cpu = reference_benchmark_subset['duration_run_rel']['amin'].values
@@ -356,8 +360,8 @@ if __name__ == '__main__':
 
     fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
                                             figsize=(6.33, 6.33*0.5))
-    for ax, title, fname in [(ax_right, 'COBAHH', 'benchmarks_COBAHH.txt'),
-                             (ax_left, 'Mbody', 'benchmarks_Mbody_example.txt')]:
+    for ax, title, fname, max_neurons in [(ax_right, 'COBAHH', 'benchmarks_COBAHH.txt', 512000),
+                                          (ax_left, 'Mbody', 'benchmarks_Mbody_example.txt', None)]:
         benchmarks = [mean_and_std_fixed_time(load_benchmark(dirname, fname),
                                               monitor=False, float_dtype=float_dtype)
                       for dirname, float_dtypes in zip(benchmark_dirs, float_dtypes_per_benchmark)
@@ -372,8 +376,8 @@ if __name__ == '__main__':
                   for gpu_name, float_dtypes in zip(gpu_names, float_dtypes_per_benchmark)
                   for float_dtype in float_dtypes]
         plot_necessary_runtime_across_gpus(benchmarks, reference, labels,
-                                           ax, legend=(ax == ax_left),
-                                           title=title)
+                                           ax, legend=(ax == ax_right),
+                                           title=title, max_neurons=max_neurons)
 
     fig.tight_layout()
     fname = os.path.join(target_dir,
