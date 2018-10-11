@@ -363,7 +363,7 @@ if __name__ == '__main__':
 
     fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
                                             figsize=(6.33, 6.33*0.5))
-    for ax, title, fname, max_neurons in [(ax_right, 'COBAHH', 'benchmarks_COBAHH.txt', 512000),
+    for ax, title, fname, max_neurons in [(ax_right, 'COBAHH', 'benchmarks_COBAHH.txt', None),
                                           (ax_left, 'Mbody', 'benchmarks_Mbody_example.txt', None)]:
         benchmarks = [mean_and_std_fixed_time(load_benchmark(dirname, fname),
                                               monitor=False, float_dtype=float_dtype)
