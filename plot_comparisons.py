@@ -169,13 +169,15 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
         ax.legend(loc='upper left', frameon=True, edgecolor='none')
 
 
-def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark,
+def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark_cpu,
+                                       reference_benchmark_gpu,
                                        labels, ax, title, legend=False,
                                        max_neurons=None):
     used_neuron_values = set()
     # Make sure that the runtime was the same for all runs with the same
     # condition
-    assert all(reference_benchmark['runtime']['std'] == 0)
+    assert all(reference_benchmark_cpu['runtime']['std'] == 0)
+    assert all(reference_benchmark_gpu['runtime']['std'] == 0)
     for benchmark, label in zip(benchmarks, labels):
         benchmark = benchmark.loc[(benchmark['device'] == 'genn') &
                                   (benchmark['n_threads'] == 0)]
@@ -192,22 +194,23 @@ def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark,
         grouped = merged.groupby(['n_neurons'])
         benchmark = grouped.agg([np.min]).reset_index()
         benchmark = benchmark.sort_values(by='n_neurons')
-        reference_benchmark = reference_benchmark.sort_values(by='n_neurons')
+        reference_benchmark_cpu = reference_benchmark_cpu.sort_values(by='n_neurons')
         # Only use those values where we have both kind of results
-        available_sizes = set(benchmark['n_neurons'].unique()) & set(reference_benchmark['n_neurons'].unique())
+        available_sizes = set(benchmark['n_neurons'].unique()) & set(reference_benchmark_cpu['n_neurons'].unique())
         if len(set(benchmark['n_neurons'].unique()) - available_sizes):
             print('Benchmark {}/{} has no results for sizes {} on the CPU'.format(title, label, set(benchmark['n_neurons'].unique()) - available_sizes))
-        if len(set(reference_benchmark['n_neurons'].unique()) - available_sizes):
+        if len(set(reference_benchmark_cpu['n_neurons'].unique()) - available_sizes):
             print('Benchmark {}/{} has no results for sizes {} on the GPU'.format(
-                title, label, set(reference_benchmark['n_neurons'].unique()) - available_sizes))
+                title, label, set(reference_benchmark_cpu['n_neurons'].unique()) - available_sizes))
         if max_neurons is not None:
             available_sizes = np.array(sorted(available_sizes))
             available_sizes = available_sizes[available_sizes <= max_neurons]
         benchmark = benchmark.loc[benchmark['n_neurons'].isin(available_sizes)]
-        reference_benchmark_subset = reference_benchmark.loc[reference_benchmark['n_neurons'].isin(available_sizes)]
+        reference_benchmark_subset = reference_benchmark_cpu.loc[reference_benchmark_cpu['n_neurons'].isin(available_sizes)]
+        reference_benchmark_subset_gpu = reference_benchmark_gpu.loc[reference_benchmark_gpu['n_neurons'].isin(available_sizes)]
         used_neuron_values |= set(benchmark['n_neurons'].values)
         variable_time_gpu = benchmark['duration_run_rel']['amin'].values
-        fixed_time_gpu = benchmark['total']['amin'].values - benchmark['duration_run']['amin'].values
+        fixed_time_gpu = reference_benchmark_subset_gpu['total']['amin'].values - reference_benchmark_subset_gpu['duration_run']['amin'].values
         variable_time_cpu = reference_benchmark_subset['duration_run_rel']['amin'].values
         fixed_time_cpu = reference_benchmark_subset['total']['amin'].values - reference_benchmark_subset['duration_run']['amin'].values
         # Check assumptions
@@ -370,12 +373,16 @@ if __name__ == '__main__':
         reference = mean_and_std_fixed_time(load_benchmark(reference_dir, fname),
                                             monitor=False,
                                             float_dtype='float64')
-        reference = reference.loc[(reference['device'] == 'cpp_standalone') &
+        reference_cpu = reference.loc[(reference['device'] == 'cpp_standalone') &
                                   (reference['n_threads'] == 24)]
+        reference_gpu = reference.loc[(reference['device'] == 'genn') &
+                                      (reference['n_threads'] == 0) &
+                                      (reference['algorithm'] == 'pre')]  # arbitrary
         labels = ['%s (%s)' % (gpu_name, 'single' if float_dtype == 'float32' else 'double')
                   for gpu_name, float_dtypes in zip(gpu_names, float_dtypes_per_benchmark)
                   for float_dtype in float_dtypes]
-        plot_necessary_runtime_across_gpus(benchmarks, reference, labels,
+        plot_necessary_runtime_across_gpus(benchmarks, reference_cpu, reference_gpu,
+                                           labels,
                                            ax, legend=(ax == ax_right),
                                            title=title, max_neurons=max_neurons)
 
