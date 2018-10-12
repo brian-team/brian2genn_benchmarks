@@ -14,8 +14,10 @@ import pandas as pd
 from plot_benchmarks import load_benchmark, mean_and_std_fixed_time, FIGURE_EXTENSION
 
 
-def plot_total_comparisons(benchmarks, machine_names, GPU_names, ax, title, legend=False):
-    colors = mpl.cm.tab10.colors
+def plot_total_comparisons(benchmarks, machine_names, GPU_names, ax, title, legend=False,
+                           colors=None):
+    if colors is None:
+        colors = mpl.cm.tab10.colors
     for idx, (benchmark, machine_name, GPU_name) in enumerate(zip(benchmarks,
                                                                   machine_names,
                                                                   GPU_names)):
@@ -57,8 +59,10 @@ def plot_total_comparisons(benchmarks, machine_names, GPU_names, ax, title, lege
 
 def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
                                     reference_labels, ax, title, legend=False,
-                                    algorithm_details=False, select_benchmarks=None):
-    colors = mpl.cm.tab10.colors
+                                    algorithm_details=False, select_benchmarks=None,
+                                    colors=None):
+    if colors is None:
+        colors = mpl.cm.tab10.colors
     if select_benchmarks is None:
         select_benchmarks = np.arange(len(benchmarks))
     ref_handles = []
@@ -172,13 +176,15 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
 def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark_cpu,
                                        reference_benchmark_gpu,
                                        labels, ax, title, legend=False,
-                                       max_neurons=None):
+                                       max_neurons=None, colors=None):
+    if colors is None:
+        colors = mpl.cm.tab10.colors
     used_neuron_values = set()
     # Make sure that the runtime was the same for all runs with the same
     # condition
     assert all(reference_benchmark_cpu['runtime']['std'] == 0)
     assert all(reference_benchmark_gpu['runtime']['std'] == 0)
-    for benchmark, label in zip(benchmarks, labels):
+    for idx, (benchmark, label) in enumerate(zip(benchmarks, labels)):
         benchmark = benchmark.loc[(benchmark['device'] == 'genn') &
                                   (benchmark['n_threads'] == 0)]
         # Make sure that the runtime was the same for all runs with the same
@@ -222,7 +228,7 @@ def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark_cpu,
         if any(fixed_time_gpu < fixed_time_cpu):
             print('Fixed time on GPU is lower for', label)
         ax.plot(np.log(benchmark['n_neurons']).unique(), necessary, 'o-',
-                mec='white', label=label)
+                mec='white', label=label, color=colors[idx])
 
     # Make sure we show the xtick label for the highest value
     if len(used_neuron_values) % 2 == 0:
@@ -315,7 +321,8 @@ if __name__ == '__main__':
                                             ['CPU / 1 thread',
                                              'CPU / 24 threads'],
                                             ax, title + ' – ' + precision,
-                                            legend=(ax == axes_gpu[1, 1]))
+                                            legend=(ax == axes_gpu[1, 1]),
+                                            colors=mpl.cm.tab10.colors[:3] + mpl.cm.tab10.colors[4:])  # avoid red-green
 
     fig.tight_layout()
     fig.savefig(os.path.join(target_dir,
@@ -354,7 +361,8 @@ if __name__ == '__main__':
                                         ax_detail, title + ' – ' + precision,
                                         legend=(ax_detail == axes_gpu_algos[0]),
                                         algorithm_details=True,
-                                        select_benchmarks=[0, 2])
+                                        select_benchmarks=[2, 3],
+                                        colors=mpl.cm.tab10.colors[:3] + mpl.cm.tab10.colors[4:])  # avoid red-green
 
     fig_gpu_algos.tight_layout()
     fig_gpu_algos.savefig(os.path.join(target_dir,
@@ -384,7 +392,8 @@ if __name__ == '__main__':
         plot_necessary_runtime_across_gpus(benchmarks, reference_cpu, reference_gpu,
                                            labels,
                                            ax, legend=(ax == ax_right),
-                                           title=title, max_neurons=max_neurons)
+                                           title=title, max_neurons=max_neurons,
+                                           colors=mpl.cm.tab10.colors[:3] + mpl.cm.tab10.colors[4:])  # avoid red-green)
 
     fig.tight_layout()
     fname = os.path.join(target_dir,
