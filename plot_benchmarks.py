@@ -16,6 +16,9 @@ plt.style.use('figures.conf')
 
 directory = None  # replace this or pass the directory as a command line arg
 
+# Hardcoded to easily get consistent xticks over all plots
+MBody_xticks = [325, 825, 5200, 40200, 320200, 2560200, 20480200]
+COBAHH_xticks = [400, 2000, 8000, 32000, 128000, 512000, 2048000]
 
 def load_benchmark(directory, fname):
     full_fname = os.path.join(directory, fname)
@@ -143,7 +146,7 @@ def plot_total(benchmarks, ax, legend=False, skip=('Brian2GeNN CPU',),
            ylabel=axis_label)
 
 
-def plot_detailed_times(benchmark, ax_detail, ax_sim, title=None, legend=False):
+def plot_detailed_times(benchmark, ax_detail, ax_sim, ticks, title=None, legend=False):
     if len(benchmark['algorithm'].unique()) > 1:
         benchmark = pd.concat([benchmark['n_neurons'],
                                benchmark['duration_compile']['amin'],
@@ -212,19 +215,14 @@ def plot_detailed_times(benchmark, ax_detail, ax_sim, title=None, legend=False):
                     fontweight='bold')
     ax_sim.grid(b=True, which='major', color='#b0b0b0', linestyle='-',
                    linewidth=0.5)
-    # Make sure we show the xtick label for the highest value
-    if len(x) % 2 == 0:
-        start = 1
-    else:
-        start = 0
-    ax_detail.set(xticks=np.log(x)[start::2],
-                  xlabel='Model size (# neurons)',
+    ax_detail.set(xticks=np.log(ticks),
+                  xlabel='Number of neurons',
                   ylabel='Wall clock time (s)')
     ax_sim.set(xlabel='', ylabel='', yscale='log')
     ax_sim.set_yticks([1e-1, 1e0, 1e1, 1e2, 1e3, 1e4, 1e5])
     ax_sim.spines['bottom'].set_visible(False)
     ax_detail.set_yscale('symlog', linthreshy=0.01, linscaley=np.log10(np.e))
-    ax_detail.set_xticklabels(sorted(x)[start::2], rotation=45)
+    ax_detail.set_xticklabels(ticks, rotation=45)
     plt.setp(ax_sim.xaxis.get_ticklines(), visible=False)
     if title is not None:
         ax_sim.set_title(title)
@@ -309,13 +307,16 @@ if __name__ == '__main__':
                                      figsize=(6.3, 6.3 * .666),
                                      gridspec_kw={'height_ratios': [1, 2]})
             plot_detailed_times(gpu1, axes[1, 0], axes[0, 0],
+                                ticks=MBody_xticks,
                                 legend={'simulation': (300, 1e3),
                                         'code gen & compile': (300, 20),
                                         'overhead': (300, 0.9),
                                         'synapse creation & initialization': (2700, 1.1e-2)},
                                 title=benchmark_names[0] + '– ' + name)
             plot_detailed_times(gpu2, axes[1, 1], axes[0, 1],
+                                ticks=COBAHH_xticks,
                                 title=benchmark_names[1] + '– ' + name)
+            axes[1, 1].set_ylabel(None)
             fig.tight_layout()
             fig.savefig(os.path.join(directory,
                                      'gpu_detailed_runtime_%s%s' % (name, FIGURE_EXTENSION)))

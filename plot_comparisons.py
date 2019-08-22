@@ -10,12 +10,14 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from matplotlib.pyplot import xticks
 
-from plot_benchmarks import load_benchmark, mean_and_std_fixed_time, FIGURE_EXTENSION
+from plot_benchmarks import (load_benchmark, mean_and_std_fixed_time,
+                             FIGURE_EXTENSION, MBody_xticks, COBAHH_xticks)
 
 
-def plot_total_comparisons(benchmarks, machine_names, GPU_names, ax, title, legend=False,
-                           colors=None):
+def plot_total_comparisons(benchmarks, machine_names, GPU_names, ax, title,
+                           ticks, legend=False, colors=None):
     if colors is None:
         colors = mpl.cm.tab10.colors
     for idx, (benchmark, machine_name, GPU_name) in enumerate(zip(benchmarks,
@@ -37,19 +39,14 @@ def plot_total_comparisons(benchmarks, machine_names, GPU_names, ax, title, lege
                     subset['duration_run']['amin'],
                     'o-', label=name, color=colors[idx], linestyle=ls,
                     mec='white')
-        used_n_neuron_values = benchmark['n_neurons'].unique()
         # Make sure we show the xtick label for the highest value
-    if len(used_n_neuron_values) % 2 == 0:
-        start = 1
-    else:
-        start = 0
     ax.grid(b=True, which='major', color='#c0c0c0', linestyle='-',
             linewidth=0.5)
     ax.grid(b=True, which='minor', color='#c0c0c0', linestyle='-',
             linewidth=0.25)
-    ax.set_xticks(np.log(sorted(used_n_neuron_values))[start::2])
-    ax.set_xticklabels(sorted(used_n_neuron_values)[start::2], rotation=45)
-    ax.set(xlabel='Model size (# neurons)',
+    ax.set_xticks(np.log(ticks))
+    ax.set_xticklabels(ticks, rotation=45)
+    ax.set(xlabel='Number of neurons',
            ylabel='Simulation time (s)',
            yscale='log',
            title=title)
@@ -58,7 +55,7 @@ def plot_total_comparisons(benchmarks, machine_names, GPU_names, ax, title, lege
 
 
 def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
-                                    reference_labels, ax, title, legend=False,
+                                    reference_labels, ax, title, ticks, legend=False,
                                     algorithm_details=False, select_benchmarks=None,
                                     colors=None):
     if colors is None:
@@ -70,7 +67,8 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
         c = (0.3*(idx+1), 0.3*(idx+1), 0.3*(idx+1))
         ref_handles.append(ax.plot(np.log(reference_benchmark['n_neurons'].values),
                                    reference_benchmark['duration_run_rel']['amin'],
-                                   '-', label=reference_label, color=c)[0])
+                                   '-o', label=reference_label, color=c,
+                                   mec='white', ms=1)[0])
     ref_sizes = [reference_benchmark['n_neurons'].values[-1] for
                  reference_benchmark in reference_benchmarks]
     ref_sizes.extend([reference_benchmark['n_neurons'].values[-2] for reference_benchmark in reference_benchmarks])
@@ -114,14 +112,22 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
         if algorithm_details:
             style, label, mec, fc = '-', 'best strategy', colors[idx], colors[idx]
         else:
-            style, label, mec, fc = 'o-', name, 'white', colors[idx]
+            style, label, mec, fc = '-', name, 'white', colors[idx]
 
         gpu_results = np.amin(np.vstack([gpu_results_pre['duration_run_rel']['amin'].values,
+                                         gpu_results_post['duration_run_rel']['amin'].values]), axis=0)
+        algorithm = np.argmin(np.vstack([gpu_results_pre['duration_run_rel']['amin'].values,
                                          gpu_results_post['duration_run_rel']['amin'].values]), axis=0)
         algo_handles.append(ax.plot(np.log(gpu_results_pre['n_neurons'].values),
                                     gpu_results,
                                     style, label=label, color=fc, mec=mec)[0])
-        used_n_neuron_values = benchmark['n_neurons'].unique()
+        if not algorithm_details:
+            ax.plot(np.log(gpu_results_pre['n_neurons'].values)[algorithm == 0],
+                    gpu_results[algorithm == 0],
+                    'o', label='_nolegend_', color=fc, mec=mec)
+            ax.plot(np.log(gpu_results_pre['n_neurons'].values)[algorithm == 1],
+                    gpu_results[algorithm == 1],
+                    's', label='_nolegend_', color=fc, mec=mec, ms=5.5)
         this_speedup = []
         for compare_size, compare_time in zip(compare_sizes, compare_times):
             if compare_size in gpu_results_pre['n_neurons'].values:
@@ -138,18 +144,13 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
         for speedup, gpu in zip(speedups, gpu_names):
             print (gpu + ': ' + ', '.join('{:.1f}×'.format(s) for s in speedup))
         print()
-    # Make sure we show the xtick label for the highest value
-    if len(used_n_neuron_values) % 2 == 0:
-        start = 1
-    else:
-        start = 0
     ax.grid(b=True, which='major', color='#e0e0e0', linestyle='-',
             linewidth=1.5)
     ax.grid(b=True, which='minor', color='#e0e0e0', linestyle='-',
             linewidth=0.5)
-    ax.set_xticks(np.log(sorted(used_n_neuron_values))[start::2])
-    ax.set_xticklabels(sorted(used_n_neuron_values)[start::2], rotation=45)
-    ax.set(xlabel='Model size (# neurons)',
+    ax.set_xticks(np.log(ticks))
+    ax.set_xticklabels(ticks, rotation=45)
+    ax.set(xlabel='Number of neurons',
            ylabel='Simulation time (relative to biological time)',
            yscale='log',
            title=title)
@@ -170,12 +171,24 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
                       frameon=True, edgecolor='none', ncol=len(select_benchmarks),
                       columnspacing=0.)
     elif legend:
-        ax.legend(loc='upper left', frameon=True, edgecolor='none')
+        ax.add_artist(plt.legend(loc='upper left', frameon=True, edgecolor='none'))
+        from matplotlib.lines import Line2D
+        from matplotlib.legend_handler import HandlerTuple
+        second_legend = plt.legend([tuple(Line2D([], [], marker='o', color=c, ms=5.5, mec='none')
+                                          for c in colors[:len(benchmarks)]),
+                                    tuple(Line2D([], [], marker='s', color=c, mec='none')
+                                          for c in colors[:len(benchmarks)])
+                                    ], ['pre', 'post'],
+                                   loc='lower right', frameon=True, edgecolor='none',
+                                   numpoints=1,
+                                   handler_map={tuple: HandlerTuple(ndivide=None)},
+                                   title='best strategy:'
+                                   )
 
 
 def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark_cpu,
                                        reference_benchmark_gpu,
-                                       labels, ax, title, legend=False,
+                                       labels, ax, title, ticks, legend=False,
                                        max_neurons=None, colors=None):
     if colors is None:
         colors = mpl.cm.tab10.colors
@@ -230,19 +243,13 @@ def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark_cpu,
         ax.plot(np.log(benchmark['n_neurons']).unique(), necessary, 'o-',
                 mec='white', label=label, color=colors[idx])
 
-    # Make sure we show the xtick label for the highest value
-    if len(used_neuron_values) % 2 == 0:
-        start = 1
-    else:
-        start = 0
-    used_neuron_values = np.array(sorted(used_neuron_values))
-    ax.set_xticklabels(used_neuron_values[start::2], rotation=45)
+    ax.set_xticklabels(ticks, rotation=45)
     ax.grid(b=True, which='major', color='#e0e0e0', linestyle='-',
             linewidth=1.5)
     ax.grid(b=True, which='minor', color='#e0e0e0', linestyle='-',
             linewidth=0.5)
-    ax.set(xticks=np.log(used_neuron_values)[start::2],
-           xlabel='Model size (# neurons)',
+    ax.set(xticks=np.log(ticks),
+           xlabel='Number of neurons',
            ylabel='necessary biological runtime (s)',
            yscale='log', title=title)
     if legend:
@@ -292,18 +299,18 @@ if __name__ == '__main__':
     for col, float_dtype in enumerate(['float64', 'float32']):
         precision = 'single precision' if float_dtype == 'float32' else 'double precision'
         precision_short = 'single' if float_dtype == 'float32' else 'double'
-        for ax, title, fname in [(axes[1, col], 'COBAHH', 'benchmarks_COBAHH.txt'),
-                                 (axes[0, col], 'Mbody', 'benchmarks_Mbody_example.txt')]:
+        for ax, title, fname, ticks in [(axes[1, col], 'COBAHH', 'benchmarks_COBAHH.txt', COBAHH_xticks),
+                                        (axes[0, col], 'Mbody', 'benchmarks_Mbody_example.txt', MBody_xticks)]:
             benchmarks = [mean_and_std_fixed_time(load_benchmark(dirname, fname),
                                                   monitor=False, float_dtype=float_dtype)
                           for dirname in benchmark_dirs]
 
             plot_total_comparisons(benchmarks, machine_names, gpu_names,
                                    ax, title + ' – ' + precision,
-                                   legend=(ax == axes[0, 1]))
+                                   ticks, legend=(ax == axes[0, 1]))
 
-        for ax, title, fname in [(axes_gpu[1, col], 'COBAHH', 'benchmarks_COBAHH.txt'),
-                                 (axes_gpu[0, col], 'Mbody', 'benchmarks_Mbody_example.txt')]:
+        for ax, title, fname, ticks in [(axes_gpu[1, col], 'COBAHH', 'benchmarks_COBAHH.txt', COBAHH_xticks),
+                                 (axes_gpu[0, col], 'Mbody', 'benchmarks_Mbody_example.txt', MBody_xticks)]:
             benchmarks = [mean_and_std_fixed_time(load_benchmark(dirname, fname),
                                                   monitor=False, float_dtype=float_dtype)
                           for dirname in benchmark_dirs]
@@ -321,9 +328,11 @@ if __name__ == '__main__':
                                             ['CPU / 1 thread',
                                              'CPU / 24 threads'],
                                             ax, title + ' – ' + precision,
+                                            ticks=ticks,
                                             legend=(ax == axes_gpu[1, 1]),
                                             colors=mpl.cm.tab10.colors[:3] + mpl.cm.tab10.colors[4:])  # avoid red-green
-
+    for ax in [axes_gpu[0, 1], axes_gpu[1, 1], axes[0, 1], axes[1, 1]]:
+        ax.set_ylabel(None)
     fig.tight_layout()
     fig.savefig(os.path.join(target_dir,
                              'runtime_comparison_{}'.format(FIGURE_EXTENSION)))
@@ -337,10 +346,10 @@ if __name__ == '__main__':
     fig_gpu_algos, axes_gpu_algos = plt.subplots(1, 2, sharey='row',
                                                  figsize=(6.33, 6.33*0.5))
     float_dtype = 'float32'
-    for ax_detail, title, fname in [(axes_gpu_algos[1],
-                                     'COBAHH', 'benchmarks_COBAHH.txt'),
+    for ax_detail, title, fname, ticks in [(axes_gpu_algos[1],
+                                            'COBAHH', 'benchmarks_COBAHH.txt', COBAHH_xticks),
                                     (axes_gpu_algos[0],
-                                     'Mbody', 'benchmarks_Mbody_example.txt')]:
+                                     'Mbody', 'benchmarks_Mbody_example.txt', MBody_xticks)]:
         benchmarks = [mean_and_std_fixed_time(load_benchmark(dirname, fname),
                                               monitor=False,
                                               float_dtype=float_dtype)
@@ -359,11 +368,12 @@ if __name__ == '__main__':
                                         ['CPU / 1 thread',
                                          'CPU / 24 threads'],
                                         ax_detail, title + ' – ' + precision,
+                                        ticks=ticks,
                                         legend=(ax_detail == axes_gpu_algos[0]),
                                         algorithm_details=True,
                                         select_benchmarks=[2, 3],
                                         colors=mpl.cm.tab10.colors[:3] + mpl.cm.tab10.colors[4:])  # avoid red-green
-
+    axes_gpu_algos[1].set_ylabel(None)
     fig_gpu_algos.tight_layout()
     fig_gpu_algos.savefig(os.path.join(target_dir,
                                        'gpu_runtime_comparison_algos{}'.format(FIGURE_EXTENSION)))
@@ -371,8 +381,8 @@ if __name__ == '__main__':
 
     fig, (ax_left, ax_right) = plt.subplots(1, 2, sharey='row',
                                             figsize=(6.33, 6.33*0.5))
-    for ax, title, fname, max_neurons in [(ax_right, 'COBAHH', 'benchmarks_COBAHH.txt', None),
-                                          (ax_left, 'Mbody', 'benchmarks_Mbody_example.txt', None)]:
+    for ax, title, fname, max_neurons, ticks in [(ax_right, 'COBAHH', 'benchmarks_COBAHH.txt', None, COBAHH_xticks),
+                                          (ax_left, 'Mbody', 'benchmarks_Mbody_example.txt', None, MBody_xticks)]:
         benchmarks = [mean_and_std_fixed_time(load_benchmark(dirname, fname),
                                               monitor=False, float_dtype=float_dtype)
                       for dirname, float_dtypes in zip(benchmark_dirs, float_dtypes_per_benchmark)
@@ -391,10 +401,11 @@ if __name__ == '__main__':
                   for float_dtype in float_dtypes]
         plot_necessary_runtime_across_gpus(benchmarks, reference_cpu, reference_gpu,
                                            labels,
-                                           ax, legend=(ax == ax_right),
+                                           ax, ticks=ticks,
+                                           legend=(ax == ax_right),
                                            title=title, max_neurons=max_neurons,
                                            colors=mpl.cm.tab10.colors[:3] + mpl.cm.tab10.colors[4:])  # avoid red-green)
-
+    ax_right.set_ylabel(None)
     fig.tight_layout()
     fname = os.path.join(target_dir,
                          'necessary_biological_runtime_across_GPUs{}{}'.format(monitor_str,
