@@ -32,8 +32,8 @@ V_L = -63.56*mV
 C_M = 0.3*nF
 VT = -63*mV
 # Excitatory and inhibitory synapses' reversal potentials
-E_e = 0*mV
-E_i = -92*mV
+V_E = 0*mV
+V_I = -92*mV
 # Target number for iKCeKC synapses
 N_iKCeKC= N_iKC
 if N_iKCeKC > 10000:
@@ -104,14 +104,14 @@ spike_indices = np.concatenate(sorted_variants)
 PN = SpikeGeneratorGroup(N_PN, spike_indices, spike_times)
 
 # iKC of the mushroom body
-I_syn = '''g_PNiKC : siemens
-           I_syn = g_PNiKC*(V - E_e): amp'''
+I_syn = '''I_syn = g_PNiKC*(V - V_E): amp
+           dg_PNiKC/dt = -g_PNiKC/tau_PNiKC : siemens'''
 eqs_iKC = Equations(traub_miles) + Equations(I_syn)
 iKC = NeuronGroup(N_iKC, eqs_iKC, threshold='V>0*mV', refractory='V>0*mV',
                   method='exponential_euler')
 
 # eKCs of the mushroom body lobe
-I_syn = '''I_syn = g_iKCeKC*(V - E_e) + g_eKCeKC*(V - E_i): amp
+I_syn = '''I_syn = g_iKCeKC*(V - V_E) + g_eKCeKC*(V - V_I): amp
            dg_iKCeKC/dt = -g_iKCeKC/tau_iKCeKC : siemens
            dg_eKCeKC/dt = -g_eKCeKC/tau_eKCeKC : siemens'''
 eqs_eKC = Equations(traub_miles) + Equations(I_syn)
