@@ -65,9 +65,13 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
     ref_handles = []
     for idx, (reference_benchmark, reference_label) in enumerate(zip(reference_benchmarks, reference_labels)):
         c = (0.3*(idx+1), 0.3*(idx+1), 0.3*(idx+1))
+        if algorithm_details:
+            style = '-'
+        else:
+            style = 'o-'
         ref_handles.append(ax.plot(np.log(reference_benchmark['n_neurons'].values),
                                    reference_benchmark['duration_run_rel']['amin'],
-                                   '-o', label=reference_label, color=c,
+                                   style, label=reference_label, color=c,
                                    mec='white', ms=1)[0])
     ref_sizes = [reference_benchmark['n_neurons'].values[-1] for
                  reference_benchmark in reference_benchmarks]
@@ -193,16 +197,10 @@ def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark_cpu,
     if colors is None:
         colors = mpl.cm.tab10.colors
     used_neuron_values = set()
-    # Make sure that the runtime was the same for all runs with the same
-    # condition
-    assert all(reference_benchmark_cpu['runtime']['std'] == 0)
-    assert all(reference_benchmark_gpu['runtime']['std'] == 0)
     for idx, (benchmark, label) in enumerate(zip(benchmarks, labels)):
         benchmark = benchmark.loc[(benchmark['device'] == 'genn') &
                                   (benchmark['n_threads'] == 0)]
-        # Make sure that the runtime was the same for all runs with the same
-        # condition
-        assert all(benchmark['runtime']['std'] == 0)
+
         # Merge the results from the two algorithms
         merged = pd.concat([benchmark['n_neurons'],
                             benchmark['total']['amin'],
