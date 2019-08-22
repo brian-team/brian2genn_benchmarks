@@ -31,11 +31,10 @@ g_L = 0.0267*uS
 V_L = -63.56*mV
 C_M = 0.3*nF
 VT = -63*mV
-# Those two constants are dummy constants, only used when populations only have
-# either inhibitory or excitatory inputs
+# Excitatory and inhibitory synapses' reversal potentials
 E_e = 0*mV
 E_i = -92*mV
-# Actual constants used for synapses
+# Target number for iKCeKC synapses
 N_iKCeKC= N_iKC
 if N_iKCeKC > 10000:
     N_iKCeKC = 10000
@@ -51,7 +50,7 @@ tau_pre = tau_post = 10*ms
 dApre = 0.1*nS*k
 dApost = -dApre
 w_max = 3.75*nS*k
-
+# global scaling factor to achieve sensible activity levels
 scale = .675
 
 traub_miles = '''
@@ -105,16 +104,16 @@ spike_indices = np.concatenate(sorted_variants)
 PN = SpikeGeneratorGroup(N_PN, spike_indices, spike_times)
 
 # iKC of the mushroom body
-I_syn = '''g_PN_iKC : siemens
-           I_syn = g_PN_iKC*(V - E_e): amp'''
+I_syn = '''g_PNiKC : siemens
+           I_syn = g_PNiKC*(V - E_e): amp'''
 eqs_iKC = Equations(traub_miles) + Equations(I_syn)
 iKC = NeuronGroup(N_iKC, eqs_iKC, threshold='V>0*mV', refractory='V>0*mV',
                   method='exponential_euler')
 
 # eKCs of the mushroom body lobe
-I_syn = '''I_syn = g_iKC_eKC*(V - E_e) + g_eKC_eKC*(V - E_i): amp
-           dg_iKC_eKC/dt = -g_iKC_eKC/tau_iKCeKC : siemens
-           dg_eKC_eKC/dt = -g_eKC_eKC/tau_eKCeKC : siemens'''
+I_syn = '''I_syn = g_iKCeKC*(V - E_e) + g_eKCeKC*(V - E_i): amp
+           dg_iKCeKC/dt = -g_iKCeKC/tau_iKCeKC : siemens
+           dg_eKCeKC/dt = -g_eKCeKC/tau_eKCeKC : siemens'''
 eqs_eKC = Equations(traub_miles) + Equations(I_syn)
 eKC = NeuronGroup(N_eKC, eqs_eKC, threshold='V>0*mV', refractory='V>0*mV',
                   method='exponential_euler')
@@ -122,20 +121,20 @@ eKC = NeuronGroup(N_eKC, eqs_eKC, threshold='V>0*mV', refractory='V>0*mV',
 # Synapses
 PN_iKC = Synapses(PN, iKC, '''weight : siemens
                               ds/dt= -s/second :siemens
-                              g_PN_iKC_post = s : siemens (summed)''',
+                              g_PNiKC_post = s : siemens (summed)''',
                   on_pre='s += scale*weight')
 iKC_eKC = Synapses(iKC, eKC,
                    '''w : siemens
                       dApre/dt = -Apre / tau_pre : siemens (event-driven)
                       dApost/dt = -Apost / tau_post : siemens (event-driven)''',
-                   on_pre='''g_iKC_eKC += w
+                   on_pre='''g_iKCeKC += w
                              Apre += dApre
                              w = clip(w + Apost, 0, w_max)''',
                    on_post='''
                               Apost += dApost
                               w = clip(w + Apre, 0, w_max)''',
                    )
-eKC_eKC = Synapses(eKC, eKC, on_pre='g_eKC_eKC += scale*w_eKCeKC')
+eKC_eKC = Synapses(eKC, eKC, on_pre='g_eKCeKC += scale*w_eKCeKC')
 bu.insert_benchmark_point()
 PN_iKC.connect(p=0.15)
 
