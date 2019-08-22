@@ -250,7 +250,7 @@ def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark_cpu,
             linewidth=0.5)
     ax.set(xticks=np.log(ticks),
            xlabel='Number of neurons',
-           ylabel='necessary biological runtime (s)',
+           ylabel='min. biological simulation time (s)',
            yscale='log', title=title)
     if legend:
         ax.legend(loc='lower left', frameon=True, edgecolor='none')

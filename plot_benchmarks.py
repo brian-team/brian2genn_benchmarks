@@ -14,7 +14,7 @@ FIGURE_EXTENSION = '.pdf'
 
 plt.style.use('figures.conf')
 
-directory = None  # replace this or pass the directory as a command line arg
+directory = 'benchmark_results/2018-10-02_f152b85d2726'  # replace this or pass the directory as a command line arg
 
 # Hardcoded to easily get consistent xticks over all plots
 MBody_xticks = [325, 825, 5200, 40200, 320200, 2560200, 20480200]
@@ -83,7 +83,7 @@ def mean_and_std_fixed_time(benchmarks, monitor=True, float_dtype='float64'):
                             (benchmarks['float_dtype'] == float_dtype)]
 
     # Average over trials
-    grouped = subset.groupby(['device', 'algorithm', 'n_neurons', 'n_threads'])
+    grouped = subset.groupby(['device', 'algorithm', 'n_neurons', 'n_threads', 'runtime'])
     aggregated = grouped.agg([np.min, np.mean, np.std]).reset_index()
 
     return aggregated
@@ -149,6 +149,7 @@ def plot_total(benchmarks, ax, legend=False, skip=('Brian2GeNN CPU',),
 def plot_detailed_times(benchmark, ax_detail, ax_sim, ticks, title=None, legend=False):
     if len(benchmark['algorithm'].unique()) > 1:
         benchmark = pd.concat([benchmark['n_neurons'],
+                               benchmark['runtime'],
                                benchmark['duration_compile']['amin'],
                                benchmark['duration_before']['amin'],
                                benchmark['duration_after']['amin'],
@@ -157,7 +158,7 @@ def plot_detailed_times(benchmark, ax_detail, ax_sim, ticks, title=None, legend=
                                benchmark['duration_run']['amin'],
                                benchmark['total']['amin']],
                               axis=1)
-        benchmark.columns = ['n_neurons', 'duration_compile',
+        benchmark.columns = ['n_neurons', 'runtime', 'duration_compile',
                              'duration_before', 'duration_after',
                              'duration_synapses', 'duration_init',
                              'duration_run', 'total']
@@ -200,8 +201,15 @@ def plot_detailed_times(benchmark, ax_detail, ax_sim, ticks, title=None, legend=
         color_sim = colorsys.hls_to_rgb(basecolor_sim[0],
                                         basecolor_sim[1] + brighten_by*(1 - basecolor_sim[1]),
                                         basecolor_sim[2])
+        runtime = np.unique(benchmark['runtime'])
+        assert len(runtime) == 1
+        runtime = runtime[0]
+        if biological_time == runtime:
+            marker = 'o'
+        else:
+            marker = '.'
         ax_sim.plot(np.log(x), simulate*biological_time,
-                    'o-', mec='white', color=color_sim)
+                    marker=marker, mec='white', color=color_sim)
         if idx == 0:
             if legend:
                 xl, yl = legend['simulation']
@@ -214,11 +222,11 @@ def plot_detailed_times(benchmark, ax_detail, ax_sim, ticks, title=None, legend=
                     verticalalignment=align, fontsize=8, color=color_sim,
                     fontweight='bold')
     ax_sim.grid(b=True, which='major', color='#b0b0b0', linestyle='-',
-                   linewidth=0.5)
+                linewidth=0.5)
     ax_detail.set(xticks=np.log(ticks),
                   xlabel='Number of neurons',
                   ylabel='Wall clock time (s)')
-    ax_sim.set(xlabel='', ylabel='', yscale='log')
+    ax_sim.set(xlabel='', ylabel='Wall clock time (s)', yscale='log')
     ax_sim.set_yticks([1e-1, 1e0, 1e1, 1e2, 1e3, 1e4, 1e5])
     ax_sim.spines['bottom'].set_visible(False)
     ax_detail.set_yscale('symlog', linthreshy=0.01, linscaley=np.log10(np.e))
