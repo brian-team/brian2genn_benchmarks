@@ -5,7 +5,7 @@ This is an implementation of a benchmark that was motivated by the model describ
 
 T. Nowotny, R. Huerta, H. D. I. Abarbanel, and M. I. Rabinovich Self-organization in the olfactory system: One shot odor recognition in insects, Biol Cyber, 93 (6): 436-446 (2005), doi:10.1007/s00422-005-0019-7 
 
-In contrast to the original model, this benchmark uses conductance based Hodgkin-Huxley type neurons and the feedforward inhibition through the lateral horn ha sbeen omitted.
+In contrast to the original model, this benchmark uses conductance based Hodgkin-Huxley type neurons and the feedforward inhibition through the lateral horn has been omitted.
 """
 import random as py_random
 
@@ -24,12 +24,12 @@ N_iKC = int(2500*config['scale'])
 N_eKC = 100
 # Constants
 g_Na = 7.15*uS
-E_Na = 50*mV
-g_K = 1.43*uS
-E_K = -95*mV
-g_leak = 0.0267*uS
-E_leak = -63.56*mV
-C = 0.3*nF
+V_Na = 50*mV
+g_Kd = 1.43*uS
+V_Kd = -95*mV
+g_L = 0.0267*uS
+V_L = -63.56*mV
+C_M = 0.3*nF
 VT = -63*mV
 # Those two constants are dummy constants, only used when populations only have
 # either inhibitory or excitatory inputs
@@ -39,24 +39,25 @@ E_i = -92*mV
 N_iKCeKC= N_iKC
 if N_iKCeKC > 10000:
     N_iKCeKC = 10000
-g_scaling = 2500/N_iKCeKC
-if g_scaling < 1:
-    g_scaling= 1
+# scaling factor k for iKCeKC synaptic conductances
+k = 2500/N_iKCeKC
+if k < 1:
+    k= 1
 tau_PNiKC = 2*ms
 tau_iKCeKC = 10*ms
 tau_eKCeKC = 5*ms
-w_eKC_eKC = 75*nS
+w_eKCeKC = 75*nS
 tau_pre = tau_post = 10*ms
-dApre = 0.1*nS*g_scaling
+dApre = 0.1*nS*k
 dApost = -dApre
-w_max = 3.75*nS*g_scaling
+w_max = 3.75*nS*k
 
 scale = .675
 
 traub_miles = '''
-dV/dt = -(1/C)*(g_Na*m**3*h*(V - E_Na) +
-                g_K*n**4*(V - E_K) +
-                g_leak*(V - E_leak) +
+dV/dt = -(1/C_M)*(g_Na*m**3*h*(V - V_Na) +
+                g_Kd*n**4*(V - V_Kd) +
+                g_L*(V - V_L) +
                 I_syn) : volt
 dm/dt = alpha_m*(1 - m) - beta_m*m : 1
 dn/dt = alpha_n*(1 - n) - beta_n*n : 1
@@ -134,7 +135,7 @@ iKC_eKC = Synapses(iKC, eKC,
                               Apost += dApost
                               w = clip(w + Apre, 0, w_max)''',
                    )
-eKC_eKC = Synapses(eKC, eKC, on_pre='g_eKC_eKC += scale*w_eKC_eKC')
+eKC_eKC = Synapses(eKC, eKC, on_pre='g_eKC_eKC += scale*w_eKCeKC')
 bu.insert_benchmark_point()
 PN_iKC.connect(p=0.15)
 
@@ -147,13 +148,13 @@ bu.insert_benchmark_point()
 
 # First set all synapses as "inactive", then set 20% to active
 PN_iKC.weight = '10*nS + 1.25*nS*randn()'
-iKC_eKC.w = 'rand()*w_max/10*g_scaling'
-iKC_eKC.w['rand() < 0.2'] = '(2.5*nS + 0.5*nS*randn())*g_scaling'
-iKC.V = E_leak
+iKC_eKC.w = 'rand()*w_max/10*k'
+iKC_eKC.w['rand() < 0.2'] = '(2.5*nS + 0.5*nS*randn())*k'
+iKC.V = V_L
 iKC.h = 1
 iKC.m = 0
 iKC.n = .5
-eKC.V = E_leak
+eKC.V = V_L
 eKC.h = 1
 eKC.m = 0
 eKC.n = .5
