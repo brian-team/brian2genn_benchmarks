@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+from __future__ import division
 """
 This is an implementation of a benchmark that was motivated by the model described in the paper:
 
@@ -40,8 +40,8 @@ if N_iKCeKC > 10000:
     N_iKCeKC = 10000
 # scaling factor k for iKCeKC synaptic conductances
 k = 2500/N_iKCeKC
-if k < 1:
-    k= 1
+if k > 1:
+    k = 1
 tau_PNiKC = 2*ms
 tau_iKCeKC = 10*ms
 tau_eKCeKC = 5*ms
