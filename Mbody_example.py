@@ -119,10 +119,7 @@ eKC = NeuronGroup(N_eKC, eqs_eKC, threshold='V>0*mV', refractory='V>0*mV',
                   method='exponential_euler')
 
 # Synapses
-PN_iKC = Synapses(PN, iKC, '''weight : siemens
-                              ds/dt= -s/second :siemens
-                              g_PNiKC_post = s : siemens (summed)''',
-                  on_pre='s += scale*weight')
+PN_iKC = Synapses(PN, iKC, 'weight : siemens', on_pre='g_PNiKC += scale*weight')
 iKC_eKC = Synapses(iKC, eKC,
                    '''w : siemens
                       dApre/dt = -Apre / tau_pre : siemens (event-driven)
