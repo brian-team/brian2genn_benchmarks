@@ -1,21 +1,11 @@
 #!/usr/bin/env python
-
+from __future__ import division
 """
-This is an implementation of a benchmark described
-in the following review paper:
+This is an implementation of a benchmark that was motivated by the model described in the paper:
 
-Simulation of networks of spiking neurons: A review of tools and strategies (2006).
-Brette, Rudolph, Carnevale, Hines, Beeman, Bower, Diesmann, Goodman, Harris, Zirpe,
-Natschlaeger, Pecevski, Ermentrout, Djurfeldt, Lansner, Rochel, Vibert, Alvarez, Muller,
-Davison, El Boustani and Destexhe.
-Journal of Computational Neuroscience
+T. Nowotny, R. Huerta, H. D. I. Abarbanel, and M. I. Rabinovich Self-organization in the olfactory system: One shot odor recognition in insects, Biol Cyber, 93 (6): 436-446 (2005), doi:10.1007/s00422-005-0019-7 
 
-Benchmark 3: random network of HH neurons with exponential synaptic conductances
-
-Clock-driven implementation
-(no spike time interpolation)
-
-R. Brette - Dec 2007
+In contrast to the original model, this benchmark uses conductance based Hodgkin-Huxley type neurons and the feedforward inhibition through the lateral horn has been omitted.
 """
 import random as py_random
 
@@ -29,47 +19,44 @@ config = bu.prepare_benchmark(sys.argv)
 bu.insert_general_benchmark_code(config)
 
 # Number of neurons
-N_AL = 100
-N_MB = int(2500*config['scale'])
-N_LB = 100
+N_PN = 100
+N_iKC = int(2500*config['scale'])
+N_eKC = 100
 # Constants
 g_Na = 7.15*uS
-E_Na = 50*mV
-g_K = 1.43*uS
-E_K = -95*mV
-g_leak = 0.0267*uS
-E_leak = -63.56*mV
-C = 0.3*nF
+V_Na = 50*mV
+g_Kd = 1.43*uS
+V_Kd = -95*mV
+g_L = 0.0267*uS
+V_L = -63.56*mV
+C_M = 0.3*nF
 VT = -63*mV
-# Those two constants are dummy constants, only used when populations only have
-# either inhibitory or excitatory inputs
-E_e = 0*mV
-E_i = -92*mV
-# Actual constants used for synapses
-NKCKC= N_MB
-if NKCKC > 10000:
-    NKCKC = 10000
-g_scaling = NKCKC/2500
-if g_scaling < 1:
-    g_scaling= 1
-tau_PN_LHI = 1*ms
-tau_LHI_iKC = 3*ms
-tau_PN_iKC = 2*ms
-tau_iKC_eKC = 10*ms
-tau_eKC_eKC = 5*ms
-w_LHI_iKC = 8.75*nS
-w_eKC_eKC = 75*nS
+# Excitatory and inhibitory synapses' reversal potentials
+V_E = 0*mV
+V_I = -92*mV
+# Target number for iKCeKC synapses
+N_iKCeKC= N_iKC
+if N_iKCeKC > 10000:
+    N_iKCeKC = 10000
+# scaling factor k for iKCeKC synaptic conductances
+k = 2500/N_iKCeKC
+if k > 1:
+    k = 1
+tau_PNiKC = 2*ms
+tau_iKCeKC = 10*ms
+tau_eKCeKC = 5*ms
+w_eKCeKC = 75*nS
 tau_pre = tau_post = 10*ms
-dApre = 0.1*nS/g_scaling
+dApre = 0.1*nS*k
 dApost = -dApre
-g_max = 3.75*nS/g_scaling
-
+w_max = 3.75*nS*k
+# global scaling factor to achieve sensible activity levels
 scale = .675
 
 traub_miles = '''
-dV/dt = -(1/C)*(g_Na*m**3*h*(V - E_Na) +
-                g_K*n**4*(V - E_K) +
-                g_leak*(V - E_leak) +
+dV/dt = -(1/C_M)*(g_Na*m**3*h*(V - V_Na) +
+                g_Kd*n**4*(V - V_Kd) +
+                g_L*(V - V_L) +
                 I_syn) : volt
 dm/dt = alpha_m*(1 - m) - beta_m*m : 1
 dn/dt = alpha_n*(1 - n) - beta_n*n : 1
@@ -89,15 +76,15 @@ beta_n = .5*exp((10*mV-V+VT)/(40*mV))/ms : Hz
 n_patterns = 10
 n_repeats = int(config['runtime']/second*10)
 p_perturb = 0.1
-patterns = np.repeat(np.array([np.random.choice(N_AL, int(0.2*N_AL), replace=False) for _ in range(n_patterns)]), n_repeats, axis=0)
+patterns = np.repeat(np.array([np.random.choice(N_PN, int(0.2*N_PN), replace=False) for _ in range(n_patterns)]), n_repeats, axis=0)
 # Make variants of the patterns
-to_replace = np.random.binomial(int(0.2*N_AL), p=p_perturb, size=n_patterns*n_repeats)
+to_replace = np.random.binomial(int(0.2*N_PN), p=p_perturb, size=n_patterns*n_repeats)
 variants = []
 for idx, variant in enumerate(patterns):
     np.random.shuffle(variant)
     if to_replace[idx] > 0:
         variant = variant[:-to_replace[idx]]
-    new_indices = np.random.randint(N_AL, size=to_replace[idx])
+    new_indices = np.random.randint(N_PN, size=to_replace[idx])
     variant = np.unique(np.concatenate([variant, new_indices]))
     variants.append(variant)
 
@@ -114,45 +101,42 @@ spike_times = np.arange(n_patterns*n_repeats)*50*ms + 1*ms + rand(n_patterns*n_r
 spike_times = spike_times.repeat([len(p) for p in sorted_variants])
 spike_indices = np.concatenate(sorted_variants)
 
-PN = SpikeGeneratorGroup(N_AL, spike_indices, spike_times)
+PN = SpikeGeneratorGroup(N_PN, spike_indices, spike_times)
 
 # iKC of the mushroom body
-I_syn = '''I_syn = g_PN_iKC*(V - E_e): amp
-           dg_PN_iKC/dt = -g_PN_iKC/tau_PN_iKC : siemens'''
+I_syn = '''I_syn = g_PNiKC*(V - V_E): amp
+           dg_PNiKC/dt = -g_PNiKC/tau_PNiKC : siemens'''
 eqs_iKC = Equations(traub_miles) + Equations(I_syn)
-iKC = NeuronGroup(N_MB, eqs_iKC, threshold='V>0*mV', refractory='V>0*mV',
+iKC = NeuronGroup(N_iKC, eqs_iKC, threshold='V>0*mV', refractory='V>0*mV',
                   method='exponential_euler')
 
-
 # eKCs of the mushroom body lobe
-I_syn = '''I_syn = g_iKC_eKC*(V - E_e) + g_eKC_eKC*(V - E_i): amp
-           dg_iKC_eKC/dt = -g_iKC_eKC/tau_iKC_eKC : siemens
-           dg_eKC_eKC/dt = -g_eKC_eKC/tau_eKC_eKC : siemens'''
+I_syn = '''I_syn = g_iKCeKC*(V - V_E) + g_eKCeKC*(V - V_I): amp
+           dg_iKCeKC/dt = -g_iKCeKC/tau_iKCeKC : siemens
+           dg_eKCeKC/dt = -g_eKCeKC/tau_eKCeKC : siemens'''
 eqs_eKC = Equations(traub_miles) + Equations(I_syn)
-eKC = NeuronGroup(N_LB, eqs_eKC, threshold='V>0*mV', refractory='V>0*mV',
+eKC = NeuronGroup(N_eKC, eqs_eKC, threshold='V>0*mV', refractory='V>0*mV',
                   method='exponential_euler')
 
 # Synapses
-PN_iKC = Synapses(PN, iKC, 'weight : siemens', on_pre='g_PN_iKC += scale*weight')
+PN_iKC = Synapses(PN, iKC, 'weight : siemens', on_pre='g_PNiKC += scale*weight')
 iKC_eKC = Synapses(iKC, eKC,
-                   '''g_raw : siemens
+                   '''w : siemens
                       dApre/dt = -Apre / tau_pre : siemens (event-driven)
-                      dApost/dt = -Apost / tau_post : siemens (event-driven)
-                      ''',
-                   on_pre='''g_iKC_eKC += g_raw
+                      dApost/dt = -Apost / tau_post : siemens (event-driven)''',
+                   on_pre='''g_iKCeKC += w
                              Apre += dApre
-                             g_raw = clip(g_raw + Apost, 0, g_max)
-                             ''',
+                             w = clip(w + Apost, 0, w_max)''',
                    on_post='''
                               Apost += dApost
-                              g_raw = clip(g_raw + Apre, 0, g_max)''',
+                              w = clip(w + Apre, 0, w_max)''',
                    )
-eKC_eKC = Synapses(eKC, eKC, on_pre='g_eKC_eKC += scale*w_eKC_eKC')
+eKC_eKC = Synapses(eKC, eKC, on_pre='g_eKCeKC += scale*w_eKCeKC')
 bu.insert_benchmark_point()
 PN_iKC.connect(p=0.15)
 
-if (N_MB > 10000):
-    iKC_eKC.connect(p=float(10000)/N_MB)
+if (N_iKC > 10000):
+    iKC_eKC.connect(p=float(10000)/N_iKC)
 else:
     iKC_eKC.connect()
 eKC_eKC.connect()
@@ -160,13 +144,13 @@ bu.insert_benchmark_point()
 
 # First set all synapses as "inactive", then set 20% to active
 PN_iKC.weight = '10*nS + 1.25*nS*randn()'
-iKC_eKC.g_raw = 'rand()*g_max/10/g_scaling'
-iKC_eKC.g_raw['rand() < 0.2'] = '(2.5*nS + 0.5*nS*randn())/g_scaling'
-iKC.V = E_leak
+iKC_eKC.w = 'rand()*w_max/10*k'
+iKC_eKC.w['rand() < 0.2'] = '(2.5*nS + 0.5*nS*randn())*k'
+iKC.V = V_L
 iKC.h = 1
 iKC.m = 0
 iKC.n = .5
-eKC.V = E_leak
+eKC.V = V_L
 eKC.h = 1
 eKC.m = 0
 eKC.n = .5
@@ -180,7 +164,7 @@ if config['monitor']:
 took = bu.do_and_measure_run(config)
 
 if not config['debug']:
-    neurons = N_AL + N_MB + N_LB
+    neurons = N_PN + N_iKC + N_eKC
     synapses = len(PN_iKC) + len(iKC_eKC) + len(eKC_eKC)
     bu.write_benchmark_results('Mbody_example', config, neurons, synapses, took)
 else:
