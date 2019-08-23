@@ -10,7 +10,8 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from matplotlib.pyplot import xticks
+from matplotlib.lines import Line2D
+from matplotlib.legend_handler import HandlerTuple
 
 from plot_benchmarks import (load_benchmark, mean_and_std_fixed_time,
                              FIGURE_EXTENSION, MBody_xticks, COBAHH_xticks)
@@ -159,25 +160,23 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
            yscale='log',
            title=title)
     if algorithm_details:
-        from matplotlib.lines import Line2D
         # Manually put a legend
         if legend:
-            # legend for the CPUs/GPUs
-            lines = ref_handles + [Line2D([0], [0], color=colors[idx], lw=2)
-                                   for idx in select_benchmarks]
-            labels = reference_labels + [GPU_names[idx] for idx in select_benchmarks]
-            ax.legend(lines, labels, loc='upper left',
-                      frameon=True, edgecolor='none')
-        else:
-            labels = (['', '', '']*(len(select_benchmarks) - 1) +
-                      ['“pre” strategy', '“post” strategy', 'best strategy'])
-            ax.legend(algo_handles, labels, loc='upper left',
-                      frameon=True, edgecolor='none', ncol=len(select_benchmarks),
-                      columnspacing=0.)
+            lines = ([Line2D([], [], color='none')] * len(ref_handles) +
+                     [Line2D([], [0], ls='--', color=colors[idx], lw=2) for idx in select_benchmarks] +
+                     [Line2D([], [], color='none')] *len(ref_handles) +
+                     [Line2D([], [0], ls=':', color=colors[idx], lw=2) for idx in select_benchmarks] +
+                     ref_handles +
+                     [Line2D([], [0], color=colors[idx], lw=2) for idx in select_benchmarks])
+            labels = ([''] * (len(reference_labels) + len(select_benchmarks)) * 2 +
+                      reference_labels + [GPU_names[idx] for idx in select_benchmarks])
+            leg = ax.legend(lines, labels, loc='upper left',
+                            frameon=True, edgecolor='none',
+                            ncol=3, columnspacing=0.,
+                            title='pre / post / best strategy')
+            leg._legend_box.align = "left"
     elif legend:
         ax.add_artist(plt.legend(loc='upper left', frameon=True, edgecolor='none'))
-        from matplotlib.lines import Line2D
-        from matplotlib.legend_handler import HandlerTuple
         second_legend = plt.legend([tuple(Line2D([], [], marker='o', color=c, ms=5.5, mec='none')
                                           for c in colors[:len(benchmarks)]),
                                     tuple(Line2D([], [], marker='s', color=c, mec='none')
@@ -367,7 +366,7 @@ if __name__ == '__main__':
                                          'CPU / 24 threads'],
                                         ax_detail, title + ' – ' + precision,
                                         ticks=ticks,
-                                        legend=(ax_detail == axes_gpu_algos[0]),
+                                        legend=(ax_detail == axes_gpu_algos[1]),
                                         algorithm_details=True,
                                         select_benchmarks=[2, 3],
                                         colors=mpl.cm.tab10.colors[:3] + mpl.cm.tab10.colors[4:])  # avoid red-green
