@@ -324,6 +324,7 @@ if __name__ == '__main__':
             plot_detailed_times(gpu2, axes[1, 1], axes[0, 1],
                                 ticks=COBAHH_xticks,
                                 title=benchmark_names[1] + '– ' + name)
+            axes[0, 1].set_ylabel(None)
             axes[1, 1].set_ylabel(None)
             fig.tight_layout()
             fig.savefig(os.path.join(directory,
