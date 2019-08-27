@@ -7,6 +7,7 @@ T. Nowotny, R. Huerta, H. D. I. Abarbanel, and M. I. Rabinovich Self-organizatio
 
 In contrast to the original model, this benchmark uses conductance based Hodgkin-Huxley type neurons and the feedforward inhibition through the lateral horn has been omitted.
 """
+import os
 import random as py_random
 
 from brian2 import *
@@ -162,11 +163,32 @@ if config['monitor']:
     eKC_spikes = SpikeMonitor(eKC)
 
 took = bu.do_and_measure_run(config)
-
+print('simulation finished')
 if not config['debug']:
     neurons = N_PN + N_iKC + N_eKC
     synapses = len(PN_iKC) + len(iKC_eKC) + len(eKC_eKC)
     bu.write_benchmark_results('Mbody_example', config, neurons, synapses, took)
+    if config.get('monitor_store', False):
+        folder = os.path.join('benchmark_results', config['label'])
+        device_str = 'cpp' if config['device'] == 'cpp_standalone' else 'genn'
+        float_str = 'single' if config['float_dtype'] == 'float32' else 'double'
+        if config['device'] == 'cpp_standalone':
+            thread_str = '_{}_threads'.format(config['threads'])
+        else:
+            thread_str = ''
+        fname = os.path.join(folder,
+                             'MBody_spikes_{}_{}{}.npz'.format(device_str,
+                                                                float_str,
+                                                                thread_str))
+        np.savez_compressed(fname,
+                            config=config,
+                            PN_spike_times=PN_spikes.t_[:],
+                            PN_spike_indices=PN_spikes.i[:],
+                            iKC_spike_times=iKC_spikes.t_[:],
+                            iKC_spike_indices=iKC_spikes.i[:],
+                            eKC_spike_times=eKC_spikes.t_[:],
+                            eKC_spike_indices=eKC_spikes.i[:]
+                            )
 else:
     for p, M in enumerate([PN_spikes, iKC_spikes, eKC_spikes]):
         subplot(2, 2, p+1)

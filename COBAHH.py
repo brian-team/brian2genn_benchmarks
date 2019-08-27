@@ -17,10 +17,11 @@ Clock-driven implementation
 
 R. Brette - Dec 2007
 """
+import os
+import sys
 
 from brian2 import *
 import brian2genn
-import sys
 
 import benchmark_utils as bu
 
@@ -99,6 +100,22 @@ if not config['debug']:
     neurons = len(P)
     synapses = len(Ce) + len(Ci)
     bu.write_benchmark_results('COBAHH', config, neurons, synapses, took)
+    if config.get('monitor_store', False):
+        folder = os.path.join('benchmark_results', config['label'])
+        device_str = 'cpp' if config['device'] == 'cpp_standalone' else 'genn'
+        float_str = 'single' if config['float_dtype'] == 'float32' else 'double'
+        if config['device'] == 'cpp_standalone':
+            thread_str = '_{}_threads'.format(config['threads'])
+        else:
+            thread_str = ''
+        fname = os.path.join(folder,
+                             'COBAHH_spikes_{}_{}{}.npz'.format(device_str,
+                                                                float_str,
+                                                                thread_str))
+        np.savez_compressed(fname,
+                            config=config,
+                            spike_times=spikemon.t_[:],
+                            spike_indices=spikemon.i[:])
 else:
     print('Number of spikes: %d' % spikemon.num_spikes)
     print('Mean firing rate: %.1f Hz' %

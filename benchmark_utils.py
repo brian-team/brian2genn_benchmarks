@@ -28,7 +28,8 @@ def prepare_benchmark(argv):
         config['device'] = sys.argv[2]
         config['threads'] = int(sys.argv[3])
         config['runtime'] = float(sys.argv[4])*second
-        config['monitor'] = sys.argv[5].lower() == 'true' or sys.argv[5] == '1'
+        config['monitor'] = sys.argv[5].lower() in ['true', '1', 'store']
+        config['monitor_store'] = sys.argv[5].lower() == 'store'
         config['float_dtype'] = sys.argv[6]
         config['label'] = sys.argv[7]
         if len(sys.argv) > 8:
