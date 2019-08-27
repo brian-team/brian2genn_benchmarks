@@ -46,7 +46,7 @@ def plot_total_comparisons(benchmarks, machine_names, GPU_names, ax, title,
     ax.grid(b=True, which='minor', color='#c0c0c0', linestyle='-',
             linewidth=0.25)
     ax.set_xticks(np.log(ticks))
-    ax.set_xticklabels(ticks, rotation=45)
+    ax.set_xticklabels(['{:,d}'.format(t) for t in ticks], rotation=45)
     ax.set(xlabel='Number of neurons',
            ylabel='Simulation time (s)',
            yscale='log',
@@ -154,7 +154,7 @@ def plot_total_comparisons_only_GPU(benchmarks, reference_benchmarks, GPU_names,
     ax.grid(b=True, which='minor', color='#e0e0e0', linestyle='-',
             linewidth=0.5)
     ax.set_xticks(np.log(ticks))
-    ax.set_xticklabels(ticks, rotation=45)
+    ax.set_xticklabels(['{:,d}'.format(t) for t in ticks], rotation=45)
     ax.set(xlabel='Number of neurons',
            ylabel='Simulation time (relative to biological time)',
            yscale='log',
@@ -240,7 +240,7 @@ def plot_necessary_runtime_across_gpus(benchmarks, reference_benchmark_cpu,
         ax.plot(np.log(benchmark['n_neurons']).unique(), necessary, 'o-',
                 mec='white', label=label, color=colors[idx])
 
-    ax.set_xticklabels(ticks, rotation=45)
+    ax.set_xticklabels(['{:,d}'.format(t) for t in ticks], rotation=45)
     ax.grid(b=True, which='major', color='#e0e0e0', linestyle='-',
             linewidth=1.5)
     ax.grid(b=True, which='minor', color='#e0e0e0', linestyle='-',

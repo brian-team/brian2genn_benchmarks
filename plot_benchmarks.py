@@ -230,7 +230,7 @@ def plot_detailed_times(benchmark, ax_detail, ax_sim, ticks, title=None, legend=
     ax_sim.set_yticks([1e-1, 1e0, 1e1, 1e2, 1e3, 1e4, 1e5])
     ax_sim.spines['bottom'].set_visible(False)
     ax_detail.set_yscale('symlog', linthreshy=0.01, linscaley=np.log10(np.e))
-    ax_detail.set_xticklabels(ticks, rotation=45)
+    ax_detail.set_xticklabels(['{:,d}'.format(t) for t in ticks], rotation=45)
     plt.setp(ax_sim.xaxis.get_ticklines(), visible=False)
     if title is not None:
         ax_sim.set_title(title)
