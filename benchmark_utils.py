@@ -23,6 +23,7 @@ def prepare_benchmark(argv):
         config['monitor'] = True
         config['float_dtype'] = 'float64'
         config['debug'] = True
+        config['kerneltiming'] = True
     else:
         config['scale'] = float(sys.argv[1])
         config['device'] = sys.argv[2]
@@ -33,10 +34,14 @@ def prepare_benchmark(argv):
         config['float_dtype'] = sys.argv[6]
         config['label'] = sys.argv[7]
         if len(sys.argv) > 8:
-            config['paramode'] = sys.argv[8].lower()
-        else:
-            config['paramode'] = 'N/A'
-        config['kerneltiming'] = len(sys.argv) > 9 and (sys.argv[9].lower() == 'true' or sys.argv[9] == '1')
+            if config['device'] == 'genn':
+                config['paramode'] = sys.argv[8].lower()
+                config['kerneltiming'] = len(sys.argv) > 9 and (sys.argv[9].lower() == 'true' or sys.argv[9] == '1')
+            else:
+                config['paramode'] = 'N/A'
+                # "kerneltiming" for C++ standalone mode means switching on profiling mode
+                config['kerneltiming'] = sys.argv[8].lower() == 'true' or sys.argv[8] == '1'
+
         config['debug'] = False
 
     if config['device'] == 'genn':
@@ -93,7 +98,8 @@ def do_and_measure_run(config):
     start = time.time()
     if config['device'] == 'cpp_standalone':
         device.insert_code('main', NOTE_TIME)
-        run(config['runtime'], report='text', level=1)
+        run(config['runtime'], report='text', level=1,
+            profile=config['kerneltiming'])
         device.insert_code('main', NOTE_TIME)
         device.build()
     else:
@@ -103,6 +109,30 @@ def do_and_measure_run(config):
 
     took = (time.time() - start)
     print('Took %.1fs in total (runtime: %.1fs)' % (took, device._last_run_time))
+    if config['kerneltiming']:
+        if config['device'] == 'cpp_standalone':
+            total_neuron = 0*second
+            total_synapse = 0*second
+            total = 0*second
+            profiling_info = profiling_summary()
+            for name, time in zip(profiling_info.names, profiling_info.times):
+                if name.startswith('neurongroup'):
+                    total_neuron += time
+                elif name.startswith('synapses'):
+                    total_synapse += time
+                total += time
+        else:
+            with open(os.path.join(device.project_dir,
+                                   'test_output', 'test.time'), 'r') as f:
+                lines = f.readlines()
+            timings = [float(t) for t in lines[-1].strip().split(' ')]
+            total_neuron = timings[0] * second
+            total_synapse = sum(timings[1:-1]) * second
+            total = timings[-1] * second
+        print('Total time for neurons: {} ({:.0f}%)'.format(str(total_neuron),
+                                                            100*total_neuron/total))
+        print('Total time for synapses: {} ({:.0f}%)'.format(str(total_synapse),
+                                                             100*total_synapse/total))
     return took
 
 

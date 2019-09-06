@@ -30,7 +30,7 @@ ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:/usr/local/cuda/lib64/stubs:${LD_LIBR
 WORKDIR /root
 
 RUN conda config --set restore_free_channel true
-RUN conda install -c conda-forge --yes brian2=2.2
+RUN conda install -c conda-forge --yes 'brian2=2.2,<2.2.1' matplotlib
 RUN pip install brian2genn==1.2
 RUN git clone https://github.com/genn-team/genn
 RUN (cd genn; git checkout 3.2.0)
