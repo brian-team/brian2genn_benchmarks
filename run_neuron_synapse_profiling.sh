@@ -6,7 +6,7 @@ echo Using label: $LABEL
 RESULT_DIR="benchmark_results/$LABEL"
 mkdir -p $RESULT_DIR
 
-RUNTIME=10
+RUNTIME=1
 
 for TRIAL in 1 2 3; do
   echo Trial $TRIAL
