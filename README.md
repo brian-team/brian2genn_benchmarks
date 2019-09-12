@@ -2,9 +2,8 @@
 
 
 These files can be used to run detailed benchmarking on Brian2's C++ standalone
-mode and on Brian2GeNN. It is meant to run with the most recent versions of
-Brian2/Brian2GeNN/GeNN, i.e. currently the master branch (all projects will soon
-have corresponding releases: 2.2 (Brian), 1.2 (Brian2GeNN), and 3.2 (GeNN)).
+mode and on Brian2GeNN. It is meant to run with Brian 2.2, Brian2GeNN 1.2,
+and GeNN 3.2.
 
 A simple way to run it if you have nvidia-docker installed is to just run via
 Docker:
